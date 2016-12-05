@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router';
 
-class Greeting extends React.Component {
+class Profile extends React.Component {
   constructor(props) {
     super(props);
 
@@ -10,7 +10,6 @@ class Greeting extends React.Component {
   }
 
   render() {
-    // debugger
     const { currentUser } = this.props;
 
     if (currentUser) {
@@ -38,4 +37,4 @@ class Greeting extends React.Component {
   }
 }
 
-export default Greeting;
+export default Profile;
