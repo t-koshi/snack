@@ -12,12 +12,12 @@ const mapStateToProps = ((state) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   if (ownProps.router.location.pathname === "/signup") {
     return ({
-      formType: "signup",
+      formType: "Sign up",
       processForm: (user) => dispatch(signup(user))
     });
   } else {
     return ({
-      formType: "login",
+      formType: "Sign in",
       processForm: (user) => dispatch(login(user))
     });
   }

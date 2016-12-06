@@ -1,18 +1,26 @@
 {
-  "name": "bbb",
+  "name": "snack",
   "version": "1.0.0",
-  "description": "This README would normally document whatever steps are necessary to get the application up and running.",
-  "main": "index.js",
+  "description": "[Heroku link][heroku] **Note:** This should be a link to your production site",
+  "main": "webpack.config.js",
   "directories": {
+    "doc": "docs",
     "test": "test"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "webpack --watch"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ywenc/snack.git"
+  },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ywenc/snack/issues"
+  },
+  "homepage": "https://github.com/ywenc/snack#readme",
   "dependencies": {
     "babel-core": "^6.18.2",
     "babel-loader": "^6.2.8",

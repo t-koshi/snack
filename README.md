@@ -61,5 +61,7 @@ snack is a web application inspired by Evernote built using Ruby on Rails and Re
 
 ### Bonus Features (TBD)
 - [ ] custom emojis
-- [ ] Search messages by content or author
 - [ ] Users can sign into multiple teams
+- [ ] blank form error rendering
+- [ ] Welcome emails, password retrieval
+- [ ] Search messages by content or author
