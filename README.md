@@ -38,17 +38,18 @@ snack is a web application inspired by Evernote built using Ruby on Rails and Re
 
 **Objective:** Functioning rails project with front-end Authentication
 
-### Phase 2: Message Model, API, and components (2 days)
+### Phase 2: Channel Model, API, and components (1 days)
 
-**Objective:** Message model/controller (create, show, update, destroy) through the API
+**Objective:** Channel model/controller (create, show, update, destroy) through the API
 
-### Phase 3: Channel Model, API, and components (1 days)
+### Phase 3: Message Model, API, and components (2 days)
 
-**Objective:** Channels can be created, destroyed, and have channel messages shown through the API
+**Objective:** Messages can be created, destroyed, and have channel messages shown through the API. Implement live-chat using websockets.
+
 
 ### Phase 4:  Direct Message (2 day)
 
-**Objective:** Direct message channels can be created, destroyed, and have channel messages shown through the API. Implement live-chat.
+**Objective:** Direct message channels can be created, destroyed, and have channel messages shown through the API.
 
 ### Phase 5: Teams or multi-person DM(1 day)
 
