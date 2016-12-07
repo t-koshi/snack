@@ -12,5 +12,21 @@ users = User.create([
     username: 'guest',
     email: 'yumsnacks7@gmail.com',
     password: 'snacks123'
+  }, {
+    username: 'snackbear',
+    email: 'snackbear1@gmail.com',
+    password: 'snackbear'
+  }
+])
+
+channels = Channel.create([
+  {
+    name: 'general',
+    purpose: 'This channel is for snackpack-wide communication and announcements. All snackpack members are in this channel.',
+    creator: users.first
+  }, {
+    name: 'random',
+    purpose: "A place for vegetables, grains, serious work, or jibber-jabber you'd prefer to keep out of more focused snack-related channels.",
+    creator: users.first
   }
 ])

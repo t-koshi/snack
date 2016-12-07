@@ -19,7 +19,19 @@ class User < ApplicationRecord
   after_initialize :ensure_session_token
 
   has_many :channel_memberships
-  has_many :channels
+
+  has_many(
+    :joined_channels,
+    through: :channel_memberships,
+    source: :channel
+  )
+
+  has_many(
+    :created_channels,
+    primary_key: :id,
+    foreign_key: :creator_id,
+    class_name: :Channel
+  )
 
   attr_reader :password
 
