@@ -23,7 +23,7 @@ edited      | boolean   | not null, default: false
 column name     | data type | details
 ----------------|-----------|-----------------------
 id              | integer   | not null, primary key
-user_id         | integer   | not null, indexed, unique
+creator_id      | integer   | not null, indexed, unique
 channel_id      | integer   | not null, indexed, unique
 
 
