@@ -5,7 +5,7 @@ class Api::UsersController < ApplicationController
 
     if @user.save
       sign_in(@user)
-      render :show
+      render 'api/channels/index'
     else
       render json:
         ['unable to create new acct'].concat(@user.errors.full_messages),

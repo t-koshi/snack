@@ -7,7 +7,7 @@ class Api::SessionsController < ApplicationController
 
     if @user
       sign_in(@user)
-      render 'api/users/show'
+      render 'api/channels/index'
     else
       render json:
         ['Sorry, you entered an incorrect email address or password.'],
