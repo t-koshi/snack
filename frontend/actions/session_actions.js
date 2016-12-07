@@ -39,7 +39,7 @@ export function signup(user){
 
 export function logout(){
   return((dispatch) => {
-    return APIUtil.logout.then(
+    return APIUtil.logout().then(
       () => dispatch(receiveCurrentUser(null)),
       () => dispatch(receiveErrors(errors.responseJSON))
     );
