@@ -17,8 +17,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <header>
-          <img src={ window.rootAssets.logo } onClick={ this.handleClickRoot} />
+        <header className="header-bar">
+          <img className="logo" src={ window.rootAssets.logo } onClick={ this.handleClickRoot} />
           <Link onClick={ this.handleClickLogIn }>Sign in</Link>
           <Link onClick={ this.handleClickSignUp }>Sign up</Link>
           <Link onClick={ this.guestSignIn }>Guest sign in</Link>

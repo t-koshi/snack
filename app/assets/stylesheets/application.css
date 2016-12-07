@@ -49,7 +49,7 @@ time, mark, audio, video, input, button {
   outline: none;
 }
 
-header {
+.header-bar {
   padding: 5px;
   box-shadow: 0 1px 1px rgba(0,0,0,.1);
   background-color: #ffffff;
@@ -57,7 +57,7 @@ header {
   height: 60px;
 }
 
-header > a {
+.header-bar > a {
   display: inline-block;
   float: right;
   border: 2px solid #404b55;
@@ -69,19 +69,19 @@ header > a {
   font-size: 16px;
 }
 
-header > a:hover{
+.header-bar > a:hover{
   border: 2px solid #555459;
   color: #555459;
   cursor: pointer;
 }
 
-header img{
+.logo {
   width: 140px;
   height: 85%;
   margin-left: 15px;
 }
 
-header img:hover{
+.logo:hover{
   cursor: pointer;
 }
 

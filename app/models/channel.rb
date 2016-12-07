@@ -11,4 +11,12 @@
 #
 
 class Channel < ApplicationRecord
+  validates :creator_id, :name, presence: true
+
+  has_many :channel_ownerships,
+    classname: :ChannelMembership,
+    primary_key: :id,
+    foreign_key: :
+
+  belongs_to :creator
 end
