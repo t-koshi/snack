@@ -14,21 +14,14 @@ class Profile extends React.Component {
 
     if (currentUser) {
       return (
-        <article>
-          Welcome, { this.props.currentUser.username }
+        <aside className="user-profile">
+          Welcome, { currentUser.username }
           <br /><button onClick={ this.logOutUser }>
             Log Out
           </button>
-        </article>
+        </aside>
       );
-    } else {
-      return (
-        <article>
-          <Link to="/#/signup"></Link>
-          <Link to="/#/login"></Link>
-        </article>
-      );
-    }
+    } 
   }
 
   logOutUser(e) {
