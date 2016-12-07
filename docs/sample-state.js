@@ -62,6 +62,7 @@
           icon_url: "assets/users/mochicat.png"
         },
       ],
-    }
+    },
+    errors: []  
   }
 }

@@ -25,4 +25,4 @@
 | "/sign-in" | "SessionFormContainer" |
 | "/messages/:channelName/" | "MessagesIndex" |
 | "/channels" | "ChannelIndexItemContainer" |
- "/channels/new" | "ChannelFormContainer" |
+| "/channels/new" | "ChannelFormContainer" |

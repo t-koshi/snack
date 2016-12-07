@@ -21,8 +21,7 @@ export function resetErrors(){
 
 export function login(user){
   return ((dispatch) => {
-    return APIUtil.login(
-      user,
+    return APIUtil.login(user).then(
       (currentUser) => dispatch(receiveCurrentUser(currentUser)),
       (errors) => dispatch(receiveErrors(errors.responseJSON))
     );
@@ -31,8 +30,7 @@ export function login(user){
 
 export function signup(user){
   return ((dispatch) =>{
-    return APIUtil.signup(
-      user,
+    return APIUtil.signup(user).then(
       (currentUser) => dispatch(receiveCurrentUser(currentUser)),
       (errors) => dispatch(receiveErrors(errors.responseJSON))
     );
@@ -41,7 +39,7 @@ export function signup(user){
 
 export function logout(){
   return((dispatch) => {
-    return APIUtil.logout(
+    return APIUtil.logout.then(
       () => dispatch(receiveCurrentUser(null)),
       () => dispatch(receiveErrors(errors.responseJSON))
     );
