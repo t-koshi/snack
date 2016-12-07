@@ -14,36 +14,33 @@ class SessionForm extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.redirect = this.redirect.bind(this);
-    this.enterEmail= this.enterEmail.bind(this);
-    this.enterUsername = this.enterUsername.bind(this);
-    this.enterPassword = this.enterPassword.bind(this);
   }
 
   render() {
     // const otherLink = () => {
-    //   return (this.props.formType === "signup") ? "login" : "signup";
+    //   return (this.props.formType === "Sign up") ? "login" : "signup";
     // };
 
-    const errors = (() => {
-      if (this.props.errors.length !== 0){
-          return this.props.errors.map((error, idx) => {
-            return <li key={ idx }>{ error }</li>;
-          });
-        }
-    });
+    const { username, email, password } = this.state;
 
     const formErrors = (() => {
-      if (this.props.errors.length !== 0){
-        return <ul className="session-errors">{ errors()} </ul>;
+      if (this.props.errors){
+        return (
+          <ul className="session-errors">
+          { this.props.errors.map((error, idx) => (
+            <li key={ idx }>{ error }</li>)
+          )}
+          </ul>
+        );
       }
     });
 
     const usernameField = (() => {
       if (this.props.formType === "Sign up") {
         return (
-          <input onChange={ this.enterUsername }
+          <input onChange={ this.enterField("username") }
             type="text"
-            value={ this.state.username }
+            value={ username }
             placeholder="username"/>
         );
       }
@@ -65,12 +62,12 @@ class SessionForm extends React.Component {
         <form className="session-form" onSubmit={ this.handleSubmit }>
           <h2>Sign in to snack.com</h2>
           <p>Enter your { emailText() }and <strong>password.</strong></p>
-            <input onChange={ this.enterEmail }
-              type="email"
-              value={ this.state.email }
+            <input onChange={ this.enterField("email") }
+              type="text"
+              value={ email }
               placeholder="you@domain.com"/>
           { usernameField() }
-            <input onChange={ this.enterPassword }
+            <input onChange={ this.enterField("password") }
               type="password"
               placeholder="password"/>
           <button>{ this.props.formType }</button>
@@ -86,26 +83,17 @@ class SessionForm extends React.Component {
     this.props.processForm(user).then(() => this.redirect());
   }
 
-  enterEmail(e){
-    e.preventDefault();
-    this.setState({ email: e.target.value });
-  }
-
-  enterUsername(e){
-    e.preventDefault();
-    this.setState({ username: e.target.value });
-  }
-
-  enterPassword(e){
-    e.preventDefault();
-    this.setState({ password: e.target.value });
+  enterField(field){
+    return (e) => this.setState({
+      [field]: e.target.value
+    });
   }
 
   redirect() {
     if (this.props.loggedIn) {
-      this.props.router.push(`/`);
+      this.props.router.replace(`/`);
     } else {
-      this.props.router.push(`${this.props.router.location.pathname}`);
+      this.props.router.replace(`${this.props.router.location.pathname}`);
     }
   }
 }

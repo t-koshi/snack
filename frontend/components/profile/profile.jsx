@@ -15,7 +15,7 @@ class Profile extends React.Component {
     if (currentUser) {
       return (
         <article>
-          Welcome, { `${currentUser.username}` }
+          Welcome, { currentUser.username }
           <br /><button onClick={ this.logOutUser }>
             Log Out
           </button>

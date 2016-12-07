@@ -7,9 +7,7 @@ class Api::SessionsController < ApplicationController
 
     if @user
       sign_in(@user)
-      UserMailer.welcome_email(@user)
-      render "/"
-      #redner messages/@slackbot
+      redirect_to "/"
     else
       render json:
         ['Sorry, you entered an incorrect email address or password.'],
