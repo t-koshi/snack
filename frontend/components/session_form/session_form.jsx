@@ -17,10 +17,6 @@ class SessionForm extends React.Component {
   }
 
   render() {
-    // const otherLink = () => {
-    //   return (this.props.formType === "Sign up") ? "login" : "signup";
-    // };
-
     const { username, email, password } = this.state;
 
     const formErrors = (() => {

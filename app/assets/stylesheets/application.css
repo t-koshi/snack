@@ -50,10 +50,11 @@ time, mark, audio, video, input, button {
 }
 
 header {
-  padding: 15px;
+  padding: 5px;
   box-shadow: 0 1px 1px rgba(0,0,0,.1);
   background-color: #ffffff;
-  margin-bottom: 30px;
+  margin-bottom: 35px;
+  height: 60px;
 }
 
 header > a {
@@ -63,7 +64,7 @@ header > a {
   color: #404b55;
 
   border-radius: 4px;
-  margin: 0 15px;
+  margin: 10px 15px 0 15px;
   padding: 6px 12px;
   font-size: 16px;
 }
@@ -74,14 +75,13 @@ header > a:hover{
   cursor: pointer;
 }
 
-header h1{
-  font-size: 32px;
-  font-weight: 900;
-  letter-spacing: -1px;
-  display: inline-block;
+header img{
+  width: 140px;
+  height: 85%;
+  margin-left: 15px;
 }
 
-header h1:hover{
+header img:hover{
   cursor: pointer;
 }
 

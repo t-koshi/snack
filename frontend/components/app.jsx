@@ -4,8 +4,6 @@ import SessionFormContainer from './session_form/session_form_container';
 import { Link, withRouter, Redirect } from 'react-router';
 import { resetErrors } from '../actions/session_actions';
 import { login } from '../actions/session_actions';
-// import * as Logo from "../../app/assets/images/logo.png";
-// import { Image } from 'react-native';
 
 class App extends React.Component {
   constructor(props) {
@@ -20,8 +18,7 @@ class App extends React.Component {
     return (
       <div>
         <header>
-          // <Image src={ require("../../app/assets/images/logo.png") } onClick={ this.handleClickRoot} />
-          <h1><Link onClick={ this.handleClickLogIn }>Sign up</Link></h1>
+          <img src={ window.rootAssets.logo } onClick={ this.handleClickRoot} />
           <Link onClick={ this.handleClickLogIn }>Sign in</Link>
           <Link onClick={ this.handleClickSignUp }>Sign up</Link>
           <Link onClick={ this.guestSignIn }>Guest sign in</Link>
@@ -52,7 +49,7 @@ class App extends React.Component {
 
   _guestSignIn(e) {
     e.preventDefault();
-    if ( currentUser === null ) {
+    if ( store.getState().session.currentUser === null ) {
       store.dispatch(login({
         email: "yumsnacks7@gmail.com",
         password: "snacks123"}));
