@@ -10,7 +10,7 @@
 users = User.create([
   {
     username: 'guest',
-    email: 'talkaboutsnacks@gmail.com',
-    password: 'password'
+    email: 'yumsnacks7@gmail.com',
+    password: 'snacks123'
   }
 ])
