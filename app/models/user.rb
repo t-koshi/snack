@@ -18,6 +18,9 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token
 
+  has_many :channel_memberships
+  has_many :channels
+
   attr_reader :password
 
   def password=(password)

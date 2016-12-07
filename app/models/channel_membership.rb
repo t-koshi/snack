@@ -1,4 +1,4 @@
 class ChannelMembership < ApplicationRecord
-  has_many: users
-  has_many: channels
+  belongs_to: :user
+  belongs_to: :channel
 end
