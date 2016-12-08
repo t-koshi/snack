@@ -1,3 +1,57 @@
 // Place all the styles related to the channel controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.channel {
+  height: 100vh;
+}
+
+.user-profile {
+  float: left;
+  width: 220px;
+  height: 100%;
+  background-color: #4d394b;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+.user {
+  box-sizing: border-box;
+  padding: 10px 15px;
+  height: 60px;
+  width: 100%;
+  float: left;
+  background-color: #4d394b;
+  position: relative;
+}
+
+.user button {
+  color: white;
+}
+
+.user strong{
+  position: absolute;
+  font-weight: 400;
+  bottom: 35px;
+  font-size: 12px;
+  transform : scale(1,0.5);
+}
+
+.user:hover {
+  background-color: #3e313c;
+}
+
+.users:focus {
+  background-color: #3e313c;
+}
+
+
+.channels {
+  float: left;
+  padding: 10px 15px;
+}
+
+.dms {
+  float: left;
+  padding: 10px 15px;
+}

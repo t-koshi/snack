@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link, withRouter } from 'react-router';
 import { merge } from 'lodash';
-import Header from './header';
+import HeaderContainer from './header_container';
 
 class SessionForm extends React.Component {
   constructor(props) {
@@ -53,7 +53,7 @@ class SessionForm extends React.Component {
 
     return (
       <section className="session">
-        <Header page={ 'session' }/>
+        <HeaderContainer page={ 'session' }/>
 
         { formErrors() }
         <form className="session-form" onSubmit={ this.handleSubmit }>

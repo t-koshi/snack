@@ -40,6 +40,7 @@ class Header extends Component {
     );
   }
 
+
   _handleClickHome(e) {
     e.preventDefault();
     this.props.router.replace('/');
@@ -68,7 +69,9 @@ class Header extends Component {
       this.props.login({
         email: "yumsnacks7@gmail.com",
         password: "snacks123"
-      }).then(this.props.router.replace('/messages'));
+      }).then(() => this.props.router.push('/messages'));
+    } else {
+      this.props.router.replace('/messages');
     }
   }
 }
