@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Link } from 'react-router';
+import { Link, withRouter } from 'react-router';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -12,22 +12,21 @@ class Profile extends React.Component {
   render() {
     const { currentUser } = this.props;
 
-    if (currentUser) {
-      return (
-        <aside className="user-profile">
-          Welcome, { currentUser.username }
-          <br /><button onClick={ this.logOutUser }>
-            Log Out
-          </button>
-        </aside>
-      );
-    } 
+    return (
+      <aside className="user-profile">
+        Welcome, { currentUser.username }
+        <br /><button onClick={ this.logOutUser }>
+          Log Out
+        </button>
+      </aside>
+    );
   }
 
   logOutUser(e) {
     e.preventDefault();
     this.props.logout();
+    this.props.router.replace('/');
   }
 }
 
-export default Profile;
+export default withRouter(Profile);

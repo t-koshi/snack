@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
+import { withRouter } from 'react-router';
+import ProfileContainer from './profile_container';
 
 
 class ChannelIndex extends Component {
@@ -9,8 +11,13 @@ class ChannelIndex extends Component {
   }
 
   render() {
-
+    return (
+      <content>
+        <ProfileContainer />
+      { this.props.children };
+      </content>
+    )
   }
 }
 
-export default ChannelIndex;
+export default withRouter(ChannelIndex);

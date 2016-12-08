@@ -1,10 +1,10 @@
-import { connect } from 'react';
+import { connect } from 'react-redux';
 import { fetchChannels } from '../../actions/channel_actions';
 import ChannelIndex from './channel_index';
-//
-// const mapStateToProps = ((state) => {
-//   return { currentUser: state.session.currentUser };
-// });
+
+const mapStateToProps = ((state) => {
+  return { currentUser: state.session.currentUser };
+});
 
 const mapDispatchToProps = (dispatch) => {
   return ({
@@ -13,6 +13,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(
-  mapStateToProps,
+  // mapStateToProps,
   mapDispatchToProps
 )(ChannelIndex);
