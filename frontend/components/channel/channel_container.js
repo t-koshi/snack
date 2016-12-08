@@ -3,7 +3,10 @@ import { fetchChannels } from '../../actions/channel_actions';
 import ChannelIndex from './channel_index';
 
 const mapStateToProps = ((state) => {
-  return { currentUser: state.session.currentUser };
+  return {
+    currentUser: state.session.currentUser,
+    fetching: state.fetching
+  };
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -13,6 +16,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(
-  // mapStateToProps,
+  mapStateToProps,
   mapDispatchToProps
 )(ChannelIndex);

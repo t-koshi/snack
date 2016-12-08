@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { logout, receiveCurrentUser } from '../../actions/session_actions';
-import Profile from './profile';
+import { login } from '../../actions/session_actions';
+import Landing from './landing';
 
 const mapStateToProps = ((state) => {
   return { currentUser: state.session.currentUser };
@@ -8,11 +8,11 @@ const mapStateToProps = ((state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return ({
-    logout: () => dispatch(logout())
+    login: (user) => dispatch(login(user))
   });
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Profile);
+)(Landing);

@@ -48,8 +48,8 @@ class Header extends Component {
   _handleClickLogIn(e) {
     e.preventDefault();
     store.dispatch(resetErrors(null));
-    if (store.getState().session.currentUser) {
-      this.props.router.push('/messages');
+    if (this.props.currentUser) {
+      this.props.router.replace('/messages');
     } else {
       this.props.router.replace('/login');
     }
@@ -64,13 +64,13 @@ class Header extends Component {
 
   _guestSignIn(e) {
     e.preventDefault();
-    if ( store.getState().session.currentUser === null ) {
+    if ( this.props.currentUser === null ) {
       store.dispatch(login({
         email: "yumsnacks7@gmail.com",
         password: "snacks123"
-      })
-    );}
-    this.props.router.push('/messages');
+      }));
+      this.props.router.replace('/messages');
+    }
   }
 }
 

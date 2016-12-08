@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 import { withRouter } from 'react-router';
 import ProfileContainer from './profile_container';
+import Spinner from '../spinner';
 
 
 class ChannelIndex extends Component {
@@ -11,10 +11,11 @@ class ChannelIndex extends Component {
   }
 
   render() {
+    if (this.props.fetching) return <Spinner />;
+
     return (
       <content>
         <ProfileContainer />
-      { this.props.children };
       </content>
     )
   }

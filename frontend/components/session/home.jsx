@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link, withRouter, Redirect } from 'react-router';
-import Header from './header';
+import { withRouter } from 'react-router';
 
 class Home extends React.Component {
   constructor(props) {
@@ -9,9 +8,9 @@ class Home extends React.Component {
 
   render() {
     return (
-      <nav className="homepage">
-        <Header page={ '/' }/>
-      </nav>
+      <section>
+        { this.props.children }
+      </section>
     );
   }
 }

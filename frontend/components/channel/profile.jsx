@@ -9,6 +9,9 @@ class Profile extends React.Component {
     this.logOutUser = this.logOutUser.bind(this);
   }
 
+  componentDidMount() {
+  }
+
   render() {
     const { currentUser } = this.props;
 
