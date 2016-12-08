@@ -14,7 +14,7 @@
 class Message < ApplicationRecord
   # can't use presence validation with boolean field
 
-  validates :author_id, :channel_id, :body
+  validates :author_id, :channel_id, :body, presence: true
   validates :live, inclusion: { in: [true, false] }
 
 end
