@@ -47,7 +47,7 @@ class Header extends Component {
 
   _handleClickLogIn(e) {
     e.preventDefault();
-    store.dispatch(resetErrors(null));
+    this.props.resetErrors(null);
     if (this.props.currentUser) {
       this.props.router.replace('/messages');
     } else {
@@ -58,18 +58,17 @@ class Header extends Component {
 
   _handleClickSignUp(e) {
     e.preventDefault();
-    store.dispatch(resetErrors(null));
+    this.props.resetErrors(null);
     this.props.router.replace('/signup');
   }
 
   _guestSignIn(e) {
     e.preventDefault();
     if ( this.props.currentUser === null ) {
-      store.dispatch(login({
+      this.props.login({
         email: "yumsnacks7@gmail.com",
         password: "snacks123"
-      }));
-      this.props.router.replace('/messages');
+      }).then(this.props.router.replace('/messages'));
     }
   }
 }

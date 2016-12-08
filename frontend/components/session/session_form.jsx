@@ -53,7 +53,7 @@ class SessionForm extends React.Component {
 
     return (
       <section className="session">
-        <Header page={ 'session' } currentUser={ this.props.currentUser }/>
+        <Header page={ 'session' }/>
 
         { formErrors() }
         <form className="session-form" onSubmit={ this.handleSubmit }>

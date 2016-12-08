@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router';
+import HeaderContainer from './header_container';
 
 class Home extends React.Component {
   constructor(props) {
@@ -8,7 +9,8 @@ class Home extends React.Component {
 
   render() {
     return (
-      <section>
+      <section className="home">
+        <HeaderContainer page={ '/' }/>
         { this.props.children }
       </section>
     );
