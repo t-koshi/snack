@@ -5,21 +5,14 @@ import Header from './header';
 class Home extends React.Component {
   constructor(props) {
     super(props);
-
-    this.handleClickHome = this._handleClickHome.bind(this);
   }
 
   render() {
     return (
-      <div className="homepage">
-        <Header page={ "root" } />
-      </div>
+      <nav className="homepage">
+        <Header page={ '/' }/>
+      </nav>
     );
-  }
-
-  _handleClickHome(e) {
-    e.preventDefault();
-    this.props.router.replace('/');
   }
 }
 

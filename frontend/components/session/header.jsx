@@ -15,7 +15,7 @@ class Header extends Component {
 
   render() {
     const headerPage = (() => {
-      if (this.props.page === "root") {
+      if (this.props.page === "/") {
         return "root-header";
       } else {
         return "session-header";
@@ -23,7 +23,7 @@ class Header extends Component {
     });
 
     const logoPage = (() => {
-      if (this.props.page === "root") {
+      if (this.props.page === "/") {
         return window.rootAssets.rootLogo;
       } else {
         return window.rootAssets.sessionLogo;
@@ -31,7 +31,7 @@ class Header extends Component {
     });
 
     return (
-      <header className={ headerPage() }>
+      <header className={ `${headerPage()} group` }>
         <img className="logo" src={ logoPage() } onClick={ this.handleClickHome} />
         <Link onClick={ this.handleClickLogIn }>Sign in</Link>
         <Link onClick={ this.handleClickSignUp }>Sign up</Link>
@@ -67,9 +67,10 @@ class Header extends Component {
     if ( store.getState().session.currentUser === null ) {
       store.dispatch(login({
         email: "yumsnacks7@gmail.com",
-        password: "snacks123"}));
-    }
-    this.props.router.replace('/messages');
+        password: "snacks123"
+      })
+    );}
+    this.props.router.push('/messages');
   }
 }
 

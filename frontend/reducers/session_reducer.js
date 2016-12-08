@@ -3,7 +3,9 @@ import { merge } from 'lodash';
 import {
   RECEIVE_CURRENT_USER,
   RECEIVE_ERRORS,
-  RESET_ERRORS
+  RESET_ERRORS,
+  SIGNUP_USER,
+  SIGNIN_USER
 } from '../actions/session_actions';
 
 const _default = {

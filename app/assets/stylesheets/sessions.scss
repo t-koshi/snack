@@ -1,59 +1,68 @@
+.homepage {
+  width: 100%;
+  height: 1000px;
+  background-color: black;
+}
+
 .logo {
   width: 140px;
   height: 85%;
   margin-left: 15px;
+  float: left;
 }
 
 .logo:hover{
   cursor: pointer;
 }
 
+.root-header {
+  background: transparent;
+}
+
 .session-header {
-  float: right;
-  background-color: #fff;
   width: 100%;
   padding: 5px;
   box-shadow: 0 1px 1px rgba(0,0,0,.1);
   background-color: #ffffff;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
   height: 60px;
 }
 
 .session-header a {
-  display: inline-block;
-  float: right;
+  border: 2px solid #555459;
+  color: #555459;
+  opacity: .8;
+}
+
+.session-header a:hover {
   border: 2px solid #404b55;
   color: #404b55;
-  border-radius: 4px;
-  margin: 10px 15px 0 15px;
-  padding: 6px 12px;
-  font-size: 16px;
+  cursor: pointer;
+  opacity: 1;
 }
 
 .root-header a {
+  border: 2px solid #fff;
+  color: #fff;
+  opacity: 0.8;
+}
+
+.root-header > a:hover{
+  cursor: pointer;
+  opacity: 1;
+}
+
+.session-header a,
+.root-header a {
   display: inline-block;
   float: right;
-  border: 2px solid #404b55;
-  color: #404b55;
-  border-radius: 4px;
+  border-radius: 5px;
   margin: 10px 15px 0 15px;
   padding: 6px 12px;
   font-size: 16px;
 }
 
-.root-header > a:hover{
-  border: 2px solid #555459;
-  color: #555459;
-  cursor: pointer;
-}
-
-.session-header > a:hover{
-  border: 2px solid #555459;
-  color: #555459;
-  cursor: pointer;
-}
-
-body {
+.session {
   background-color: #f9f9f9;
 }
 
@@ -101,9 +110,10 @@ body {
   box-shadow: 0 1px 0 rgba(0,0,0,.25);
   width: 550px;
   padding: 20px;
-  margin-top: 15px;
+  margin-top: 20px;
   color: #555459;
   background-color: #ffffff;
+  border-radius: 4px;
 }
 
 .session-form h2 {

@@ -53,10 +53,9 @@ class SessionForm extends React.Component {
 
     return (
       <section className="session">
-        <Header page={ "session" }/>
+        <Header page={ 'session' }/>
 
         { formErrors() }
-
         <form className="session-form" onSubmit={ this.handleSubmit }>
           <h2>Sign in to snack.com</h2>
           <p>Enter your { emailText() }and <strong>password.</strong></p>

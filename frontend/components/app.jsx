@@ -4,6 +4,8 @@ import SessionFormContainer from './session/session_form_container';
 import { Link, withRouter, Redirect } from 'react-router';
 import { resetErrors } from '../actions/session_actions';
 import { login } from '../actions/session_actions';
+import Home from './session/home';
+import Header from './session/header';
 
 class App extends React.Component {
   constructor(props) {
@@ -12,9 +14,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <main className="App">
+      <section>
         { this.props.children }
-      </main>
+      </section>
     );
   }
 }

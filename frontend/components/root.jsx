@@ -11,11 +11,11 @@ const Root = (({ store }) => {
     <Provider store={ store }>
       <Router history={ hashHistory }>
         <Route path="/" component={ App }>
-        <IndexRoute component={ Home }/>
+          <IndexRoute component={ Home }/>
           <Route path="signup" component={ SessionFormContainer } onEnter={ _redirectIfLoggedIn } />
           <Route path="login" component={ SessionFormContainer } onEnter={ _redirectIfLoggedIn } />
-          <Route path="messages" component={ ChannelContainer } onEnter={ _redirectToLogIn } />
         </Route>
+        <Route path="messages" component={ ChannelContainer } onEnter={ _redirectToLogIn } />
       </Router>
     </Provider>
   );
