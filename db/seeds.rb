@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
+User.destroy_all
 users = User.create([
   {
     username: 'guest',
@@ -19,12 +19,14 @@ users = User.create([
   }
 ])
 
+Channel.destroy_all
 channels = Channel.create([
   {
     name: 'general',
     purpose: 'This channel is for snackpack-wide communication and announcements. All snackpack members are in this channel.',
     creator: users.first
-  }, {
+  },
+  {
     name: 'random',
     purpose: "A place for vegetables, grains, serious work, or jibber-jabber you'd prefer to keep out of more focused snack-related channels.",
     creator: users.first
