@@ -8,10 +8,7 @@ class ChannelsController < ApplicationController
     @channel.creator = currentUser
 
     if @channel.save
-      ChannelMembership.create({
-        channel: @channel,
-        user: currentUser
-        })
+      currentUser.joined_channels << @channel
       render :index
     else
       render json:
