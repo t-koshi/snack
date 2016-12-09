@@ -4,6 +4,8 @@ export const RECEIVE_CHANNEL = "RECEIVE_CHANNEL";
 export const RECEIVE_CHANNELS = "RECEIVE_CHANNELS";
 export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
 export const RESET_ERRORS = "RESET_ERRORS";
+export const FETCH_CHANNELS = "FETCH_CHANNELS";
+export const CREATE_CHANNEL = "CREATE_CHANNEL";
 
 export function receiveChannel(channel){
   return { type: RECEIVE_CHANNEL, channel };
@@ -25,9 +27,10 @@ export function resetErrors(){
 
 export const fetchChannels = () => {
   return (dispatch) => {
+    dispatch({ type: FETCH_CHANNELS });
     return APIUtil.fetchChannels().then(
       channels => dispatch(receiveChannels(channels)),
-      error => dispatch(receiveError(error))
+      error => dispatch(receiveErrors(error))
     );
   };
 };
@@ -35,9 +38,10 @@ export const fetchChannels = () => {
 
 export const createChannel = (channel) => {
   return (dispatch) => {
+    dispatch({ type: CREATE_CHANNEL });
     return APIUtil.createChannel(channel).then(
       channel => dispatch(receiveChannel(channel)),
-      error => dispatch(receiveError(error))
+      error => dispatch(receiveErrors(error))
     );
   };
 };

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Modal from 'react-modal';
 import { withRouter } from 'react-router';
 import Profile from './profile';
-import Spinner from '../spinner';
 
 class Channel extends Component {
   constructor(props) {
@@ -10,12 +9,15 @@ class Channel extends Component {
   }
 
   render() {
-    if (this.props.fetching) return <Spinner />;
     return (
       <section className="channel">
         <Profile
           currentUser={ this.props.currentUser }
-          logout = { this.props.logout }/>
+          fetching = { this.props.fetching }
+          channels = { this.props.channels }
+          logout = { this.props.logout }
+          fetchChannels = { this.props.fetchChannels }
+          />
       </section>
     );
   }
