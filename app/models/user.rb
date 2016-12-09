@@ -35,6 +35,13 @@ class User < ApplicationRecord
 
   attr_reader :password
 
+  def add_default_channels
+    default_channels = Channel.where(name: ['general', 'random'])
+    default_channels.each do |channel|
+      ChannelMembership.create(user: self, channel: channel)
+    end
+  end
+
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)
@@ -66,4 +73,5 @@ class User < ApplicationRecord
   def ensure_session_token
     self.session_token ||= User.generate_session_token
   end
+
 end

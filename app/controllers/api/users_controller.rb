@@ -5,6 +5,7 @@ class Api::UsersController < ApplicationController
 
     if @user.save
       sign_in(@user)
+      @user.add_default_channels
       render 'api/users/show'
     else
       render json:

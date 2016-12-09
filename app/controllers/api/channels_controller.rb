@@ -6,9 +6,9 @@ class Api::ChannelsController < ApplicationController
   def create
     @channel = Channel.new(channel_params)
     @channel.creator = currentUser
+    ChannelMembership.create(user: currentUser, channel: @channel)
 
     if @channel.save
-      currentUser.joined_channels << @channel
       render :index
     else
       render json:
