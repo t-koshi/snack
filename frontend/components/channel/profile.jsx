@@ -4,14 +4,14 @@ import { Link, withRouter } from 'react-router';
 import Modal from 'react-modal';
 import Spinner from '../spinner';
 import ChannelIndex from './channel_index';
-import channelIndexStyle from './channel_index_style';
 
 class Profile extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = ({
-      modalOpen: false
+      modalOpen: false,
+      whichModal: ''
     });
 
     this.logOutUser = this.logOutUser.bind(this);
@@ -71,11 +71,17 @@ class Profile extends React.Component {
         <Modal
           isOpen={ this.state.modalOpen }
           onRequestClose={ this.onModalClose }
-          style={ channelIndexStyle }
-          contentLabel="Modal">
+          contentLabel="Modal"
+          className="channel-index-modal"
+          overlayClassName="channel-index-overlay"
+        >
 
-          <ChannelIndex className="channels-index" channels={ this.props.channels }/>
-          <button className="close-modal" onClick={ this.onModalClose }>x</button>
+          <button className="close-modal group" onClick={ this.onModalClose }>
+            <i>x</i><span>esc</span>
+          </button>
+
+          <h3> Browse all { this.props.channels.length } channels</h3>
+          <ChannelIndex channels={ this.props.channels }/>
         </Modal>
       </aside>
     );

@@ -82,23 +82,6 @@
   margin-right: 12px;
 }
 
-.close-modal {
-  font-size: 40px;
-  float: right;
-  color: black;
-}
-
-.close-modal:hover {
-  font-size: 40px;
-  background-color: gray;
-  border-radius: 10px;
-}
-
-.channels-index{
-  width: 500px;
-  float: left;
-}
-
 .new-channel {
   color: #fff;
   font-size: 12px;
@@ -117,4 +100,84 @@
   width: 100%;
   margin-bottom: 20px;
   margin-top: 70px;
+}
+
+.channel-index-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+}
+
+.channel-index-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+}
+
+.close-modal {
+  text-align: right;
+  float: right;
+  margin-right: 50px;
+  border-radius: 30px;
+  padding: 2px 23px;
+  margin-top: 24px;
+}
+
+.close-modal i,
+.close-modal b {
+  color: black;
+  display: block;
+}
+
+.close-modal i {
+  font-size: 40px;
+
+}
+
+.close-modal b{
+  font-size: 11px;
+}
+
+.close-modal:hover {
+  background-color: gray;
+}
+
+.channel-index-modal h3{
+  text-align: center;
+  font-weight: 700;
+  font-size: 34px;
+  margin-top: 80px;
+  margin-bottom: 60px;
+}
+
+.channels-index{
+  margin: 0 auto;
+  display: block;
+  width: 640px;
+}
+
+.channels-index li {
+  border-top: 1px solid gray;
+}
+
+.channels-index h4 {
+  font-size: 18px;
+}
+
+.channels-index p {
+  font-size: 14px;
+  float: left;
+  width: 90%;
+}
+
+.channels-index i {
+  font-size: 11px;
+  float: right;
+  width: 10%;
 }
