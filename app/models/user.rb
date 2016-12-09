@@ -40,6 +40,7 @@ class User < ApplicationRecord
     self.password_digest = BCrypt::Password.create(password)
   end
 
+
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
     (user && BCrypt::Password.new(user.password_digest).is_password?(password)) ? user : nil
@@ -65,5 +66,4 @@ class User < ApplicationRecord
   def ensure_session_token
     self.session_token ||= User.generate_session_token
   end
-
 end

@@ -10,7 +10,7 @@ const mapStateToProps = ((state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return ({
     login: (user) => dispatch(login(user)),
-    resetErrors: () => resetErrors()
+    resetErrors: () => dispatch(resetErrors())
   });
 };
 

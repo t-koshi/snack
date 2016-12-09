@@ -27,4 +27,24 @@ class Channel < ApplicationRecord
     foreign_key: :creator_id,
     class_name: :User
   )
+
+  def stringified_date
+    month = self.created_at.strftime('%B')
+    year = self.created_at.strftime('%Y')
+    @stringfied_date = "#{month} #{self.stringfy_day}, #{year}"
+  end
+
+  def stringfy_day
+    day = (self.created_at.strftime('%d'))
+
+    if day[-1]== '1' && day != '11'
+      "#{day}st"
+    elsif day[-1] == '2' && day != '12'
+      "#{day}nd"
+    elsif day[-1] == '3' && day != '12'
+      "#{day}rd"
+    else
+      "#{day}th"
+    end
+  end
 end

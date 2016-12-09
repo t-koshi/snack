@@ -6,7 +6,7 @@ import fetchingReducer from './fetching_reducer';
 
 const rootReducer = combineReducers({
   session: SessionReducer,
-  channel: channelsReducer,
+  channels: channelsReducer,
   fetching: fetchingReducer
 });
 

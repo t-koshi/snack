@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { login, resetErrors } from '../../actions/session_actions';
 import { Link, withRouter } from 'react-router';
 
 class Header extends Component {
@@ -48,7 +47,7 @@ class Header extends Component {
 
   _handleClickLogIn(e) {
     e.preventDefault();
-    this.props.resetErrors(null);
+    this.props.resetErrors();
     if (this.props.currentUser) {
       this.props.router.replace('/messages');
     } else {
@@ -58,7 +57,7 @@ class Header extends Component {
 
   _handleClickSignUp(e) {
     e.preventDefault();
-    this.props.resetErrors(null);
+    this.props.resetErrors();
     this.props.router.replace('/signup');
   }
 

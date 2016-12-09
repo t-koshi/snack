@@ -1,19 +1,21 @@
 import {
-  RECEIVE_CURRENT_USER,
+  RECEIVE_CHANNEL,
+  RECEIVE_CHANNELS,
   RECEIVE_ERRORS,
   RESET_ERRORS,
-  SIGNUP_USER,
-  SIGNIN_USER
-} from '../actions/session_actions';
+  FETCH_CHANNELS,
+  CREATE_CHANNEL
+} from '../actions/channel_actions';
 
 const fetchingReducer = (state = false, action) => {
   Object.freeze();
 
   switch(action.type){
-    case SIGNUP_USER:
-    case SIGNIN_USER:
+    case FETCH_CHANNELS:
+    case CREATE_CHANNEL:
       return true;
-    case RECEIVE_CURRENT_USER:
+    case RECEIVE_CHANNEL:
+    case RECEIVE_CHANNELS:
     case RECEIVE_ERRORS:
     case RESET_ERRORS:
       return false;

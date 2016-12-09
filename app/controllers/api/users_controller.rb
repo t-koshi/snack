@@ -5,8 +5,6 @@ class Api::UsersController < ApplicationController
 
     if @user.save
       sign_in(@user)
-      @user.joined_channels << Channel.find_by(name: 'general')
-      @user.joined_channels << Channel.find_by(name: 'random')
       render 'api/users/show'
     else
       render json:
