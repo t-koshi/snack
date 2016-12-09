@@ -13,45 +13,83 @@
   background-color: #4d394b;
   color: #fff;
   box-sizing: border-box;
+  color: #ab9ba9;
+  font-weight: 400;
+}
+
+.user-profile h4{
+  font-size: 12.8px;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+.user-profile h4:hover{
+  color: #fff;
+  cursor: pointer;
+}
+
+.user-profile li{
+  font-weight: 300;
+  width: 220px;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+.user-profile li:hover{
+  background-color: #3e313c;
+  cursor: pointer;
 }
 
 .user {
   box-sizing: border-box;
   padding: 10px 15px;
   height: 60px;
-  width: 100%;
+  width: 220px;
   float: left;
   background-color: #4d394b;
   position: relative;
+  margin-bottom: 25px;
+  position: fixed;
+}
+
+.user:hover {
+  cursor: pointer;
 }
 
 .user button {
-  color: white;
+  color: blue;
+  background-color: pink;
+  padding: 15px;
 }
 
-.user strong{
+.user p{
   position: absolute;
   font-weight: 400;
   bottom: 35px;
+  right: 25px;
   font-size: 12px;
   transform : scale(1,0.5);
 }
 
 .user:hover {
   background-color: #3e313c;
+  color: #fff
 }
 
-.users:focus {
-  background-color: #3e313c;
-}
-
-
-.channels {
+.joined_channels {
   float: left;
-  padding: 10px 15px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  margin-top: 70px;
+}
+
+.user-profile strong {
+  transform: rotate(320deg);
+  float: left;
+  margin-right: 12px;
 }
 
 .dms {
   float: left;
-  padding: 10px 15px;
+  padding: 10px 0;
 }
