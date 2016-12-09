@@ -19,7 +19,6 @@
 
 .user-profile h4{
   font-size: 12.8px;
-  padding: 0 15px;
   box-sizing: border-box;
 }
 
@@ -56,19 +55,10 @@
   cursor: pointer;
 }
 
-.user button {
+.log-out {
   color: blue;
   background-color: pink;
   padding: 15px;
-}
-
-.user p{
-  position: absolute;
-  font-weight: 400;
-  bottom: 35px;
-  right: 25px;
-  font-size: 12px;
-  transform : scale(1,0.5);
 }
 
 .user:hover {
@@ -76,20 +66,55 @@
   color: #fff
 }
 
-.joined_channels {
-  float: left;
-  line-height: 1.5;
-  margin-bottom: 20px;
-  margin-top: 70px;
+.acct-settings {
+  position: absolute;
+  font-weight: 400;
+  bottom: 35px;
+  right: 25px;
+  font-size: 12px;
+  transform : scale(1,0.5);
+  color: #fff;
 }
 
-.user-profile strong {
+.user-profile i {
   transform: rotate(320deg);
   float: left;
   margin-right: 12px;
 }
 
-.dms {
+.close-modal {
+  font-size: 40px;
+  float: right;
+  color: black;
+}
+
+.close-modal:hover {
+  font-size: 40px;
+  background-color: gray;
+  border-radius: 10px;
+}
+
+.channels-index{
+  width: 500px;
   float: left;
-  padding: 10px 0;
+}
+
+.new-channel {
+  color: #fff;
+  font-size: 12px;
+  float:right;
+  width: 20%;
+  font-weight: 300;
+}
+
+.channel-type {
+  float: left;
+  line-height: 1.5;
+  width: 80%;
+}
+
+.channel-header {
+  width: 100%;
+  margin-bottom: 20px;
+  margin-top: 70px;
 }
