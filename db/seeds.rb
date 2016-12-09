@@ -24,11 +24,11 @@ channels = Channel.create([
   {
     name: 'general',
     purpose: 'This channel is for snackpack-wide communication and announcements. All snackpack members are in this channel.',
-    creator: users.first
+    creator: User.find_by(username: 'snackbear')
   },
   {
     name: 'random',
-    purpose: "A place for vegetables, grains, serious work, or jibber-jabber you'd prefer to keep out of more focused snack-related channels.",
-    creator: users.first
+    purpose: "A place for vegetables, grains, seeds, or serious work you'd prefer to keep out of more focused snack-related channels.",
+    creator: User.find_by(username: 'snackbear')
   }
 ])
