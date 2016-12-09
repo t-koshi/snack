@@ -76,7 +76,8 @@
   color: #fff;
 }
 
-.user-profile i {
+.user-profile ul > li:before {
+  content: ': :';
   transform: rotate(320deg);
   float: left;
   margin-right: 12px;
@@ -102,7 +103,13 @@
   margin-top: 70px;
 }
 
-.channel-index-modal {
+
+section {
+  width: 640px;
+  margin: 0 auto;
+}
+
+.modal-content {
   position: absolute;
   top: 0;
   left: 0;
@@ -111,7 +118,7 @@
   background-color: #fff;
 }
 
-.channel-index-overlay {
+.modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -121,12 +128,23 @@
 }
 
 .close-modal {
-  text-align: right;
-  float: right;
-  margin-right: 50px;
-  border-radius: 30px;
-  padding: 2px 23px;
+  display: block;
+  width: 100%;
   margin-top: 24px;
+  margin-right: 50px;
+  text-align: right;
+  box-sizing: border-box;
+  padding: 25px 50px;
+}
+
+.close-modal button{
+  border-radius: 35px;
+  padding: 15px 24px;
+  line-height: 0.8;
+}
+
+.close-modal button:hover {
+  background-color: gray;
 }
 
 .close-modal i,
@@ -137,33 +155,40 @@
 
 .close-modal i {
   font-size: 40px;
-
+  transform: rotate(45deg);
 }
 
 .close-modal b{
   font-size: 11px;
 }
 
-.close-modal:hover {
-  background-color: gray;
+.channel-index-modal {
+  width: 640px;
+  margin: 0 auto;
 }
 
-.channel-index-modal h3{
-  text-align: center;
-  font-weight: 700;
-  font-size: 34px;
-  margin-top: 80px;
-  margin-bottom: 60px;
-}
 
 .channels-index{
   margin: 0 auto;
   display: block;
   width: 640px;
+  margin-top: 100px;
+}
+
+.channels-index li h4:before {
+  content: ': :';
+  transform: rotate(320deg);
+  float: left;
+  margin-right: 12px;
+  height: 100%;
+  width: auto;
 }
 
 .channels-index li {
   border-top: 1px solid gray;
+  line-height: 1.5;
+  padding: 5px 0;
+  box-sizing: border-box;
 }
 
 .channels-index h4 {
@@ -180,4 +205,42 @@
   font-size: 11px;
   float: right;
   width: 10%;
+}
+
+.apply-filters{
+  margin: 0 auto;
+  display: block;
+  width: 640px;
+  position: fixed;
+  margin-top: -140px;
+}
+
+.apply-filters h3{
+  font-weight: 700;
+  font-size: 34px;
+}
+
+.apply-filters input,
+.apply-filters select {
+  width: 48%;
+  height: 35px;
+  margin-top: 35px;
+}
+
+.apply-filters select {
+  float: right;
+}
+
+.apply-filters input{
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 5px 15px;
+  border: 1px solid #C5C5C5;
+  font-size: 18px;
+  font-weight: 300;
+  float: left;
+}
+
+.apply-filters input:hover{
+  border:1px solid #2780f8;
 }

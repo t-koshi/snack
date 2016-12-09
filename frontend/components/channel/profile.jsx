@@ -32,7 +32,7 @@ class Profile extends React.Component {
     const joinedChannels = () => {
       if (currentUser.joined_channels) {
         return currentUser.joined_channels.map((channel) =>
-        <li key={ channel.id }><i>: :</i>
+        <li key={ channel.id }>
           { channel.name }
         </li>);
       }
@@ -72,15 +72,16 @@ class Profile extends React.Component {
           isOpen={ this.state.modalOpen }
           onRequestClose={ this.onModalClose }
           contentLabel="Modal"
-          className="channel-index-modal"
-          overlayClassName="channel-index-overlay"
+          className="modal-content"
+          overlayClassName="modal-overlay"
         >
 
-          <button className="close-modal group" onClick={ this.onModalClose }>
-            <i>x</i><span>esc</span>
-          </button>
-
-          <h3> Browse all { this.props.channels.length } channels</h3>
+          <header className="close-modal group">
+            <button onClick={ this.onModalClose }>
+              <i>+</i>
+              <span>esc</span>
+            </button>
+          </header>
           <ChannelIndex channels={ this.props.channels }/>
         </Modal>
       </aside>
