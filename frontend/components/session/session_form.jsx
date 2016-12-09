@@ -88,7 +88,7 @@ class SessionForm extends React.Component {
 
   redirect() {
     if (this.props.loggedIn) {
-      this.props.router.replace(`/`);
+      this.props.router.replace('/messages');
     } else {
       this.props.router.replace(`${this.props.router.location.pathname}`);
     }

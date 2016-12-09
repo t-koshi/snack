@@ -56,7 +56,6 @@ class Header extends Component {
     }
   }
 
-
   _handleClickSignUp(e) {
     e.preventDefault();
     this.props.resetErrors(null);
@@ -69,7 +68,7 @@ class Header extends Component {
       this.props.login({
         email: "yumsnacks7@gmail.com",
         password: "snacks123"
-      }).then(() => this.props.router.push('/messages'));
+      }).then(() => this.props.router.push('/messages'), (err) => console.log(err));
     } else {
       this.props.router.replace('/messages');
     }

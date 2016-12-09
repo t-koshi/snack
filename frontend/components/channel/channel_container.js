@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { fetchChannels } from '../../actions/channel_actions';
-import ChannelIndex from './channel_index';
+import { logout } from '../../actions/session_actions';
+import Channel from './channel';
 
 const mapStateToProps = ((state) => {
   return {
@@ -11,11 +12,12 @@ const mapStateToProps = ((state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return ({
-    fetchChannels: () => dispatch(fetchChannels())
+    fetchChannels: () => dispatch(fetchChannels()),
+    logout: () => dispatch(logout())
   });
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ChannelIndex);
+)(Channel);
