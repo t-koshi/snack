@@ -4,6 +4,8 @@ import { Link, withRouter } from 'react-router';
 import Modal from 'react-modal';
 import Spinner from '../spinner';
 import ChannelIndex from './channel_index';
+import ChannelForm from './channel_form';
+import DMForm from './dm_form';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -15,7 +17,9 @@ class Profile extends React.Component {
     });
 
     this.logOutUser = this.logOutUser.bind(this);
-    this.handleClick = this._handleClick.bind(this);
+    this.handleClickIndex = this._handleClickIndex.bind(this);
+    this.handleClickDM = this._handleClickDM.bind(this);
+    this.handleClickNew = this._handleClickNew.bind(this);
     this.onModalClose = this._onModalClose.bind(this);
   }
 
@@ -25,6 +29,7 @@ class Profile extends React.Component {
 
 
   render() {
+    // debugger
     if (this.props.fetching) return <Spinner />;
 
     const { currentUser } = this.props;
@@ -35,6 +40,16 @@ class Profile extends React.Component {
         <li key={ channel.id }>
           { channel.name }
         </li>);
+      }
+    };
+
+    const renderModal = () => {
+      if (this.state.whichModal === 'index') {
+        return <ChannelIndex channels={ this.props.channels }/>;
+      } else if (this.state.whichModal === 'new') {
+        return <ChannelForm />;
+      } else if (this.state.whichModal === 'DM') {
+        return <DMForm />;
       }
     };
 
@@ -50,10 +65,10 @@ class Profile extends React.Component {
 
         <section>
           <li className="channel-header group">
-            <h4 className="channel-type" onClick={ this.handleClick }>
+            <h4 className="channel-type" onClick={ this.handleClickIndex }>
               CHANNELS ( { this.props.channels.length } )
             </h4>
-            <button className="new-channel">+</button>
+            <button className="new-channel" onClick={ this.handleClickNew }>+</button>
           </li>
           <ul className="channels">
             { joinedChannels() }
@@ -62,7 +77,7 @@ class Profile extends React.Component {
 
         <section>
           <li className="channel-header group">
-            <h4 className="channel-type" onClick={ this.handleClick }>DIRECT MESSAGES( )</h4>
+            <h4 className="channel-type" onClick={ this.handleClickDM }>DIRECT MESSAGES( )</h4>
             <button className="new-channel">+</button>
           </li>
           <li>filler</li>
@@ -82,14 +97,23 @@ class Profile extends React.Component {
               <span>esc</span>
             </button>
           </header>
-          <ChannelIndex channels={ this.props.channels }/>
+
+          { renderModal() }
         </Modal>
       </aside>
     );
   }
 
-  _handleClick() {
-    this.setState({ modalOpen: true});
+  _handleClickDM() {
+    this.setState({ modalOpen: true, whichModal: 'DM' });
+  }
+
+  _handleClickNew() {
+    this.setState({ modalOpen: true, whichModal: 'new'});
+  }
+
+  _handleClickIndex() {
+    this.setState({ modalOpen: true, whichModal: 'index'});
   }
 
   _onModalClose() {

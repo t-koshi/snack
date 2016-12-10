@@ -12,3 +12,11 @@ export const fetchChannels = () => {
     url: "api/channels",
   });
 };
+
+export const joinChannel = (({channel}) => {
+  return $.ajax({
+    method: "POST",
+    url: `api/channel/${channel.id}`,
+    data: channel
+  });
+});

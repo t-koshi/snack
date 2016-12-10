@@ -35,6 +35,16 @@ export const fetchChannels = () => {
   };
 };
 
+export const joinChannel = (channel) => {
+  return (dispatch) => {
+    dispatch({ type: JOIN_CHANNEL });
+    return APIUtil.joinChannel(channel).then(
+      channels => dispatch(receiveChannels(channels)),
+      error => dispatch(receiveErrors(error))
+    );
+  };
+};
+
 
 export const createChannel = (channel) => {
   return (dispatch) => {

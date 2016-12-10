@@ -1,5 +1,6 @@
 .home {
   height: 100vh;
+  width: 100vw;
   background-size: 100% auto;
   background-image:url('https://faremaiden.files.wordpress.com/2013/06/miyazaki-spiritedaway-nofacefood.jpg');
 }
@@ -69,10 +70,6 @@
 
 .session {
   background-color: #f9f9f9;
-}
-
-.session {
-  margin: 0 auto;
 }
 
 .session-errors:before {

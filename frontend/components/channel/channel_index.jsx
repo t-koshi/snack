@@ -21,7 +21,6 @@ class ChannelIndex extends Component {
       return channel.name.toLowerCase().indexOf(this.state.filter) > -1;
     });
 
-
     return (
       <section className="channel-index-modal group">
 
