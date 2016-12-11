@@ -25,6 +25,7 @@ class Profile extends React.Component {
 
   componentDidMount() {
     this.props.fetchChannels();
+    this.props.fetchUsers();
   }
 
 
@@ -47,9 +48,9 @@ class Profile extends React.Component {
       if (this.state.whichModal === 'index') {
         return <ChannelIndex channels={ this.props.channels }/>;
       } else if (this.state.whichModal === 'new') {
-        return <ChannelForm />;
+        return <ChannelForm users={ this.props.users }/>;
       } else if (this.state.whichModal === 'DM') {
-        return <DMForm />;
+        return <DMForm users={ this.props.users }/>;
       }
     };
 

@@ -162,11 +162,11 @@
   font-size: 11px;
 }
 
-.channel-index-modal {
+.channel-index-modal,
+.new-channel-modal {
   width: 640px;
   margin: 0 auto;
 }
-
 
 .channels-index{
   margin: 0 auto;
@@ -207,7 +207,8 @@
   width: 10%;
 }
 
-.apply-filters{
+.apply-filters,
+.new-channel-form{
   margin: 0 auto;
   display: block;
   width: 640px;
@@ -215,7 +216,12 @@
   margin-top: -140px;
 }
 
-.apply-filters h3{
+.new-channel-form{
+  margin-top: 10px;
+}
+
+.apply-filters h3,
+.new-channel-modal h3{
   font-weight: 700;
   font-size: 34px;
 }
@@ -231,7 +237,9 @@
   float: right;
 }
 
-.apply-filters input{
+.apply-filters input,
+.new-channel-modal input,
+.invites {
   border-radius: 4px;
   box-sizing: border-box;
   padding: 5px 15px;
@@ -241,6 +249,39 @@
   float: left;
 }
 
-.apply-filters input:hover{
+.apply-filters input:hover,
+.new-channel-modal input:hover{
   border:1px solid #2780f8;
+}
+
+.privacy-button{
+  display: block;
+}
+
+.new-channel-form label,
+.new-channel-form input,
+.invites {
+  display: block;
+  width: 100%;
+  height: 35px;
+}
+
+.invited-user {
+  background-color: blue;
+  color: pink;
+  margin-right: 5px;
+  height: 80%;
+  box-sizing: border-box;
+  padding: 2px 12px;
+  font-size: 11px;
+  position: relative;
+}
+
+.invited-user:after {
+  content: 'x';
+  padding: 0;
+  font-size: 5px;
+  margin-left: 5px;
+  position: absolute;
+  top: 2px;
 }

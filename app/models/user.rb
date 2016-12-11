@@ -49,6 +49,18 @@ class User < ApplicationRecord
     self.password_digest = BCrypt::Password.create(password)
   end
 
+  def name
+    if firstname && lastname
+      @name = "#{firstname} #{lastname}"
+    elsif firstname
+      @name = firstname
+    else
+      @name = lastname
+    end
+
+    @name
+  end
+
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
     (user && BCrypt::Password.new(user.password_digest).is_password?(password)) ? user : nil

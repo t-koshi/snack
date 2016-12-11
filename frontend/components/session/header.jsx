@@ -39,7 +39,6 @@ class Header extends Component {
     );
   }
 
-
   _handleClickHome(e) {
     e.preventDefault();
     this.props.router.replace('/');

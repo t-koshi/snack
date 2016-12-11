@@ -7,11 +7,16 @@ import {
   CREATE_CHANNEL
 } from '../actions/channel_actions';
 
+import {
+  FETCH_USERS
+} from '../actions/user_actions';
+
 const fetchingReducer = (state = false, action) => {
-  Object.freeze();
+  Object.freeze(state);
 
   switch(action.type){
     case FETCH_CHANNELS:
+    case FETCH_USERS:
     case CREATE_CHANNEL:
       return true;
     case RECEIVE_CHANNEL:

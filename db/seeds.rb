@@ -27,13 +27,15 @@ Channel.destroy_all
 general = Channel.create(
   name: 'general',
   purpose: 'This channel is for snackpack-wide communication and announcements. All snackpack members are in this channel.',
-  creator: users.first
+  creator: users.first,
+  private: false
 )
 
 random = Channel.create(
   name: 'random',
   purpose: "A place for vegetables, grains, seeds, or serious work you'd prefer to keep out of more focused snack-related channels.",
-  creator: users.first
+  creator: users.first,
+  private: false
 )
 
 users.each do |user|

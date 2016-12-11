@@ -16,8 +16,9 @@ const Root = (({ store }) => {
           <Route path="signup" component={ SessionFormContainer } onEnter={ _redirectIfLoggedIn } />
           <Route path="login" component={ SessionFormContainer } onEnter={ _redirectIfLoggedIn } />
         </Route>
-        <Route path="messages" component={ ChannelContainer } onEnter={ _redirectToLogIn } />
-      </Router>
+        <Route path="messages" component={ ChannelContainer } onEnter={ _redirectToLogIn }>
+        </Route>
+    </Router>
     </Provider>
   );
 });

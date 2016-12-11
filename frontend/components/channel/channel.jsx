@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
-import { withRouter } from 'react-router';
 import Profile from './profile';
 
 class Channel extends Component {
@@ -17,10 +16,12 @@ class Channel extends Component {
           channels = { this.props.channels }
           logout = { this.props.logout }
           fetchChannels = { this.props.fetchChannels }
+          fetchUsers = { this.props.fetchUsers }
+          users = {this.props.users}
           />
       </section>
     );
   }
 }
 
-export default withRouter(Channel);
+export default Channel;

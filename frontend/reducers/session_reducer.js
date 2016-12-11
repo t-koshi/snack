@@ -3,9 +3,7 @@ import { merge } from 'lodash';
 import {
   RECEIVE_CURRENT_USER,
   RECEIVE_ERRORS,
-  RESET_ERRORS,
-  SIGNUP_USER,
-  SIGNIN_USER
+  RESET_ERRORS
 } from '../actions/session_actions';
 
 const _default = {
@@ -14,7 +12,7 @@ const _default = {
 };
 
 const SessionReducer = (state = _default, action) => {
-  Object.freeze();
+  Object.freeze(state);
   let newState = merge({}, state);
   switch(action.type){
     case RECEIVE_CURRENT_USER:
