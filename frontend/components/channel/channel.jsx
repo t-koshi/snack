@@ -18,6 +18,7 @@ class Channel extends Component {
           fetchChannels = { this.props.fetchChannels }
           fetchUsers = { this.props.fetchUsers }
           users = {this.props.users}
+          createChannel = {this.props.createChannel}
           />
       </section>
     );

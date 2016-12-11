@@ -19,7 +19,35 @@ users = User.create([
 
   {username: 'guest',
   email: 'yumsnacks7@gmail.com',
-  password: 'snacks123'}
+  password: 'snacks123'},
+
+  {username: 'chipmunk',
+  email: 'chipmunk@chipmunk.com',
+  password: 'chipmunk'},
+
+  {username: 'cakeboi',
+  email: 'cakeboi@cakeboi.com',
+  password: 'cakeboi'},
+
+  {username: 'bethany',
+  email: 'bethany@bethany.com',
+  password: 'bethany'},
+
+  {username: 'slimjimfan93',
+  email: 'slimjimfan93@slimjimfan93.com',
+  password: 'slimjimfan93'},
+
+  {username: 'katsu_kat',
+  email: 'katsu_kat@katsu_kat.com',
+  password: 'katsu_kat'},
+
+  {username: 'wangytangy',
+  email: 'bruce@bruce.com',
+  password: 'brucewang'},
+
+  {username: 'hot_cheetos_farmer',
+  email: 'hot_cheetos_farmer@hot_cheetos_farmer.com',
+  password: 'hot_cheetos_farmer'}
 ])
 
 Channel.destroy_all

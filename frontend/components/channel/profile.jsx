@@ -30,7 +30,6 @@ class Profile extends React.Component {
 
 
   render() {
-    // debugger
     if (this.props.fetching) return <Spinner />;
 
     const { currentUser } = this.props;
@@ -48,7 +47,10 @@ class Profile extends React.Component {
       if (this.state.whichModal === 'index') {
         return <ChannelIndex channels={ this.props.channels }/>;
       } else if (this.state.whichModal === 'new') {
-        return <ChannelForm users={ this.props.users }/>;
+        return <ChannelForm
+          users={ this.props.users }
+          createChannel={ this.props.createChannel }
+          currentUser={ currentUser }/>;
       } else if (this.state.whichModal === 'DM') {
         return <DMForm users={ this.props.users }/>;
       }
@@ -56,7 +58,7 @@ class Profile extends React.Component {
 
     return (
       <aside className="user-profile group">
-        <section className="user ">
+        <section className="user">
           <h5>{ currentUser.username }</h5>
           <button className="log-out" onClick={ this.logOutUser }>
             Log Out

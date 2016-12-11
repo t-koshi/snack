@@ -13,8 +13,7 @@ class ChannelForm extends Component {
       private: false,
       filter: '',
       members: [],
-      usersList: false,
-      usersToRender: this.props.users.map((user) => user.username)
+      usersList: false
     };
 
     this.handleSubmit = this._handleSubmit.bind(this);
@@ -23,9 +22,10 @@ class ChannelForm extends Component {
     this.togglePrivacy = this._togglePrivacy.bind(this);
     this.hideUsers = this._hideUsers.bind(this);
     this.showUsers = this._showUsers.bind(this);
-    this.handleInvites = this._handleInvites.bind(this);
     this.addMembers = this._addMembers.bind(this);
-    this.setFilter = this._setFilter.bind(this);
+    this.updateFilter = this._updateFilter.bind(this);
+    this.deleteInvite = this._deleteInvite.bind(this);
+    this.clickDeleteInvite = this._clickDeleteInvite.bind(this);
   }
 
   render() {
@@ -33,11 +33,13 @@ class ChannelForm extends Component {
     let privacy = (this.state.private) ? "Private" : "Public";
     const { members, usersToRender } = this.state;
 
+    const filteredUsers = this._filteredUsers();
+
     const usersIndex = () => {
       return (
         <ul className="user-index group">
-          { usersToRender.map((user, idx) =>
-              <ul className="users-index" key={ idx } onClick={ this.addMembers }>
+          { filteredUsers.map((user, idx) =>
+              <ul className="users-index" key={ idx } onMouseDown={ this.addMembers }>
                 <li>{ user.name }</li>
                 <li>{ user.username }</li>
               </ul>
@@ -51,7 +53,11 @@ class ChannelForm extends Component {
         return (
           <ul className="invited-users group">
             { members.map((member, idx) =>
-                <span className="invited-user" key={ idx }>{ member }</span>
+                <span className="invited-user"
+                  key={ idx }
+                  onClick={ this.clickDeleteInvite }>
+                  { member }
+                </span>
             )}
           </ul>
         );
@@ -59,75 +65,97 @@ class ChannelForm extends Component {
     };
 
     return (
-      <section className="new-channel-modal group" onClick={ this.hideUsers }>
+      <section className="new-channel-modal group">
         <h3>Create a channel</h3>
         <p>{"Channels are where your team communicates. They're best when organized around a topic: #chips, for example."}</p>
 
-        <form className="new-channel-form">
+        <form className="new-channel-form" onSubmit={ this.handleSubmit }>
           <button className="privacy-button" onClick={ this.togglePrivacy }><span>Public</span></button>
           <label>Name</label>
           <input onChange={ this.enterField("name") }
+            className="wide-inp"
             type="text"
             placeholder="e.g. chips"/>
           <p>{ "Names must be lowercase, with no spaces, and unique." }</p>
 
           <label>Purpose <i>(optional)</i></label>
           <input onChange={ this.enterField("purpose") }
-            type="text"/>
+            type="text"
+            className="wide-inp"/>
           <span>{ "What's this channel about?" }</span>
 
           <label>Send invites to: <i>(optional)</i></label>
-          <div
-            className="invites"
-            contentEditable="true"
-            onClick={ this.showUsers }
-            onKeyDown={ this.handleInvites }>
 
+          <section className="invites group">
             { invitedUsers() }
-          </div>
+            <input
+              className="filter-input"
+              onFocus={ this.showUsers }
+              onBlur={ this.hideUsers }
+              onChange={ this.updateFilter }
+              ref="filterInput"
+              onKeyDown={ this.deleteInvite }
+              value={ this.state.filter}/>
+          </section>
 
           { this.state.usersList ? usersIndex() : '' }
 
+          <button>cancel</button>
           <input type="submit" disabled={ disabled } value="Create channel"/>
         </form>
       </section>
     );
   }
 
-  _filterUsers() {
-    const filteredUsers = this.state.usersToRender.filter((user) => {
-      if (user.name) {
-        return user.username.toLowerCase().indexOf(this.state.filter) > -1 ||
-        user.name.toLowerCase().indexOf(this.state.filter) > -1;
-      } else {
-        return user.username.toLowerCase().indexOf(this.state.filter) > -1;
-      }
-    });
+  _deleteInvite(e) {
+    let newMembers = this.state.members;
+    if (e.keyCode === 8 && !this.state.filter) {
+      e.preventDefault();
+      newMembers = newMembers.slice(0, -1);
+    }
 
-    this.setState({ usersToRender: filteredUsers });
+    this.setState({members: newMembers});
+  }
+
+  _clickDeleteInvite(e) {
+    let newMembers = this.state.members;
+    e.preventDefault();
+    const idxToDelete = newMembers.indexOf(e.currentTarget.value);
+    newMembers.splice(idxToDelete, 1);
+    this.setState({members: newMembers});
   }
 
   _addMembers(e) {
     e.preventDefault();
-    const newUsersToRender = this.state.usersToRender.delete;
-    const newMembers = this.state.members.concat(e.target.innerText);
-    this.setState({ members: newMembers});
+    const newMembers = _.union(this.state.members, [e.currentTarget.lastChild.innerText]);
+    this.setState({ members: newMembers, filter: ''});
+    $(this.refs.filterInput).focus();
   }
 
-  _handleInvites(e) {
-    if (e.keyCode === 8 && this.state.members.length) {
-      e.preventDefault();
-      const newUsersToRender = this.state.usersToRender.concat(this.state.members[this.state.members.length - 1]);
-      const newMembers = this.state.members.slice(0, -1);
-      this.setState({members: newMembers, usersToRender: newUsersToRender});
+  _updateFilter(e) {
+    this.setState({filter: e.currentTarget.value});
+  }
+
+  _filteredUsers () {
+    if (!this.state.filter) {
+      return this.props.users.filter((user) => {
+        return (this.state.members.indexOf(user.username) === -1 &&
+        user.username !== currentUser.username);
+      });
     } else {
-      this.setFilter(e);
+      return this.props.users.filter((user) => {
+        if (user.name) {
+          return (user.username.toLowerCase().indexOf(this.state.filter) > -1 ||
+          user.name.toLowerCase().indexOf(this.state.filter) > -1) &&
+          this.state.members.indexOf(user.username) === -1 &&
+          user.username !== currentUser.username;
+        } else {
+          return (user.username.toLowerCase().indexOf(this.state.filter) > -1 &&
+          this.state.members.indexOf(user.username) === -1 &&
+          user.username !== currentUser.username);
+        }
+      });
     }
-  }
-
-  _setFilter(e) {
-    e.preventDefault();
-    this.setState({filter: e.currentTarget.value.toLowerCase()});
   }
 
   _showUsers(e) {
@@ -143,8 +171,8 @@ class ChannelForm extends Component {
 
   _handleSubmit(e) {
     e.preventDefault();
-    const newChannel = merge({}, this.state);
-    this.props.createChannel(channel).then(() => this.redirect());
+    const newChannel = _.merge({}, this.state);
+    this.props.createChannel(newChannel).then(() => this.redirect());
   }
 
   _enterField(field){

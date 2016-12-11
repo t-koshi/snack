@@ -4,11 +4,18 @@ class Api::ChannelsController < ApplicationController
   end
 
   def create
-    @channel = Channel.new(channel_params)
-    @channel.creator = currentUser
+    @channel = Channel.new(
+      name: params[:channel][:name],
+      purpose: params[:channel][:purpose],
+      private: params[:channel][:private]
+    )
+
+    @channel.creator = current_user
 
     if @channel.save
       ChannelMembership.create(user: currentUser, channel: @channel)
+      members = User.where(name: params[:channel][:members])
+      @channel.members << members
       render :index
     else
       render json:
