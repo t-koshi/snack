@@ -7,11 +7,7 @@ class ChannelIndex extends Component {
     super(props);
 
     this.state = {
-      filter: '',
-      order: ''
     };
-
-    this.setFilter = this._setFilter.bind(this);
   }
 
   render() {
@@ -28,14 +24,14 @@ class ChannelIndex extends Component {
           <h3> Browse all { channels.length } channels</h3>
           <input onChange={ this.setFilter } type="text" placeholder="Seach channels"></input>
           <select>
-            <option value="memM">Sort by Members(most to fewest)</option>
+            <option value="memM">{ "Sort by Members (most to fewest)" }</option>
           </select>
         </section>
 
         <ul className="channels-index group">
-          { renderChannels.map((channel) => {
+          { renderChannels.map((channel, idx) => {
             return (
-              <li className="group" key={ channel.id }>
+              <li className="group" key={ idx }>
                 <h4>{ channel.name }</h4>
                 <p>Created by { channel.creator.username } on { channel.stringified_date }</p>
                 <i>{ channel.members.length }</i>
