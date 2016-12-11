@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161207220735) do
+ActiveRecord::Schema.define(version: 20161211001612) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20161207220735) do
     t.integer  "creator_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean  "private"
     t.index ["creator_id"], name: "index_channels_on_creator_id", using: :btree
     t.index ["name"], name: "index_channels_on_name", unique: true, using: :btree
   end
@@ -52,7 +53,11 @@ ActiveRecord::Schema.define(version: 20161207220735) do
     t.string   "session_token",   null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "firstname"
+    t.string   "lastname"
     t.index ["email"], name: "index_users_on_email", using: :btree
+    t.index ["firstname"], name: "index_users_on_firstname", using: :btree
+    t.index ["lastname"], name: "index_users_on_lastname", using: :btree
     t.index ["session_token"], name: "index_users_on_session_token", using: :btree
     t.index ["username"], name: "index_users_on_username", unique: true, using: :btree
   end

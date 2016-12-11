@@ -8,10 +8,12 @@
 #  creator_id :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  private    :boolean
 #
 
 class Channel < ApplicationRecord
   validates :creator_id, :name, presence: true
+  validates :private, inclusion: { in: [true, false] }
 
   has_many :channel_memberships
 

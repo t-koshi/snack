@@ -9,6 +9,8 @@
 #  session_token   :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  firstname       :string
+#  lastname        :string
 #
 
 class User < ApplicationRecord
@@ -46,7 +48,6 @@ class User < ApplicationRecord
     @password = password
     self.password_digest = BCrypt::Password.create(password)
   end
-
 
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
