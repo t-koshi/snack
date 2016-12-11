@@ -51,6 +51,8 @@ class SessionForm extends React.Component {
       }
     });
 
+    let disabled = this.props.fetching ? true : false;
+
     return (
       <section className="session">
         <HeaderContainer page={ 'session' }/>
@@ -67,7 +69,7 @@ class SessionForm extends React.Component {
             <input onChange={ this.enterField("password") }
               type="password"
               placeholder="password"/>
-          <button>{ this.props.formType }</button>
+            <button disabled={ disabled }>{ this.props.formType }</button>
         </form><br />
 
       </section>
