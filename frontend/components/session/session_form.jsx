@@ -20,6 +20,8 @@ class SessionForm extends React.Component {
   render() {
     const { username, email, password } = this.state;
 
+    let disabled = ( this.props.fetching ) ? true : false;
+
     const formErrors = (() => {
       if (this.props.errors){
         return (
@@ -51,7 +53,6 @@ class SessionForm extends React.Component {
       }
     });
 
-    let disabled = this.props.fetching ? true : false;
 
     return (
       <section className="session">
