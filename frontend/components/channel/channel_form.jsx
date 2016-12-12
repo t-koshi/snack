@@ -64,13 +64,15 @@ class ChannelForm extends Component {
       }
     };
 
+    const privacyButton = (this.state.private) ? "Private" : "Public";
+
     return (
       <section className="new-channel-modal group">
         <h3>Create a channel</h3>
         <p>{"Channels are where your team communicates. They're best when organized around a topic: #chips, for example."}</p>
 
         <form className="new-channel-form" onSubmit={ this.handleSubmit }>
-          <button className="privacy-button" onClick={ this.togglePrivacy }><span>Public</span></button>
+          <button className="privacy-button" onClick={ this.togglePrivacy }><span>{ privacyButton }</span></button>
           <label>Name</label>
           <input onChange={ this.enterField("name") }
             className="wide-inp"
