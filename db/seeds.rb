@@ -5,14 +5,14 @@
 #
 # Examples:
 #
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+#   movies = Movie.create!([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
+#   Character.create!(name: 'Luke', movie: movies.first)
 
 ChannelMembership.destroy_all
 
 User.destroy_all
 
-users = User.create([
+users = User.create!([
   {username: 'snackbear',
   email: 'snackbear1@gmail.com',
   password: 'snackbear'},
@@ -67,29 +67,32 @@ users = User.create([
 
 Channel.destroy_all
 
-general = Channel.create(
+general = Channel.create!(
   name: 'general',
   purpose: 'This channel is for snackpack-wide communication and announcements. All snackpack members are in this channel.',
   creator: users.first,
   private: false
 )
 
-random = Channel.create(
+random = Channel.create!(
   name: 'random',
   purpose: "A place for vegetables, grains, seeds, or serious work you'd prefer to keep out of more focused snack-related channels.",
   creator: users.first,
   private: false
 )
 
-snackbear = Channel.create(
-  name: 'random',
-  creator: users.first,
-  private: true
-)
-
 users.each do |user|
-  ChannelMembership.create(user: user, channel: general)
-  ChannelMembership.create(user: user, channel: random)
-  snackbear_chat = user.channels.create(creator: user, name: 'snackbear', private: true )
-  ChannelMembership.create(user: snackbear, channel: snackbear_chat)
+  ChannelMembership.create!(user: user, channel: general)
+  ChannelMembership.create!(user: user, channel: random)
+  snackbear = user.joined_channels.create!(
+    name: [user.username, 'snackbear'].sort.join(', '),
+    creator: user,
+    private: true
+  )
+  user.joined_channels.create!(
+    name: username,
+    creator: user,
+    private: true
+  )
+  ChannelMembership.create!(user: users.first, channel: snackbear)
 end
