@@ -22,25 +22,33 @@ class ChannelsAside extends React.Component {
   }
 
   _DMs() {
-    return currentUser.joined_channels.filter((channel) => {
-      return (channel.private === true &&  channel.name.indexOf(',') > -1);
+    return this.props.currentUser.joined_channels.filter((channel) => {
+      return (channel.private === true &&
+        channel.name.indexOf(',') > -1) ||
+        channel.name.indexOf(this.props.currentUser.username) > -1;
     });
   }
 
   _DMRenderNames() {
     return this._DMs().map((dm) => {
-      const otherMembers = dm.members.filter((member) => member.username !== this.props.currentUser.username);
-      const otherNames = otherMembers.map((member) => member.username);
+      if (dm.name === this.props.currentUser.username) {
+        return this.props.currentUser.username;
+      } else {
+        const otherMembers = dm.members.filter((member) => member.username !== this.props.currentUser.username);
+        const otherNames = otherMembers.map((member) => member.username);
 
-      return otherNames.join(', ');
+        return otherNames.join(', ');
+      }
     });
   }
 
   _channels() {
-    const publicChannels = currentUser.joined_channels.filter((channel) =>
+    const publicChannels = this.props.currentUser.joined_channels.filter((channel) =>
     channel.private === false);
-    const privateChannels = currentUser.joined_channels.filter((channel) => {
-      return (channel.private === true && channel.name.indexOf(',') === -1);
+    const privateChannels = this.props.currentUser.joined_channels.filter((channel) => {
+      return (channel.private === true &&
+        channel.name.indexOf(',') === -1 &&
+        channel.name.indexOf(this.props.currentUser.username) === -1);
     });
 
     return publicChannels.concat(privateChannels);

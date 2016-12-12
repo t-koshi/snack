@@ -84,15 +84,20 @@ random = Channel.create!(
 users.each do |user|
   ChannelMembership.create!(user: user, channel: general)
   ChannelMembership.create!(user: user, channel: random)
+end
+
+users.drop(1).each do |user|
   snackbear = user.joined_channels.create!(
     name: [user.username, 'snackbear'].sort.join(', '),
     creator: user,
     private: true
   )
+
   user.joined_channels.create!(
-    name: username,
+    name: user.username,
     creator: user,
     private: true
   )
+
   ChannelMembership.create!(user: users.first, channel: snackbear)
 end
