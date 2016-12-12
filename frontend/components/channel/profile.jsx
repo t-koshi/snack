@@ -33,14 +33,19 @@ class Profile extends React.Component {
     if (this.props.fetching) return <Spinner />;
 
     const { currentUser } = this.props;
+    const DMs = currentUser.joined_channels.filter((channel) => channel.private === true);
+    const channels = currentUser.joined_channels.filter((channel) => channel.private === false);
 
-    const joinedChannels = () => {
-      if (currentUser.joined_channels) {
-        return currentUser.joined_channels.map((channel) =>
-        <li key={ channel.id }>
-          { channel.name }
-        </li>);
-      }
+    const renderDMs = () => {
+      return currentUser.joined_channels.map((channel) => {
+        if (channel.private === true) {
+          return (
+            <li key={ channel.id }>
+              { channel.name }
+            </li>
+          );
+        }
+      });
     };
 
     const renderModal = () => {
@@ -52,7 +57,10 @@ class Profile extends React.Component {
           createChannel={ this.props.createChannel }
           currentUser={ currentUser }/>;
       } else if (this.state.whichModal === 'DM') {
-        return <DMForm users={ this.props.users }/>;
+        return <DMForm
+          users={ this.props.users }
+          createChannel={ this.props.createChannel }
+          currentUser={ currentUser }/>;
       }
     };
 
@@ -69,21 +77,23 @@ class Profile extends React.Component {
         <section>
           <li className="channel-header group">
             <h4 className="channel-type" onClick={ this.handleClickIndex }>
-              CHANNELS ( { this.props.channels.length } )
+              CHANNELS ( { channels.length } )
             </h4>
             <button className="new-channel" onClick={ this.handleClickNew }>+</button>
           </li>
           <ul className="channels">
-            { joinedChannels() }
+            { channels.map((channel) => <li key={ channel.id }> { channel.name } </li>) }
           </ul>
         </section>
 
         <section>
           <li className="channel-header group">
-            <h4 className="channel-type" onClick={ this.handleClickDM }>DIRECT MESSAGES( )</h4>
+            <h4 className="channel-type" onClick={ this.handleClickDM }>DIRECT MESSAGES ({ DMs.length })</h4>
             <button className="new-channel">+</button>
           </li>
-          <li>filler</li>
+          <ul className="dms-list">
+            { DMs.map((dm) => <li key={ dm.id }> { dm.name } </li>) }
+          </ul>
         </section>
 
         <Modal

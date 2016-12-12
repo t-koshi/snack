@@ -23,11 +23,15 @@ users = User.create([
 
   {username: 'chipmunk',
   email: 'chipmunk@chipmunk.com',
-  password: 'chipmunk'},
+  password: 'chipmunk',
+  firstname: 'Jahmaal',
+  lastname: 'Fyffe'},
 
   {username: 'cakeboi',
   email: 'cakeboi@cakeboi.com',
-  password: 'cakeboi'},
+  password: 'cakeboi',
+  firstname: 'jon',
+  lastname: 'dough'},
 
   {username: 'bethany',
   email: 'bethany@bethany.com',
@@ -35,19 +39,30 @@ users = User.create([
 
   {username: 'slimjimfan93',
   email: 'slimjimfan93@slimjimfan93.com',
-  password: 'slimjimfan93'},
+  password: 'slimjimfan93',
+  firstname: 'OD',
+  lastname: 'Escobar'},
 
   {username: 'katsu_kat',
   email: 'katsu_kat@katsu_kat.com',
-  password: 'katsu_kat'},
-
-  {username: 'wangytangy',
-  email: 'bruce@bruce.com',
-  password: 'brucewang'},
+  password: 'katsu_kat',
+  firstname: 'katsu',
+  lastname: 'curry'},
 
   {username: 'hot_cheetos_farmer',
   email: 'hot_cheetos_farmer@hot_cheetos_farmer.com',
-  password: 'hot_cheetos_farmer'}
+  password: 'hot_cheetos_farmer'},
+
+  {username: 'jinjin123',
+  email: 'alex.seoh@bronxscience.com',
+  password: 'jinjin123',
+  firstname: 'alex'},
+
+  {username: 'bobachan',
+  email: 'bobachan@maruchan.com',
+  password: 'bobachan',
+  firstname: 'kaila',
+  lastname: 'chan'}
 ])
 
 Channel.destroy_all
@@ -66,7 +81,15 @@ random = Channel.create(
   private: false
 )
 
+snackbear = Channel.create(
+  name: 'random',
+  creator: users.first,
+  private: true
+)
+
 users.each do |user|
   ChannelMembership.create(user: user, channel: general)
   ChannelMembership.create(user: user, channel: random)
+  snackbear_chat = user.channels.create(creator: user, name: 'snackbear', private: true )
+  ChannelMembership.create(user: snackbear, channel: snackbear_chat)
 end

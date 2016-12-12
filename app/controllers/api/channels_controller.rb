@@ -1,6 +1,6 @@
 class Api::ChannelsController < ApplicationController
   def index
-    @channels = Channel.all
+    @channels = Channel.where(private: false) + current_user.joined_channels.where(private: true)
   end
 
   def create
