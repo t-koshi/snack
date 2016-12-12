@@ -145,7 +145,7 @@ class DMForm extends Component {
     e.preventDefault();
     let newChannel = _.merge({}, this.state);
     newChannel.members = ([this.props.currentUser.username].concat(this.state.members)).sort;
-    newChannel.name = newChannel.members.join(', ');
+    newChannel.name = newChannel.members.join(',');
     this.props.createChannel(newChannel).then(() => this.redirect());
   }
 

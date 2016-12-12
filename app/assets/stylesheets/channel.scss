@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.channel {
+.channel-page {
   height: 100vh;
 }
 
@@ -15,99 +15,186 @@
   box-sizing: border-box;
   color: #ab9ba9;
   font-weight: 400;
-}
-
-.user-profile h4{
-  font-size: 12.8px;
-  box-sizing: border-box;
-}
-
-.user-profile h4:hover{
-  color: #fff;
-  cursor: pointer;
-}
-
-.user-profile li{
-  font-weight: 300;
-  width: 220px;
-  padding: 0 15px;
-  box-sizing: border-box;
-}
-
-.user-profile li:hover{
-  background-color: #3e313c;
-  cursor: pointer;
-}
-
-.user {
-  box-sizing: border-box;
-  padding: 10px 15px;
-  height: 60px;
-  width: 220px;
-  float: left;
-  background-color: #4d394b;
-  position: relative;
-  margin-bottom: 25px;
-  position: fixed;
-}
-
-.user:hover {
-  cursor: pointer;
-}
-
-.log-out {
-  color: blue;
-  background-color: pink;
-  padding: 15px;
-}
-
-.user:hover {
-  background-color: #3e313c;
-  color: #fff
+  padding-right: 20px;
 }
 
 .acct-settings {
-  position: absolute;
+  position: fixed;
+  height: 61px;
+  width: 220px;
+}
+
+.acct-settings:hover {
+  background-color: #3e313c;
+  color: #fff;
+  cursor: pointer;
+}
+
+.acct-settings h3{
+  font-size: 17px;
+  color: #fff;
+  font-weight: 700;
+  box-sizing: border-box;
+  padding: 10px 15px 0 15px;
+  position: relative;
+}
+
+.acct-settings h3 i {
+  margin-left: 5px;
   font-weight: 400;
-  bottom: 35px;
-  right: 25px;
-  font-size: 12px;
+  position: absolute;
+  color: #ab9ba9;
+  top: 12px;
+  left: 130px;
+  font-size: 14px;
   transform : scale(1,0.5);
+}
+
+.acct-settings:hover h3 i{
   color: #fff;
 }
 
-.user-profile ul > li:before {
-  content: ': :';
-  transform: rotate(320deg);
+.acct-settings h4{
+  font-size: 14px;
+  font-weight: 300;
+  box-sizing: border-box;
+  padding: 0 15px;
+}
+
+.acct-settings h4:before{
+  content: '.';
+  margin-right: 5px;
+  font-size: 45px;
+  color: #38978D;
+  font-weight: 900;
+  line-height: 0;
+}
+
+.expand-acct {
+  background-color: #fff;
+  border-radius: 5px;
+  margin-left: 10px;
+  box-sizing: border-box;
+  padding: 15px;
+  width: 275px;
+  color: #2c2d30;
+  border: 1px solid rgba(0,0,0,.15);
+  clear: both;
+  box-shadow: 0 5px 10px rgba(0,0,0,.12);
+}
+
+.expand-acct h3,
+.expand-acct h4,
+.expand-acct li {
+  padding: 0;
+}
+
+.expand-acct h3{
+  color: #55545A;
+}
+.expand-acct h4 {
+  color: #A0A0A2;
+}
+
+.expand-acct h4:before {
+  display: none;
+}
+
+.expand-acct li{
+  margin-top: 10px;
+  font-size: 15px;
+  color: #2c2d30;
+}
+
+.channel-header {
+  margin-top: 15px;
+  padding-left:15px;
+  width: 220px;
+  box-sizing: border-box;
+  letter-spacing: 0.2px;
+}
+
+.channel-header:hover{
+  cursor: pointer;
+}
+
+.channel-type {
+  font-size: 12.8px;
   float: left;
-  margin-right: 12px;
+  width: 75%;
+}
+
+.new-channel {
+  width: 25%;
+  float: left;
+}
+
+.channel-type:hover{
+  color: #fff;
+}
+
+.channel-type span{
+  font-weight: 600;
+  color: rgb(171, 155, 169);
+  opacity: 0.4;
+}
+
+.channel-type:hover span{
+  opacity: 0.8;
+  color: rgb(171, 155, 169);
 }
 
 .new-channel {
   color: #fff;
-  font-size: 12px;
-  float:right;
-  width: 20%;
-  font-weight: 300;
+  font-size: 18px;
+  float:left;
+  font-weight: 400;
+  color: rgb(171, 155, 169);
+  opacity: 0.4;
+  border-radius: 70%;
+  padding: -10px;
+  box-sizing: border-box;
 }
 
-.channel-type {
+.new-channel:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.channels-list li:before{
+  content: ': :';
+  transform: rotate(320deg);
   float: left;
-  line-height: 1.5;
-  width: 80%;
+  margin-right: 10px;
+  margin-left: 15px;
+  opacity: 0.4;
 }
 
-.channel-header {
-  width: 100%;
-  margin-bottom: 20px;
+.channels-list li{
+  font-size: 16px;
+  font-weight: 300;
+  border-radius: 0 8px 8px 0;
+  height: 25px;
+}
+
+.channels-list li:hover {
+  background-color: #3e313c;
+  cursor: pointer;
+}
+
+// .channels-list li:active {
+//   background-color: #4c9689;
+//   color: white;
+// }
+
+.joined-channels:first-child {
   margin-top: 70px;
 }
 
-
-.channel-index-modal {
-  width: 640px;
-  margin: 0 auto;
-}
+// .channel-index-modal {
+//   width: 640px;
+//   margin: 0 auto;
+// }
 
 .modal-content {
   position: absolute;

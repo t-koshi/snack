@@ -19,15 +19,27 @@ class Channel extends Component {
 
   render() {
     const { currentUser } = this.props;
-    const logout = () => <button className="log-out" onClick={ this.logOutUser }>Log Out</button>;
+    const logout = () => {
+      const usersName = ( this.props.currentUser.name) ?
+        this.props.currentUser.name : this.props.currentUser.username;
+
+      return (
+        <section className="expand-acct" >
+          <h3>{ this.props.currentUser.username }</h3>
+          <h4>{ `@${this.props.currentUser.username}` }</h4>
+          <li onClick={ this.logOutUser }>{"Sign out of snack"}</li>
+        </section>
+      );
+    };
 
     return (
-      <section className="channel" onClick={ this.closeLogout }>
+      <section className="channel-page" onClick={ this.closeLogout }>
         <aside className="user-profile group">
-          <section className="user" onClick={ this.toggleLogout }>
-            <h5>{ currentUser.username }</h5>
+
+          <section className="acct-settings" onClick={ this.toggleLogout }>
+            <h3>My Snackpack<i>{ 'v' }</i></h3>
+            <h4>{ currentUser.username }</h4>
             { this.state.logoutOpen ? logout() : '' }
-            <button className="acct-settings">{ "v "}</button>
           </section>
 
           <ChannelsAside

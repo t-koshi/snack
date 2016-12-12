@@ -84,12 +84,12 @@ class ChannelsAside extends React.Component {
       <section className="channels-list group">
 
         <section className="joined-channels group">
-          <li className="channel-header group">
+          <ul className="channel-header group">
             <h4 className="channel-type" onClick={ this.handleClickIndex }>
-              CHANNELS ( { channels.length } )
+              { "CHANNELS " }<span>{ `(${channels.length})` }</span>
             </h4>
             <button className="new-channel" onClick={ this.handleClickNew }>{ "+" }</button>
-          </li>
+          </ul>
 
           <ul className="channels">
             { channels.map((channel, idx) =>
@@ -98,12 +98,12 @@ class ChannelsAside extends React.Component {
         </section>
 
         <section className="dms group">
-          <li className="channel-header group" onClick={ this.handleClickDM }>
+          <ul className="channel-header group" onClick={ this.handleClickDM }>
             <h4 className="channel-type">
-              { `DIRECT MESSAGES (${DMs.length})` }
+              { "DIRECT MESSAGES " }<span>{ `(${DMs.length})` }</span>
             </h4>
             <button className="new-channel">{ "+" }</button>
-          </li>
+          </ul>
 
           <ul className="dms-list">
             {
@@ -125,7 +125,7 @@ class ChannelsAside extends React.Component {
 
           <header className="close-modal group">
             <button onClick={ this.onModalClose }>
-              <i>+</i>
+              <i>{ '+' }</i>
               <span>esc</span>
             </button>
           </header>
