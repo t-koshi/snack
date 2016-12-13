@@ -2,7 +2,7 @@ class Api::ChannelsController < ApplicationController
   def index
     @channels = Channel.where(private: false) + current_user.joined_channels.where(private: true)
   end
-
+  
   def create
     @channel = Channel.new(
       name: params[:channel][:name],
@@ -12,9 +12,11 @@ class Api::ChannelsController < ApplicationController
 
     @channel.creator = current_user
 
+    debugger
+
     if @channel.save
-      ChannelMembership.create(user: currentUser, channel: @channel)
-      members = User.where(name: params[:channel][:members])
+      ChannelMembership.create(user: current_user, channel: @channel)
+      members = User.where(username: params[:channel][:members])
       @channel.members << members
       render :index
     else
