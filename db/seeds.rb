@@ -88,7 +88,7 @@ end
 
 users.drop(1).each do |user|
   snackbear = user.joined_channels.create!(
-    name: [user.username, 'snackbear'].sort.join(', '),
+    name: [user.username, 'snackbear'].sort.join(','),
     creator: user,
     private: true
   )

@@ -3,12 +3,14 @@ import SessionReducer from './session_reducer';
 import channelsReducer from './channels_reducer';
 import fetchingReducer from './fetching_reducer';
 import usersReducer from './users_reducer';
+import currentChannelReducer from './current_channel_reducer';
 
 const rootReducer = combineReducers({
   session: SessionReducer,
   channels: channelsReducer,
   fetching: fetchingReducer,
-  users: usersReducer
+  users: usersReducer,
+  currentChannel: currentChannelReducer
 });
 
 export default rootReducer;

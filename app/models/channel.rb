@@ -30,11 +30,15 @@ class Channel < ApplicationRecord
     class_name: :User
   )
 
-  def private_channels(user)
+  def self.private_channels(user)
     @private_channels = user.joined_channels.where(private: true)
   end
 
-  def public_channels
+  def self.public_channels
+    @public_channels = Channel.where(private: false)
+  end
+
+  def self.public_channels
     @public_channels = Channel.where(private: false)
   end
 

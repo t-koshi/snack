@@ -61,6 +61,10 @@ class User < ApplicationRecord
     @name
   end
 
+  def available_channels
+    self.joined_channels.merge(Channel.public_channels)
+  end
+
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
     (user && BCrypt::Password.new(user.password_digest).is_password?(password)) ? user : nil

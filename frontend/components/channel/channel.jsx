@@ -51,6 +51,7 @@ class Channel extends Component {
             createChannel = {this.props.createChannel}
             />
         </aside>
+        { this.props.children }
       </section>
     );
   }

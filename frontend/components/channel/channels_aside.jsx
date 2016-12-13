@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link, withRouter } from 'react-router';
 import Modal from 'react-modal';
-import ChannelIndex from './channel_index';
-import ChannelForm from './channel_form';
-import DMForm from './dm_form';
+import ChannelIndex from './modals/channel_index';
+import ChannelForm from './modals/channel_form';
+import DMForm from './modals/dm_form';
 
 class ChannelsAside extends React.Component {
   constructor(props) {
