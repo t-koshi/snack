@@ -57,7 +57,7 @@ class ChannelForm extends Component {
 
     const usersIndex = () => {
       return (
-        <ul className="user-index group">
+        <ul className="user-index channel group">
           { filteredUsers.map((user, idx) =>
             <li className="detail-box">
               { userDetails(user, idx)}

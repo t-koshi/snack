@@ -20,7 +20,6 @@ const mapDispatchToProps = (dispatch) => {
     fetchChannels: () => dispatch(fetchChannels()),
     logout: () => dispatch(logout()),
     createChannel: (channel) => dispatch(createChannel(channel)),
-    joinChannel: (channel) => dispatch(joinChannel(channel)),
     fetchUsers: () => dispatch(fetchUsers())
   });
 };

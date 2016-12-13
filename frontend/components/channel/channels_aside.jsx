@@ -12,7 +12,7 @@ class ChannelsAside extends React.Component {
 
     this.state = ({
       modalOpen: false,
-      whichModal: ''
+      whichModal: '',
     });
 
     this._handleClickIndex = this._handleClickIndex.bind(this);

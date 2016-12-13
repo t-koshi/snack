@@ -21,7 +21,7 @@ class DMForm extends Component {
     this._updateFilter = this._updateFilter.bind(this);
     this._deleteInvite = this._deleteInvite.bind(this);
     this._clickDeleteInvite = this._clickDeleteInvite.bind(this);
-    this._goToInput = this._goToInput.bind(this)
+    this._goToInput = this._goToInput.bind(this);
   }
 
   render() {
@@ -78,7 +78,7 @@ class DMForm extends Component {
             { invitedUsers() }
             <input
               type="text"
-              className="dm-invite-filter"
+              className="dm-invite-filter group"
               onChange={ this._updateFilter }
               ref="filterInput"
               placeholder="Find or start a conversation"

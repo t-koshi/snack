@@ -7,9 +7,12 @@ class Home extends React.Component {
     super(props);
   }
 
+
   render() {
+    const rand = Math.floor(Math.random() * 5);
+
     return (
-      <section className="home">
+      <section className={ `home${rand}` }>
         <HeaderContainer page={ '/' }/>
         { this.props.children }
       </section>

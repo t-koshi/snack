@@ -22,6 +22,8 @@
   position: fixed;
   height: 61px;
   width: 220px;
+  background-color: #4d394b;
+  z-index: 1;
 }
 
 .acct-settings:hover {
@@ -165,6 +167,11 @@
   opacity: 0.8;
 }
 
+.channels-list {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 .channels-list li:before{
   content: ': :';
   transform: rotate(320deg);
@@ -186,7 +193,7 @@
   cursor: pointer;
 }
 
-.joined-channels:first-child {
+.channels-list {
   margin-top: 70px;
 }
 
@@ -208,6 +215,7 @@
   right: 0;
   bottom: 0;
   background-color: #fff;
+  z-index: 3;
 }
 
 .close-modal {
@@ -258,6 +266,11 @@
   display: block;
 }
 
+.new-channel-modal{
+  height: 1000px;
+  overflow-y: auto;
+}
+
 //------------
 
 .channel-index-modal,
@@ -291,6 +304,8 @@
   width: 97%;
   border: 1px solid #C5C5C5;
   font-size: 16px;
+  box-sizing: border-box;
+  padding-left: 15px;
 }
 
 .channels-index{
@@ -482,14 +497,28 @@
 }
 
 .user-index {
-  position: absolute;
   border: 1px solid #C5C5C5;
   width: 100%;
   top: 3px;
+  left: 0;
   border-radius: 5px;
   box-sizing: border-box;
   background-color: #fff;
   z-index: 2;
+  overflow: auto;
+}
+
+.user-index.channel {
+  height: 200px;
+}
+
+.user-index.dm {
+  height: 320px;
+}
+
+.channels-index {
+  overflow: auto;
+  height: 390px;
 }
 
 .detail-box {
@@ -592,7 +621,7 @@
   position: absolute;
   font-size: 15px;
   right: 0;
-  top: 25px;
+  bottom: 0;
   padding: 8px 15px;
   border: 1px solid #C5C5C5;
   border-radius: 5px;
