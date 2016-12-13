@@ -14,13 +14,14 @@ class DMForm extends Component {
       members: []
     };
 
-    this.handleSubmit = this._handleSubmit.bind(this);
-    this.enterField = this._enterField.bind(this);
-    this.redirect = this._redirect.bind(this);
-    this.addMembers = this._addMembers.bind(this);
-    this.updateFilter = this._updateFilter.bind(this);
-    this.deleteInvite = this._deleteInvite.bind(this);
-    this.clickDeleteInvite = this._clickDeleteInvite.bind(this);
+    this._handleSubmit = this._handleSubmit.bind(this);
+    this._enterField = this._enterField.bind(this);
+    this._redirect = this._redirect.bind(this);
+    this._addMembers = this._addMembers.bind(this);
+    this._updateFilter = this._updateFilter.bind(this);
+    this._deleteInvite = this._deleteInvite.bind(this);
+    this._clickDeleteInvite = this._clickDeleteInvite.bind(this);
+    this._goToInput = this._goToInput.bind(this)
   }
 
   render() {
@@ -35,7 +36,7 @@ class DMForm extends Component {
         <ul className="user-index dm group" >
           { filteredUsers.map((user, idx) =>
               <li className="detail-box dm group" key={ idx }>
-                <ul className="user-details dm group" onMouseDown={ this.addMembers }>
+                <ul className="user-details dm group" onMouseDown={ this._addMembers }>
                   <h5>{ user.username }</h5>
                   <h6>{ user.name }</h6>
                 </ul>
@@ -52,7 +53,7 @@ class DMForm extends Component {
             { members.map((member, idx) =>
                 <span className="invited-user"
                   key={ idx }
-                  onClick={ this.clickDeleteInvite }>
+                  onClick={ this._clickDeleteInvite }>
                   { member }
                 </span>
             )}
@@ -73,21 +74,21 @@ class DMForm extends Component {
         <section className="dm-invites group">
           <section
             className="dm-filters group"
-            onClick={ this._goToInput.bind(this) }>
+            onClick={ this._goToInput }>
             { invitedUsers() }
             <input
               type="text"
               className="dm-invite-filter"
-              onChange={ this.updateFilter }
+              onChange={ this._updateFilter }
               ref="filterInput"
               placeholder="Find or start a conversation"
-              onKeyDown={ this.deleteInvite }
+              onKeyDown={ this._deleteInvite }
               value={ this.state.filter}
             />
           </section>
 
           <button className="dm-go"
-            onClick={ this.handleSubmit }>Go
+            onClick={ this._handleSubmit }>Go
           </button>
 
           <span className="member-limit">{ memberLimit() }</span>
@@ -164,7 +165,15 @@ class DMForm extends Component {
     let newChannel = _.merge({}, this.state);
     newChannel.members = ([this.props.currentUser.username].concat(this.state.members)).sort();
     newChannel.name = newChannel.members.join(',');
-    this.props.createChannel(newChannel).then(() => this.props.closeModal());
+    if (this._allDMNames().indexOf(newChannel.name) > -1){
+      this.props.closeModal();
+    } else {
+      this.props.createChannel(newChannel).then(() => this.props.closeModal());
+    }
+  }
+
+  _allDMNames () {
+    return this.props.DMs.map((dm) => dm.name);
   }
 
   _enterField(field){

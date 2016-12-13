@@ -11,7 +11,7 @@ class Api::ChannelsController < ApplicationController
     )
 
     @channel.creator = current_user
-    debugger
+
     if @channel.save
       ChannelMembership.create(user: current_user, channel: @channel)
       members = User

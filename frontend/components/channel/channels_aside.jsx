@@ -15,10 +15,10 @@ class ChannelsAside extends React.Component {
       whichModal: ''
     });
 
-    this.handleClickIndex = this._handleClickIndex.bind(this);
-    this.handleClickDM = this._handleClickDM.bind(this);
-    this.handleClickNew = this._handleClickNew.bind(this);
-    this.onModalClose = this._onModalClose.bind(this);
+    this._handleClickIndex = this._handleClickIndex.bind(this);
+    this._handleClickDM = this._handleClickDM.bind(this);
+    this._handleClickNew = this._handleClickNew.bind(this);
+    this._onModalClose = this._onModalClose.bind(this);
   }
 
   _DMs() {
@@ -65,7 +65,7 @@ class ChannelsAside extends React.Component {
       if (this.state.whichModal === 'index') {
         return <ChannelIndex channels={ channels }
           currentUser={ currentUser }
-          newChannel={ this.handleClickNew }
+          newChannel={ this._handleClickNew }
           passToNew={ this._handleClickNew.bind(this) }/>;
       } else if (this.state.whichModal === 'new') {
         return <ChannelForm
@@ -80,32 +80,26 @@ class ChannelsAside extends React.Component {
           currentUser={ currentUser }
           DMs={ DMs }
           DMnames={ DMRenderNames }
-          closeModal={ this._onModalClose.bind(this) }/>;
+          closeModal={ this._onModalClose }/>;
       }
     };
 
     const cancelButton = () => {
       if (this.state.whichModal === 'new' && this.state.modalOpen === true) {
-        return <button  className="cancel" onClick={ this.onModalClose }>Cancel</button>;
+        return <button  className="cancel" onClick={ this._onModalClose }>Cancel</button>;
       }
     };
-
-    // const newButton = () => {
-    // if (this.state.whichModal === 'index' && this.state.modalOpen === true) {
-    //     return <button className="modal-new" onClick={ this.handleClickNew }>New Channel</button>;
-    //   }
-    // };
 
     return (
       <section className="channels-list group">
 
         <section className="joined-channels group">
           <ul className="channel-header group">
-            <h4 className="channel-type group" onClick={ this.handleClickIndex }>
+            <h4 className="channel-type group" onClick={ this._handleClickIndex }>
               { "CHANNELS " }<span>{ `(${channels.length})` }</span>
             </h4>
             <i className="material-icons new-channel"
-              onClick={ this.handleClickNew }>
+              onClick={ this._handleClickNew }>
               add_circle_outline
             </i>
           </ul>
@@ -118,12 +112,12 @@ class ChannelsAside extends React.Component {
 
         <section className="dms group">
 
-          <ul className="channel-header group" onClick={ this.handleClickDM }>
+          <ul className="channel-header group" onClick={ this._handleClickDM }>
             <h4 className="channel-type group">
               { "DIRECT MESSAGES " }<span>{ `(${DMs.length})` }</span>
             </h4>
             <i className="material-icons new-channel"
-              onClick={ this.handleClickNew }>
+              onClick={ this._handleClickNew }>
               add_circle_outline
             </i>
           </ul>
@@ -140,14 +134,14 @@ class ChannelsAside extends React.Component {
 
         <Modal
           isOpen={ this.state.modalOpen }
-          onRequestClose={ this.onModalClose }
+          onRequestClose={ this._onModalClose }
           contentLabel="Modal"
           className="modal-content"
           overlayClassName="modal-overlay"
-          onKeyPress={ this.handleEsc }>
+          onKeyPress={ this._handleEsc }>
 
           <header className="close-modal group">
-            <button onClick={ this.onModalClose }>
+            <button onClick={ this._onModalClose }>
               <i className="material-icons">clear</i>
                 <span>esc</span>
             </button>

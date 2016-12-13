@@ -19,7 +19,7 @@ class ChannelIndex extends Component {
         <section className="apply-filters group">
           <h3> Browse all { this.props.channels.length } channels</h3>
           <div className="new-wrapper">
-            <button className="modal-new" onClick={ this.props.passToNew }>New Channel</button>;
+            <button className="modal-new" onClick={ this.props.passToNew }>New Channel</button>
           </div>
           <div className="search group">
             <input onChange={ this.setFilter } type="text" placeholder="Search channels"></input>
