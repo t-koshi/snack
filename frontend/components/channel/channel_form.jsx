@@ -35,14 +35,33 @@ class ChannelForm extends Component {
 
     const filteredUsers = this._filteredUsers();
 
+    const userDetails = (user, idx) => {
+      if (user.name) {
+        return (
+          <ul className="user-details channel"
+            key={ idx }
+            onMouseDown={ this.addMembers }>
+            <h5>{ user.name }</h5>
+            <h6>{ user.username }</h6>
+          </ul>);
+      } else {
+        return (
+          <ul className="user-details channel"
+            key={ idx }
+            onMouseDown={ this.addMembers }>
+            <h4>{ user.username }</h4>
+          </ul>
+        );
+      }
+    };
+
     const usersIndex = () => {
       return (
         <ul className="user-index group">
           { filteredUsers.map((user, idx) =>
-              <ul className="users-index" key={ idx } onMouseDown={ this.addMembers }>
-                <li>{ user.name }</li>
-                <li>{ user.username }</li>
-              </ul>
+            <li className="detail-box">
+              { userDetails(user, idx)}
+            </li>
           )}
         </ul>
       );
@@ -56,7 +75,7 @@ class ChannelForm extends Component {
                 <span className="invited-user"
                   key={ idx }
                   onClick={ this.clickDeleteInvite }>
-                  { member }
+                  { member }<i className="material-icons">close</i>
                 </span>
             )}
           </ul>
@@ -64,31 +83,60 @@ class ChannelForm extends Component {
       }
     };
 
-    const privacyButton = (this.state.private) ? "Private" : "Public";
+    const privacyButton = () => {
+      if(this.state.private) {
+        return (
+          <button
+            onClick={ this.togglePrivacy }
+            className="private">
+            <i className="privatebutton"></i>
+            <span>Private</span>
+          </button>
+        );
+      } else {
+        return (
+          <button
+            onClick={ this.togglePrivacy }
+            className="public">
+            <span>Public</span>
+            <i className="publicbutton"></i>
+          </button>
+        );
+      }
+    };
 
     return (
       <section className="new-channel-modal group">
         <h3>Create a channel</h3>
-        <p>{"Channels are where your team communicates. They're best when organized around a topic: #chips, for example."}</p>
+        <p className="header-text">{"Channels are where your team communicates. They're best when organized around a topic: --#chips, for example."}</p>
+
 
         <form className="new-channel-form" onSubmit={ this.handleSubmit }>
-          <button className="privacy-button" onClick={ this.togglePrivacy }><span>{ privacyButton }</span></button>
-          <label>Name</label>
-          <input onChange={ this.enterField("name") }
-            className="wide-inp"
-            type="text"
-            placeholder="e.g. chips"/>
-          <p>{ "Names must be lowercase, with no spaces, and unique." }</p>
+          <section className="privacy-button">
+            { privacyButton() }
+          </section>
 
-          <label>Purpose <i>(optional)</i></label>
-          <input onChange={ this.enterField("purpose") }
-            type="text"
-            className="wide-inp"/>
-          <span>{ "What's this channel about?" }</span>
+            <label>Name</label>
+            <section className="input-wrappers group">
+            <input onChange={ this.enterField("name") }
+              className="wide-inp"
+              type="text"
+              placeholder="e.g. chips"/>
+            </section>
+            <p>{ "Names must be lowercase, with no spaces, and unique." }</p>
+
+            <label>Purpose <i>(optional)</i></label>
+            <section className="input-wrappers group">
+            <input onChange={ this.enterField("purpose") }
+              type="text"
+              className="wide-inp"/>
+          </section>
+            <p>{ "What's this channel about?" }</p>
+
 
           <label>Send invites to: <i>(optional)</i></label>
-
-          <section className="invites group">
+            <section className="input-wrappers group"
+              onClick={ this._goToInput.bind(this) }>
             { invitedUsers() }
             <input
               className="filter-input"
@@ -97,13 +145,14 @@ class ChannelForm extends Component {
               onChange={ this.updateFilter }
               ref="filterInput"
               onKeyDown={ this.deleteInvite }
-              value={ this.state.filter}/>
+              value={ this.state.filter }/>
           </section>
-
-          { this.state.usersList ? usersIndex() : '' }
-
-          <button>cancel</button>
-          <input type="submit" disabled={ disabled } value="Create channel"/>
+          <div className="list-top">
+            { this.state.usersList ? usersIndex() : '' }
+          </div>
+          <section className="buttons group">
+            <input type="submit" disabled={ disabled } value="Create channel"/>
+          </section>
         </form>
       </section>
     );
@@ -134,6 +183,11 @@ class ChannelForm extends Component {
     $(this.refs.filterInput).focus();
   }
 
+  _goToInput(e) {
+    e.preventDefault();
+    $(this.refs.filterInput).focus();
+  }
+
   _updateFilter(e) {
     this.setState({filter: e.currentTarget.value});
   }
@@ -142,7 +196,7 @@ class ChannelForm extends Component {
     if (!this.state.filter) {
       return this.props.users.filter((user) => {
         return (this.state.members.indexOf(user.username) === -1 &&
-        user.username !== currentUser.username);
+        user.username !== this.props.currentUser.username);
       });
     } else {
       return this.props.users.filter((user) => {
@@ -150,11 +204,11 @@ class ChannelForm extends Component {
           return (user.username.toLowerCase().indexOf(this.state.filter) > -1 ||
           user.name.toLowerCase().indexOf(this.state.filter) > -1) &&
           this.state.members.indexOf(user.username) === -1 &&
-          user.username !== currentUser.username;
+          user.username !== this.props.currentUser.username;
         } else {
           return (user.username.toLowerCase().indexOf(this.state.filter) > -1 &&
           this.state.members.indexOf(user.username) === -1 &&
-          user.username !== currentUser.username);
+          user.username !== this.props.currentUser.username);
         }
       });
     }

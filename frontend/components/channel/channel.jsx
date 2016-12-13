@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
 import ChannelsAside from './channels_aside';
+import { withRouter } from 'react-router';
 
 class Channel extends Component {
   constructor(props) {
@@ -10,6 +11,7 @@ class Channel extends Component {
 
     this.toggleLogout = this._toggleLogout.bind(this);
     this.closeLogout = this._closeLogout.bind(this);
+    this.logOutUser = this.logOutUser.bind(this);
   }
 
   componentDidMount() {
@@ -24,7 +26,7 @@ class Channel extends Component {
         this.props.currentUser.name : this.props.currentUser.username;
 
       return (
-        <section className="expand-acct" >
+        <section className="expand-acct group" >
           <h3>{ this.props.currentUser.username }</h3>
           <h4>{ `@${this.props.currentUser.username}` }</h4>
           <li onClick={ this.logOutUser }>{"Sign out of snack"}</li>
@@ -72,4 +74,4 @@ class Channel extends Component {
   }
 }
 
-export default Channel;
+export default withRouter(Channel);

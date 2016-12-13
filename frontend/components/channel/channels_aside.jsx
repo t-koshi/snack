@@ -62,7 +62,9 @@ class ChannelsAside extends React.Component {
 
     const renderModal = () => {
       if (this.state.whichModal === 'index') {
-        return <ChannelIndex channels={ channels }/>;
+        return <ChannelIndex channels={ channels }
+          currentUser={ currentUser }
+          newChannel={ this.handleClickNew }/>;
       } else if (this.state.whichModal === 'new') {
         return <ChannelForm
           users={ this.props.users }
@@ -78,17 +80,30 @@ class ChannelsAside extends React.Component {
       }
     };
 
-    const logout = () => <button className="log-out" onClick={ this.logOutUser }>Log Out</button>;
+    const cancelButton = () => {
+      if (this.state.whichModal === 'new' && this.state.modalOpen === true) {
+        return <button  className="cancel" onClick={ this.onModalClose }>Cancel</button>;
+      }
+    };
+
+    const newButton = () => {
+    if (this.state.whichModal === 'index' && this.state.modalOpen === true) {
+        return <button className="modal-new" onClick={ this.handleClickNew }>New Channel</button>;
+      }
+    };
 
     return (
       <section className="channels-list group">
 
         <section className="joined-channels group">
           <ul className="channel-header group">
-            <h4 className="channel-type" onClick={ this.handleClickIndex }>
+            <h4 className="channel-type group" onClick={ this.handleClickIndex }>
               { "CHANNELS " }<span>{ `(${channels.length})` }</span>
             </h4>
-            <button className="new-channel" onClick={ this.handleClickNew }>{ "+" }</button>
+            <i className="material-icons new-channel"
+              onClick={ this.handleClickNew }>
+              add_circle_outline
+            </i>
           </ul>
 
           <ul className="channels">
@@ -98,11 +113,15 @@ class ChannelsAside extends React.Component {
         </section>
 
         <section className="dms group">
+
           <ul className="channel-header group" onClick={ this.handleClickDM }>
-            <h4 className="channel-type">
+            <h4 className="channel-type group">
               { "DIRECT MESSAGES " }<span>{ `(${DMs.length})` }</span>
             </h4>
-            <button className="new-channel">{ "+" }</button>
+            <i className="material-icons new-channel"
+              onClick={ this.handleClickNew }>
+              add_circle_outline
+            </i>
           </ul>
 
           <ul className="dms-list">
@@ -125,12 +144,20 @@ class ChannelsAside extends React.Component {
 
           <header className="close-modal group">
             <button onClick={ this.onModalClose }>
-              <i>{ '+' }</i>
-              <span>esc</span>
+              <i className="material-icons">clear</i>
+                <span>esc</span>
             </button>
           </header>
 
+            <div className="new-wrapper">
+              { newButton() }
+            </div>
+
           { renderModal() }
+          <div className="cancel-wrapper">
+            { cancelButton() }
+          </div>
+
         </Modal>
       </section>
     );

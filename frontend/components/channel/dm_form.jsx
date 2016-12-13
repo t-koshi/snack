@@ -32,12 +32,14 @@ class DMForm extends Component {
 
     const usersIndex = () => {
       return (
-        <ul className="user-index group">
+        <ul className="user-index dm group">
           { filteredUsers.map((user, idx) =>
-              <ul className="users-index" key={ idx } onMouseDown={ this.addMembers }>
-                <li>{ user.name }</li>
-                <li>{ user.username }</li>
-              </ul>
+              <li className="detail-box dm group" key={ idx } onMouseDown={ this.addMembers }>
+                <ul className="user-details dm group">
+                  <h5>{ user.username }</h5>
+                  <h6>{ user.name }</h6>
+                </ul>
+              </li>
           )}
         </ul>
       );
@@ -68,22 +70,31 @@ class DMForm extends Component {
     return (
       <section className="new-dm-modal group">
         <h3>Direct Messages</h3>
-
         <section className="dm-invites group">
-          { invitedUsers() }
-          <input
-            type="text"
-            className="dm-invite-filter"
-            onChange={ this.updateFilter }
-            ref="filterInput"
-            placeholder="Find or start a conversation"
-            onKeyDown={ this.deleteInvite }
-            value={ this.state.filter}/>
-        </section>
-        <span className="memberLimit">{ memberLimit() }</span>
-        <button onClick={ this.handleSubmit }>Go</button>
+          <section className="dm-filters group">
+            { invitedUsers() }
+            <input
+              type="text"
+              className="dm-invite-filter"
+              onChange={ this.updateFilter }
+              ref="filterInput"
+              placeholder="Find or start a conversation"
+              onKeyDown={ this.deleteInvite }
+              value={ this.state.filter}
+            />
+          </section>
 
-        { usersIndex() }
+          <button className="dm-go"
+            onClick={ this.handleSubmit }>Go
+          </button>
+          
+          <span className="member-limit">{ memberLimit() }</span>
+        </section>
+
+        <div className="list-top">
+          { usersIndex() }
+        </div>
+
       </section>
     );
   }
@@ -109,7 +120,7 @@ class DMForm extends Component {
   _addMembers(e) {
     if (this.state.members.length < 7) {
       e.preventDefault();
-      const newMembers = _.union(this.state.members, [e.currentTarget.lastChild.innerText]);
+      const newMembers = _.union(this.state.members, [e.currentTarget.firstChild.innerText]);
       this.setState({ members: newMembers, filter: ''});
     }
     $(this.refs.filterInput).focus();

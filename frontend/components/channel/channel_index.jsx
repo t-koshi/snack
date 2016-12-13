@@ -16,16 +16,21 @@ class ChannelIndex extends Component {
   render() {
     return (
       <section className="channel-index-modal group">
-
         <section className="apply-filters group">
           <h3> Browse all { this.props.channels.length } channels</h3>
-          <input onChange={ this.setFilter } type="text" placeholder="Search channels"></input>
-          <select>
-            <option value="memM">{ "Sort by Members (most to fewest)" }</option>
-          </select>
+          <div className="search group">
+            <input onChange={ this.setFilter } type="text" placeholder="Search channels"></input>
+          </div>
+
+          <div className="sort group">
+            <select>
+              <option value="memM">{ "Sort by Members (most to fewest)" }</option>
+            </select>
+          </div>
         </section>
 
         <ul className="channels-index group">
+          <span>Channels you can join</span>
           { this._channelsToRender().map((channel, idx) => {
             return (
               <li className="group" key={ idx }>

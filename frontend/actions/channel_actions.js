@@ -55,7 +55,6 @@ export const joinChannel = (channel) => {
   };
 };
 
-
 export const createChannel = (channel) => {
   return (dispatch) => {
     dispatch({ type: CREATE_CHANNEL });
