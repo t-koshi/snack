@@ -4,7 +4,7 @@
 
 [Trello link][trello]
 
-[heroku]: http://snax.herokuapp.com/
+[heroku]: http://snackss.herokuapp.com/
 [trello]: https://trello.com/b/Ykrbn7t9/snack
 
 ## Minimum Viable Product
