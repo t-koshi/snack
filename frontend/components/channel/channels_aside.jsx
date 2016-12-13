@@ -37,7 +37,8 @@ class ChannelsAside extends React.Component {
         const otherMembers = dm.members.filter((member) => member.username !== this.props.currentUser.username);
         const otherNames = otherMembers.map((member) => member.username);
 
-        return otherNames.join(', ');
+        let nameString = otherNames.join(', ').slice(0, 17);
+        return nameString + '...';
       }
     });
   }
@@ -68,6 +69,7 @@ class ChannelsAside extends React.Component {
       } else if (this.state.whichModal === 'new') {
         return <ChannelForm
           users={ this.props.users }
+          closeModal={ this._onModalClose.bind(this) }
           createChannel={ this.props.createChannel }
           currentUser={ currentUser }/>;
       } else if (this.state.whichModal === 'DM') {
@@ -76,7 +78,8 @@ class ChannelsAside extends React.Component {
           createChannel={ this.props.createChannel }
           currentUser={ currentUser }
           DMs={ DMs }
-          DMnames={ DMRenderNames }/>;
+          DMnames={ DMRenderNames }
+          closeModal={ this._onModalClose.bind(this) }/>;
       }
     };
 

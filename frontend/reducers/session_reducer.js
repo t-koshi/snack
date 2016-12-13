@@ -6,6 +6,10 @@ import {
   RESET_ERRORS
 } from '../actions/session_actions';
 
+import {
+  RECEIVE_CHANNEL
+} from '../actions/channel_actions';
+
 const _default = {
   currentUser: null,
   errors: null
@@ -25,6 +29,9 @@ const SessionReducer = (state = _default, action) => {
       return newState;
     case RESET_ERRORS:
       newState.errors = null;
+      return newState;
+    case RECEIVE_CHANNEL:
+      newState.currentUser.joined_channels.push(action.channel);
       return newState;
     default:
       return state;

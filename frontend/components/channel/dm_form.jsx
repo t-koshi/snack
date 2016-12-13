@@ -32,10 +32,10 @@ class DMForm extends Component {
 
     const usersIndex = () => {
       return (
-        <ul className="user-index dm group">
+        <ul className="user-index dm group" >
           { filteredUsers.map((user, idx) =>
-              <li className="detail-box dm group" key={ idx } onMouseDown={ this.addMembers }>
-                <ul className="user-details dm group">
+              <li className="detail-box dm group" key={ idx }>
+                <ul className="user-details dm group" onMouseDown={ this.addMembers }>
                   <h5>{ user.username }</h5>
                   <h6>{ user.name }</h6>
                 </ul>
@@ -71,7 +71,9 @@ class DMForm extends Component {
       <section className="new-dm-modal group">
         <h3>Direct Messages</h3>
         <section className="dm-invites group">
-          <section className="dm-filters group">
+          <section
+            className="dm-filters group"
+            onClick={ this._goToInput.bind(this) }>
             { invitedUsers() }
             <input
               type="text"
@@ -87,7 +89,7 @@ class DMForm extends Component {
           <button className="dm-go"
             onClick={ this.handleSubmit }>Go
           </button>
-          
+
           <span className="member-limit">{ memberLimit() }</span>
         </section>
 
@@ -130,6 +132,11 @@ class DMForm extends Component {
     this.setState({filter: e.currentTarget.value});
   }
 
+  _goToInput(e) {
+    e.preventDefault();
+    $(this.refs.filterInput).focus();
+  }
+
   _filteredUsers () {
     if (!this.state.filter) {
       return this.props.users.filter((user) => {
@@ -155,9 +162,9 @@ class DMForm extends Component {
   _handleSubmit(e) {
     e.preventDefault();
     let newChannel = _.merge({}, this.state);
-    newChannel.members = ([this.props.currentUser.username].concat(this.state.members)).sort;
+    newChannel.members = ([this.props.currentUser.username].concat(this.state.members)).sort();
     newChannel.name = newChannel.members.join(',');
-    this.props.createChannel(newChannel).then(() => this.redirect());
+    this.props.createChannel(newChannel).then(() => this.props.closeModal());
   }
 
   _enterField(field){

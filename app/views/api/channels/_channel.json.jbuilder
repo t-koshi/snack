@@ -1,4 +1,4 @@
-json.extract! channel, :name, :purpose, :stringified_date, :members, :private
+json.extract! channel, :id, :name, :purpose, :stringified_date, :private
 json.members channel.members do |member|
   json.partial! 'api/users/user.json.jbuilder', user: member
 end

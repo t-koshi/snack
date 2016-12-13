@@ -228,7 +228,7 @@ class ChannelForm extends Component {
   _handleSubmit(e) {
     e.preventDefault();
     const newChannel = _.merge({}, this.state);
-    this.props.createChannel(newChannel).then(() => this.redirect());
+    this.props.createChannel(newChannel).then(() => this.props.closeModal());
   }
 
   _enterField(field){
