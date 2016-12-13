@@ -141,7 +141,7 @@ class DMForm extends Component {
     if (!this.state.filter) {
       return this.props.users.filter((user) => {
         return (this.state.members.indexOf(user.username) === -1 &&
-        user.username !== currentUser.username);
+        user.username !== this.props.currentUser.username);
       });
     } else {
       return this.props.users.filter((user) => {

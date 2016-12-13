@@ -65,7 +65,8 @@ class ChannelsAside extends React.Component {
       if (this.state.whichModal === 'index') {
         return <ChannelIndex channels={ channels }
           currentUser={ currentUser }
-          newChannel={ this.handleClickNew }/>;
+          newChannel={ this.handleClickNew }
+          passToNew={ this._handleClickNew.bind(this) }/>;
       } else if (this.state.whichModal === 'new') {
         return <ChannelForm
           users={ this.props.users }
@@ -89,11 +90,11 @@ class ChannelsAside extends React.Component {
       }
     };
 
-    const newButton = () => {
-    if (this.state.whichModal === 'index' && this.state.modalOpen === true) {
-        return <button className="modal-new" onClick={ this.handleClickNew }>New Channel</button>;
-      }
-    };
+    // const newButton = () => {
+    // if (this.state.whichModal === 'index' && this.state.modalOpen === true) {
+    //     return <button className="modal-new" onClick={ this.handleClickNew }>New Channel</button>;
+    //   }
+    // };
 
     return (
       <section className="channels-list group">
@@ -151,10 +152,6 @@ class ChannelsAside extends React.Component {
                 <span>esc</span>
             </button>
           </header>
-
-            <div className="new-wrapper">
-              { newButton() }
-            </div>
 
           { renderModal() }
           <div className="cancel-wrapper">
