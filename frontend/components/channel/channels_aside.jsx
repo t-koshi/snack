@@ -90,7 +90,15 @@ class ChannelsAside extends React.Component {
       }
     };
 
-    return (
+    const active = (channelName) => {
+      if (this.props.currentChannel.name === channelName) {
+        return "active";
+      } else {
+        return '';
+      }
+    };
+
+     return (
       <section className="channels-list group">
 
         <section className="joined-channels group">
@@ -104,9 +112,13 @@ class ChannelsAside extends React.Component {
             </i>
           </ul>
 
-          <ul className="channels">
+          <ul>
             { channels.map((channel, idx) =>
-              <li key={ idx }> { channel.name } </li>) }
+              <li
+                key={ idx }
+                className={ active(channel.name) }>
+                { channel.name }
+              </li>) }
           </ul>
         </section>
 
@@ -122,10 +134,11 @@ class ChannelsAside extends React.Component {
             </i>
           </ul>
 
-          <ul className="dms-list">
+          <ul>
             {
               DMRenderNames.map((name, idx) => {
-                return (<li key={ idx }>{ name }</li>);
+                return (<li key={ idx }
+                  className={ active(name) }>{ name }</li>);
               })
             }
           </ul>

@@ -170,6 +170,7 @@
 .channels-list {
   overflow-y: auto;
   overflow-x: hidden;
+  margin-top: 70px;
 }
 
 .channels-list li:before{
@@ -184,19 +185,21 @@
 .channels-list li{
   font-size: 16px;
   font-weight: 300;
-  border-radius: 0 8px 8px 0;
+  border-radius: 0 6px 6px 0;
   height: 25px;
+}
+
+.channels-list li.active,
+.channels-list li.active:before,
+.channels-list li.active:hover{
+  color: #fff;
+  background-color: rgb(76, 150, 137);
 }
 
 .channels-list li:hover {
   background-color: #3e313c;
   cursor: pointer;
 }
-
-.channels-list {
-  margin-top: 70px;
-}
-
 //modals
 
 .modal-content {

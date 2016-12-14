@@ -8,7 +8,6 @@ class ChannelHeader extends Component {
   }
 
   render() {
-    debugger
     return (
       <section className="channel-header">
 

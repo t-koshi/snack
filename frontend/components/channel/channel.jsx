@@ -48,7 +48,8 @@ class Channel extends Component {
             currentUser={ this.props.currentUser }
             channels = { this.props.channels }
             users = {this.props.users}
-            createChannel = {this.props.createChannel}
+            createChannel = { this.props.createChannel }
+            currentChannel = { this.props.currentChannel }
             />
         </aside>
         { this.props.children }
