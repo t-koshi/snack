@@ -17,14 +17,14 @@ class Message < ApplicationRecord
   validates :author_id, :channel_id, :body, presence: true
   validates :edited, inclusion: { in: [true, false] }
 
-  belongs_to (
+  belongs_to(
     :author,
     primary_key: :id,
     foreign_key: :author_id,
     class_name: :User
   )
 
-  belongs_to (
+  belongs_to(
     :channel,
     primary_key: :id,
     foreign_key: :channel_id,
