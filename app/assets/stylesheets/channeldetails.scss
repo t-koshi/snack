@@ -1,5 +1,33 @@
 .messages-index {
-  float: left;
-  width: auto;
+  display: inline-block;
   height: 100vh;
+  width: calc(100% - 220px);
+}
+
+.current-channel-header {
+  height: 65px;
+  width: 100%;
+  border-bottom: 1px solid #e8e8e8;
+  float: left;
+  box-sizing: border-box;
+  padding: 15px;
+  line-height: 1.5;
+}
+
+.current-channel-header ul {
+  float: left;
+  color: #717274;
+  display: flex;
+}
+
+.current-channel-header ul li{
+  border-right: 1px solid #e8e8e8;
+  font-size: 12px;
+  flex-grow: 1;
+  padding: 0 10px;
+}
+
+.current-channel-header ul li i{
+  font-size: 12px;
+  font-weight: 300;
 }

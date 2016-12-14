@@ -15,8 +15,16 @@ class Channel extends Component {
   }
 
   componentDidMount() {
+    const { channelName } = this.props.router.params;
+
     this.props.fetchChannels();
     this.props.fetchUsers();
+
+    if (channelName[0] === '@') {
+      this.props.fetchCurrentChannel(channelName.slice(1));
+    } else {
+      this.props.fetchCurrentChannel(channelName);
+    }
   }
 
   render() {
@@ -50,6 +58,7 @@ class Channel extends Component {
             users = {this.props.users}
             createChannel = { this.props.createChannel }
             currentChannel = { this.props.currentChannel }
+            fetchCurrentChannel = { this.props.fetchCurrentChannel }
             />
         </aside>
         { this.props.children }

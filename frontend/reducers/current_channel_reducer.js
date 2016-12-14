@@ -7,7 +7,11 @@ import {
 } from '../actions/messages_actions';
 
 const _default = {
-  currentChannel: {},
+  currentChannel: {
+    name: '',
+    purpose: '',
+    members: []
+  },
   errors: null
 };
 

@@ -34,7 +34,8 @@ class Api::ChannelsController < ApplicationController
   end
 
   def show
-    @channel = current_user.available_channels.find_by(name: params[:channel_name])
+    @channel = current_user.joined_channels.find_by(name: params[:channel_name]) ||
+    Channel.public_channels.find_by(name: params[:channel_name])
   end
 
   private

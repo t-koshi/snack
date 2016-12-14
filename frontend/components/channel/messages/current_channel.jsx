@@ -1,27 +1,24 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { withRouter } from 'react-router';
-import ChannelHeader from './channel_header';
+import CurrentChannelHeader from './current_channel_header';
 
 class CurrentChannel extends Component {
   constructor(props) {
     super(props);
   }
 
-  componentDidMount() {
-    this.props.fetchCurrentChannel(this.props.currentChannelName);
-  }
-
   render() {
     return (
       <section className="messages-index">
-        <ChannelHeader
+        <CurrentChannelHeader
           currentChannel={ this.props.currentChannel }
-          currentUser={ this.props.currentUser }/>
+          currentChannelName={ this.props.currentChannelName }
+          currentUser={ this.props.currentUser }
+          fetching={ this.props.fetching }/>
       </section>
     );
   }
 }
-
 
 export default withRouter(CurrentChannel);

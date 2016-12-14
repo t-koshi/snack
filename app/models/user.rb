@@ -62,7 +62,7 @@ class User < ApplicationRecord
   end
 
   def available_channels
-    self.joined_channels.merge(Channel.public_channels)
+    self.joined_channels + Channel.public_channels
   end
 
   def self.find_by_credentials(email, password)

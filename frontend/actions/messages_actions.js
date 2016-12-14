@@ -2,6 +2,7 @@ import * as ChannelAPIUtil from '../util/channel_api_util';
 // import * as MessageAPIUtil from '../util/message_api_util';
 
 export const GOTO_CHANNEL = "GOTO_CHANNEL";
+export const FETCH_CURRENT_CHANNEL = "FETCH_CURRENT_CHANNEL";
 // export const FETCH_MESSAGES = "FETCH_MESSAGES";
 export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
 export const RESET_ERRORS = "RESET_ERRORS";
@@ -22,6 +23,7 @@ export function resetErrors(){
 
 export const fetchCurrentChannel = (channelName) => {
   return (dispatch) => {
+    dispatch({ type: FETCH_CURRENT_CHANNEL });
     return ChannelAPIUtil.fetchCurrentChannel(channelName).then(
       currentChannel => dispatch(gotoChannel(currentChannel)),
       error => console.log(error.responseText)

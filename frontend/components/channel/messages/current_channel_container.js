@@ -8,7 +8,6 @@ const mapStateToProps = ((state, ownProps) => {
     currentUser: state.session.currentUser,
     currentChannel: state.currentChannel.currentChannel,
     fetching: state.fetching,
-    currentChannelName: ownProps.params.channelName
   };
 });
 

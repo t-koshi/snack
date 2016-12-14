@@ -40,10 +40,6 @@ class Channel < ApplicationRecord
     @public_channels = Channel.where(private: false)
   end
 
-  def self.public_channels
-    @public_channels = Channel.where(private: false)
-  end
-
   def stringified_date
     month = self.created_at.strftime('%B')
     year = self.created_at.strftime('%Y')

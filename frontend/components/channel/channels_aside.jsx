@@ -13,12 +13,15 @@ class ChannelsAside extends React.Component {
     this.state = ({
       modalOpen: false,
       whichModal: '',
+      currentChannelName: 'general'
     });
 
     this._handleClickIndex = this._handleClickIndex.bind(this);
     this._handleClickDM = this._handleClickDM.bind(this);
     this._handleClickNew = this._handleClickNew.bind(this);
     this._onModalClose = this._onModalClose.bind(this);
+    this._visitThisChannel = this._visitThisChannel.bind(this);
+    this._visitThisDM = this._visitThisDM.bind(this);
   }
 
   _DMs() {
@@ -37,8 +40,8 @@ class ChannelsAside extends React.Component {
         const otherMembers = dm.members.filter((member) => member.username !== this.props.currentUser.username);
         const otherNames = otherMembers.map((member) => member.username);
 
-        let nameString = otherNames.join(', ').slice(0, 17);
-        return nameString + '...';
+        let nameString = otherNames.join(', ');
+        return nameString;
       }
     });
   }
@@ -56,7 +59,7 @@ class ChannelsAside extends React.Component {
   }
 
   render() {
-    const { currentUser } = this.props;
+    const { currentUser, currentChannel } = this.props;
     const channels =  this._channels();
     const DMs = this._DMs();
     const DMRenderNames =  this._DMRenderNames();
@@ -90,8 +93,9 @@ class ChannelsAside extends React.Component {
       }
     };
 
+
     const active = (channelName) => {
-      if (this.props.currentChannel.name === channelName) {
+      if (this.state.currentChannelName === channelName) {
         return "active";
       } else {
         return '';
@@ -116,7 +120,8 @@ class ChannelsAside extends React.Component {
             { channels.map((channel, idx) =>
               <li
                 key={ idx }
-                className={ active(channel.name) }>
+                className={ active(channel.name) }
+                onClick={ this._visitThisChannel }>
                 { channel.name }
               </li>) }
           </ul>
@@ -138,7 +143,10 @@ class ChannelsAside extends React.Component {
             {
               DMRenderNames.map((name, idx) => {
                 return (<li key={ idx }
-                  className={ active(name) }>{ name }</li>);
+                  className={ active(name) }
+                  onClick={ this._visitThisDM }>
+                  { name }
+                </li>);
               })
             }
           </ul>
@@ -191,6 +199,26 @@ class ChannelsAside extends React.Component {
 
   _onModalClose() {
     this.setState({ modalOpen: false});
+  }
+
+  _visitThisChannel(e) {
+    e.preventDefault();
+    const visitChannelName = e.currentTarget.innerHTML;
+    this.props.fetchCurrentChannel(visitChannelName).then(() => {
+      this.setState({ currentChannelName: visitChannelName });
+      this.props.router.replace(`/messages/${visitChannelName}`);
+    });
+  }
+
+  _visitThisDM(e) {
+    e.preventDefault();
+    const dmTarget = e.currentTarget.innerHTML;
+    const allDMMembers = _.union(dmTarget.split(', '), [this.props.currentUser.username]);
+    const visitDMName = allDMMembers.sort().join(',');
+    this.props.fetchCurrentChannel(visitDMName).then(() => {
+      this.setState({ currentChannelName: dmTarget });
+      this.props.router.replace(`/messages/@${visitDMName}`);
+    });
   }
 }
 
