@@ -30,6 +30,8 @@ class Channel < ApplicationRecord
     class_name: :User
   )
 
+  has_many :messages
+
   def self.private_channels(user)
     @private_channels = user.joined_channels.where(private: true)
   end
