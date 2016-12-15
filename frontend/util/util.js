@@ -18,8 +18,8 @@ export const DmUrlToName = (url, currentUser) => {
   } else if (url.includes('@')) {
     const display = url.replace('@', '');
     const noSpace = display.replace(/ /g,'');
-    const members = display.split(',');
-    const allMembs = members.concat(currentUser.username);
+    const allMembs = display.split(',');
+    allMembs.push(currentUser.username);
     allMembs.sort();
     return allMembs.join(',');
   } else {
@@ -47,4 +47,9 @@ export const DmUrlToDisplay = (url, currentUser) => {
   } else {
     return url;
   }
+};
+
+export const isInChannel = (user, channel) => {
+  const channelNames = user.joined_channels.map((channel) => channel.name);
+  return channelNames.indexOf(channel.name) > -1;
 };

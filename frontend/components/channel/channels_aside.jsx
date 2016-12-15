@@ -13,7 +13,7 @@ class ChannelsAside extends React.Component {
 
     this.state = ({
       modalOpen: false,
-      whichModal: ''
+      whichModal: '',
     });
 
     this._handleClickIndex = this._handleClickIndex.bind(this);
@@ -181,6 +181,7 @@ class ChannelsAside extends React.Component {
           </div>
 
         </Modal>
+        <div className="aside-bottom"></div>
       </section>
     );
   }
@@ -221,9 +222,10 @@ class ChannelsAside extends React.Component {
     const dmTarget = e.currentTarget.innerHTML;
     const urlPath = `@${dmTarget.replace(/ /g,'')}`;
     const fetchChannelName = Util.DmUrlToName(urlPath, this.props.currentUser);
-
     this.props.fetchCurrentChannel(fetchChannelName).then(() => {
-      this.props.router.replace(`/messages/${urlPath}`);
+      return this.props.fetchMessages(fetchChannelName).then(() => {
+        this.props.router.replace(`/messages/${urlPath}`);
+      });
     });
   }
 }

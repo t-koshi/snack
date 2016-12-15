@@ -28,9 +28,9 @@ class Api::ChannelsController < ApplicationController
   end
 
   def update
-    @channel = Channel.find_by(name: params[:name])
-    ChannelMembership.create(channel: @channel, user: currentUser)
-    render 'api/users/show'
+    @channel = Channel.find_by(name: params[:channel_name])
+    ChannelMembership.create(channel: @channel, user: current_user)
+    render :show
   end
 
   def show

@@ -13,11 +13,10 @@ export const fetchChannels = () => {
   });
 };
 
-export const joinChannel = (({channel}) => {
+export const joinChannel = ((channel) => {
   return $.ajax({
-    method: "POST",
-    url: `api/channels/${channel.name}`,
-    data: channel
+    method: "PATCH",
+    url: `api/channels/${channel.name}`
   });
 });
 

@@ -22,8 +22,8 @@ class Channel extends Component {
     this.props.fetchChannels();
     this.props.fetchUsers();
     const fetchChannelName = Util.DmUrlToName(channelName, this.props.currentUser);
-    this.props.fetchCurrentChannel(fetchChannelName);
     this.props.fetchMessages(fetchChannelName);
+    this.props.fetchCurrentChannel(fetchChannelName);
   }
 
   render() {
@@ -58,6 +58,7 @@ class Channel extends Component {
             createChannel = { this.props.createChannel }
             currentChannel = { this.props.currentChannel }
             fetchCurrentChannel = { this.props.fetchCurrentChannel }
+            fetchMessages = { this.props.fetchMessages }
             />
         </aside>
         { this.props.children }

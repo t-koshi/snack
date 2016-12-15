@@ -39,6 +39,7 @@ export const fetchCurrentChannel = (channelName) => {
 export const fetchMessages = (channelName) => {
   return (dispatch) => {
     dispatch({ type: FETCH_MESSAGES });
+    debugger
     return MessageAPIUtil.fetchMessages(channelName).then(
       messages => dispatch(receiveMessages(messages)),
       error => console.log(error.responseText)

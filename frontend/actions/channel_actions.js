@@ -6,6 +6,7 @@ export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
 export const RESET_ERRORS = "RESET_ERRORS";
 export const FETCH_CHANNELS = "FETCH_CHANNELS";
 export const CREATE_CHANNEL = "CREATE_CHANNEL";
+export const JOIN_CHANNEL = "JOIN_CHANNEL";
 
 export function receiveChannel(channel){
   return { type: RECEIVE_CHANNEL, channel };
@@ -49,7 +50,7 @@ export const joinChannel = (channel) => {
   return (dispatch) => {
     dispatch({ type: JOIN_CHANNEL });
     return APIUtil.joinChannel(channel).then(
-      channels => dispatch(receiveChannels(channels)),
+      channels => dispatch(receiveChannel(channel)),
       error => dispatch(receiveErrors(error))
     );
   };

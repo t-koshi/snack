@@ -124,3 +124,8 @@ time, mark, audio, video, input, button {
   /* Support for IE. */
   font-feature-settings: 'liga';
 }
+
+.aside-bottom {
+  position: fixed;
+  bottom: 0;
+}

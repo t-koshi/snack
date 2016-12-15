@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { withRouter } from 'react-router';
 import CurrentChannelHeader from './current_channel_header';
 import MessagesIndexContainer from './messages_index';
+import * as Util from '../../../util/util';
 
 class CurrentChannel extends Component {
   constructor(props) {
@@ -11,15 +12,16 @@ class CurrentChannel extends Component {
     this.state = ({
       message_body: ''
     });
+
+    this._joinChannel = this._joinChannel.bind(this);
   }
 
   componentDidMount() {
     let { channelName } = this.props.router.params;
-    if (channelName[0] === '@') {
-      channelName = channelName.slice(1);
-    }
-
     const { currentChannel } = this.props;
+    const fetchChannelName = Util.DmUrlToName(channelName, this.props.currentUser);
+    this.props.fetchMessages(fetchChannelName);
+
     //Pusher subscribe
     const pusher = new Pusher('a4ceeff403545c1bfce2', {
       encrypted: true
@@ -34,6 +36,36 @@ class CurrentChannel extends Component {
   }
 
   render() {
+    const { currentUser, currentChannel } = this.props;
+    const bottom = () => {
+      if (Util.isInChannel(currentUser, currentChannel)) {
+        return (
+          <section className="bottom">
+            <div className="group">
+              <i className="file-sending">
+                { "+" }
+              </i>
+              <textarea
+                className="msg-box"
+                placeholder={ `Message ${this.props.currentChannel.name.replace(/,/g, ', ')}` }>
+              </textarea>
+            </div>
+          </section>
+        );
+      } else {
+        return (
+          <section className="bottom">
+            <span>{"You are viewing a preview of #music"}</span>
+            <button className="join-channel"
+              onClick={ this._joinChannel }>
+              Join Channel
+            </button>
+          </section>
+        );
+      }
+    };
+
+
     return (
       <section className="current-channel">
         <CurrentChannelHeader
@@ -41,14 +73,15 @@ class CurrentChannel extends Component {
           currentChannelName={ this.props.currentChannelName }
           currentUser={ this.props.currentUser }
         />
-
-        <MessagesIndexContainer />
-
-        <textarea
-          placeholder={ `Message ${this.props.currentChannel.name}` }>
-        </textarea>
+        <MessagesIndexContainer/>
+        { bottom() }
       </section>
     );
+  }
+
+  _joinChannel(e) {
+    e.preventDefault();
+    this.props.joinChannel(this.props.currentChannel);
   }
 }
 

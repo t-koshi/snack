@@ -10,35 +10,34 @@ class MessagesIndex extends Component {
   }
 
   render() {
-    if (this.props.currentChannel.name === this.props.currentUser.name ) {
-      return (
-        <p>
-          <strong>{ "This is your space." }</strong>
-          { "Draft messages, list your to-dos, or keep links and files handy. You can also talk to yourself here, but please bear in mind you'll have to supply both sides of the conversation." }
-        </p>
-      );
-    } else{
-      return (
-        <section>
-          {
-            this.props.messages.map((message) => {
-              return (
-                <div>
-                <img>.
-                </img>
-                <ul>
-                  <h4>
-                    { message.author.username }
-                    { message.body}
-                  </h4>
-                </ul>
-                </div>
-              );
-            })
-          }
-        </section>
-      );
-    }
+    const { currentChannel, currentUser, messages } = this.props;
+
+    const personalPage = () => {
+      if (currentChannel.name === currentUser.username ) {
+        return (
+          <p>
+            <strong>{ "This is your space." }</strong>
+            { "Draft messages, list your to-dos, or keep links and files handy. You can also talk to yourself here, but please bear in mind you'll have to supply both sides of the conversation." }
+          </p>
+        );
+      }
+    };
+
+
+    return (
+      <section className="messages-index">
+        { personalPage() }
+        { messages.map((message, idx) => {
+          return (
+            <ul key={ idx }>
+              <img></img>
+              <h4>{ message.author.username }</h4>
+              <li>{ message.body }</li>
+            </ul>
+          );
+        }) }
+      </section>
+    );
   }
 }
 

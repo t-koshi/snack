@@ -7,7 +7,8 @@ import {
 } from '../actions/session_actions';
 
 import {
-  RECEIVE_CHANNEL
+  RECEIVE_CHANNEL,
+  JOIN_CHANNEL
 } from '../actions/channel_actions';
 
 const _default = {
