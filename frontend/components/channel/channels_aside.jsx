@@ -22,6 +22,7 @@ class ChannelsAside extends React.Component {
     this._onModalClose = this._onModalClose.bind(this);
     this._visitThisChannel = this._visitThisChannel.bind(this);
     this._visitThisDM = this._visitThisDM.bind(this);
+    // this._allChannels = this._allChannels.bind(this);
   }
 
   _DMs() {
@@ -57,22 +58,25 @@ class ChannelsAside extends React.Component {
     return publicChannels.concat(privateChannels);
   }
 
+  _allChannels() {
+    return this.props.channels.filter((channel) => channel.private === false);
+  }
+
   render() {
     const { currentUser, currentChannel } = this.props;
-    const channels =  this._channels();
+    const joined_channels =  this._channels();
     const DMs = this._DMs();
     const DMRenderNames =  this._DMRenderNames();
 
     const renderModal = () => {
       if (this.state.whichModal === 'index') {
-        return <ChannelIndex channels={ channels }
+        return <ChannelIndex channels={ this._allChannels() }
           currentUser={ currentUser }
-          newChannel={ this._handleClickNew }
-          passToNew={ this._handleClickNew.bind(this) }/>;
+          passToNew={ this._handleClickNew }/>;
       } else if (this.state.whichModal === 'new') {
         return <ChannelForm
           users={ this.props.users }
-          closeModal={ this._onModalClose.bind(this) }
+          closeModal={ this._onModalClose }
           createChannel={ this.props.createChannel }
           currentUser={ currentUser }/>;
       } else if (this.state.whichModal === 'DM') {
@@ -110,7 +114,7 @@ class ChannelsAside extends React.Component {
         <section className="joined-channels group">
           <ul className="channel-header group">
             <h4 className="channel-type group" onClick={ this._handleClickIndex }>
-              { "CHANNELS " }<span>{ `(${channels.length})` }</span>
+              { "CHANNELS " }<span>{ `(${ this._allChannels().length })` }</span>
             </h4>
             <i className="material-icons new-channel"
               onClick={ this._handleClickNew }>
@@ -119,7 +123,7 @@ class ChannelsAside extends React.Component {
           </ul>
 
           <ul>
-            { channels.map((channel, idx) =>
+            { joined_channels.map((channel, idx) =>
               <li
                 key={ idx }
                 className={ active(channel.name) }

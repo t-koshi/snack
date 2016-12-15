@@ -14,7 +14,6 @@ class CurrentChannel extends Component {
   }
 
   componentDidMount() {
-
     let { channelName } = this.props.router.params;
     if (channelName[0] === '@') {
       channelName = channelName.slice(1);

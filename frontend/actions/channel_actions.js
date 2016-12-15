@@ -29,7 +29,7 @@ export const fetchChannels = () => {
   return (dispatch) => {
     dispatch({ type: FETCH_CHANNELS });
     return APIUtil.fetchChannels().then(
-      channels => dispatch(receiveChannels(channels)),
+      (channels) => dispatch(receiveChannels(channels)),
       error => dispatch(receiveErrors(error))
     );
   };
