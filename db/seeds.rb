@@ -15,54 +15,98 @@ User.destroy_all
 users = User.create!([
   {username: 'snackbear',
   email: 'snackbear1@gmail.com',
-  password: 'snackbear'},
+  password: 'snackbear',
+  img_url: 'snackbear2.gif'},
 
   {username: 'guest',
   email: 'yumsnacks7@gmail.com',
-  password: 'snacks123'},
+  password: 'snacks123',
+  img_url: 'guest.png'},
 
   {username: 'chipmunk',
   email: 'chipmunk@chipmunk.com',
   password: 'chipmunk',
   firstname: 'Jahmaal',
-  lastname: 'Fyffe'},
+  lastname: 'Fyffe',
+  img_url: 'a1.gif'},
 
   {username: 'cakeboi',
   email: 'cakeboi@cakeboi.com',
   password: 'cakeboi',
   firstname: 'jon',
-  lastname: 'dough'},
+  lastname: 'dough',
+  img_url: 'a2.png'},
 
   {username: 'bethany',
   email: 'bethany@bethany.com',
-  password: 'bethany'},
+  password: 'bethany',
+  img_url: 'a3.png'},
+
+  {username: 'katsu_kat',
+  email: 'katsu_kat@katsu_kat.com',
+  password: 'katsu_kat',
+  firstname: 'katherine',
+  lastname: 'curry',
+  img_url: 'a4.gif'},
 
   {username: 'slimjimfan93',
   email: 'slimjimfan93@slimjimfan93.com',
   password: 'slimjimfan93',
   firstname: 'OD',
-  lastname: 'Escobar'},
-
-  {username: 'katsu_kat',
-  email: 'katsu_kat@katsu_kat.com',
-  password: 'katsu_kat',
-  firstname: 'katsu',
-  lastname: 'curry'},
+  lastname: 'Escobar',
+  img_url: 'a5.gif'},
 
   {username: 'hot_cheetos_farmer',
   email: 'hot_cheetos_farmer@hot_cheetos_farmer.com',
-  password: 'hot_cheetos_farmer'},
+  password: 'hot_cheetos_farmer',
+  img_url: 'a6.png'},
 
   {username: 'jinjin123',
   email: 'alex.seoh@bronxscience.com',
   password: 'jinjin123',
-  firstname: 'alex'},
+  firstname: 'alex',
+  img_url: 'a7.jpg'},
 
   {username: 'bobachan',
   email: 'bobachan@maruchan.com',
   password: 'bobachan',
   firstname: 'kaila',
-  lastname: 'chan'}
+  lastname: 'chan',
+  img_url: 'a8.gif'},
+
+  {username: 'wild_salmon',
+  email: 'salmon@salmon.com',
+  password: 'salmon',
+  firstname: 'zachary',
+  lastname: 'salmon',
+  img_url: 'a9.png'},
+
+  {username: 'bread',
+  email: 'onyinye@oyinye.com',
+  password: 'onyinye',
+  firstname: 'oyinye',
+  img_url: 'a10.png'},
+
+  {username: 'wetfoodlover',
+  email: 'neil@neil.com',
+  password: 'neilcat',
+  firstname: 'neil',
+  lastname: 'cat',
+  img_url: 'a11.png'},
+
+  {username: 'chocolate_whale',
+  email: 'chocolate@chocolate.com',
+  password: 'chocolate',
+  firstname: 'chocolate',
+  lastname: 'whale',
+  img_url: 'a12.png'},
+
+  {username: 'hmmmmm_iamheek',
+  email: 'heek@heek.com',
+  password: 'heekcat',
+  firstname: 'heek',
+  lastname: 'cat',
+  img_url: 'a13.png'}
 ])
 
 Channel.destroy_all
