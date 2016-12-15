@@ -22,7 +22,6 @@ class ChannelsAside extends React.Component {
     this._onModalClose = this._onModalClose.bind(this);
     this._visitThisChannel = this._visitThisChannel.bind(this);
     this._visitThisDM = this._visitThisDM.bind(this);
-    // this._allChannels = this._allChannels.bind(this);
   }
 
   _DMs() {
@@ -72,7 +71,9 @@ class ChannelsAside extends React.Component {
       if (this.state.whichModal === 'index') {
         return <ChannelIndex channels={ this._allChannels() }
           currentUser={ currentUser }
-          passToNew={ this._handleClickNew }/>;
+          passToNew={ this._handleClickNew }
+          fetchCurrentChannel={ this.props.fetchCurrentChannel }
+          closeModal={ this._onModalClose }/>;
       } else if (this.state.whichModal === 'new') {
         return <ChannelForm
           users={ this.props.users }
