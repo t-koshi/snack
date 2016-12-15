@@ -39,7 +39,7 @@ class ChannelsAside extends React.Component {
       } else {
         const otherMembers = dm.members.filter((member) => member.username !== this.props.currentUser.username);
         const otherNames = otherMembers.map((member) => member.username);
-        let nameString = otherNames.reverse().join(', ');
+        let nameString = otherNames.sort().join(', ');
         return nameString;
       }
     });
@@ -214,7 +214,7 @@ class ChannelsAside extends React.Component {
   _visitThisDM(e) {
     e.preventDefault();
     const dmTarget = e.currentTarget.innerHTML;
-    const urlPath = `@${dmTarget.replace(' ', '')}`;
+    const urlPath = `@${dmTarget.replace(/ /g,'')}`;
     const fetchChannelName = Util.DmUrlToName(urlPath, this.props.currentUser);
 
     this.props.fetchCurrentChannel(fetchChannelName).then(() => {

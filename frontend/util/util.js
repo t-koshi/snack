@@ -17,9 +17,11 @@ export const DmUrlToName = (url, currentUser) => {
     return url.replace('@', '');
   } else if (url.includes('@')) {
     const display = url.replace('@', '');
+    const noSpace = display.replace(/ /g,'');
     const members = display.split(',');
     const allMembs = members.concat(currentUser.username);
-    return allMembs.sort().join(',');
+    allMembs.sort();
+    return allMembs.join(',');
   } else {
     return url;
   }
@@ -41,7 +43,7 @@ export const DmUrlToDisplay = (url, currentUser) => {
   if (url === `@${currentUser.username}`) {
     return currentUser.username;
   } else if (url.includes('@')) {
-    return url.slice(1).replace(',', ', ');
+    return url.slice(1).replace(/,/g , ', ');
   } else {
     return url;
   }
