@@ -24,7 +24,7 @@ const mapDispatchToProps = (dispatch) => {
     createChannel: (channel) => dispatch(createChannel(channel)),
     fetchUsers: () => dispatch(fetchUsers()),
     fetchCurrentChannel: (channelName) => dispatch(fetchCurrentChannel(channelName)),
-    fetchMessages: (channelName) => dispatch(fetchCurrentChannel(channelName))
+    fetchMessages: (channelName) => dispatch(fetchMessages(channelName))
   });
 };
 

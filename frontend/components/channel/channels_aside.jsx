@@ -213,7 +213,9 @@ class ChannelsAside extends React.Component {
     e.preventDefault();
     const visitChannelName = e.currentTarget.innerHTML;
     this.props.fetchCurrentChannel(visitChannelName).then(() => {
-      this.props.router.replace(`/messages/${visitChannelName}`);
+      return this.props.fetchMessages(visitChannelName).then(() => {
+        this.props.router.replace(`/messages/${visitChannelName}`);
+      });
     });
   }
 
@@ -222,11 +224,11 @@ class ChannelsAside extends React.Component {
     const dmTarget = e.currentTarget.innerHTML;
     const urlPath = `@${dmTarget.replace(/ /g,'')}`;
     const fetchChannelName = Util.DmUrlToName(urlPath, this.props.currentUser);
-    this.props.fetchCurrentChannel(fetchChannelName).then(() => {
-      return this.props.fetchMessages(fetchChannelName).then(() => {
-        this.props.router.replace(`/messages/${urlPath}`);
-      });
-    });
+    
+    this.props.fetchMessages(fetchChannelName).then(() =>
+      this.props.fetchCurrentChannel(fetchChannelName)).then(() =>
+        this.props.router.replace(`/messages/${urlPath}`)
+    );
   }
 }
 

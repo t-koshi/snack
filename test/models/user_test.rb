@@ -11,6 +11,7 @@
 #  updated_at      :datetime         not null
 #  firstname       :string
 #  lastname        :string
+#  img_url         :string
 #
 
 require 'test_helper'

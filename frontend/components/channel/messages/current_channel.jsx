@@ -21,7 +21,6 @@ class CurrentChannel extends Component {
     const { currentChannel } = this.props;
     const fetchChannelName = Util.DmUrlToName(channelName, this.props.currentUser);
     this.props.fetchMessages(fetchChannelName);
-
     //Pusher subscribe
     const pusher = new Pusher('a4ceeff403545c1bfce2', {
       encrypted: true
@@ -30,7 +29,7 @@ class CurrentChannel extends Component {
     const channel = pusher.subscribe(currentChannel.name);
     channel.bind('message_sent', function(data) {
       alert(data.message);
-      this.props.fetchMessages();
+      this.props.fetchMessages(currentChannel.name);
     });
     //
   }
