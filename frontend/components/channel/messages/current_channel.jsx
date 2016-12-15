@@ -10,27 +10,34 @@ class CurrentChannel extends Component {
     super(props);
 
     this.state = ({
-      message_body: ''
+      body: '',
+      edited: false
     });
 
     this._joinChannel = this._joinChannel.bind(this);
+    this._updateField = this._updateField.bind(this);
+    this._sendMessage = this._sendMessage.bind(this);
   }
 
   componentDidMount() {
     let { channelName } = this.props.router.params;
-    const { currentChannel } = this.props;
-    const fetchChannelName = Util.DmUrlToName(channelName, this.props.currentUser);
-    this.props.fetchMessages(fetchChannelName);
+    const { currentChannel, fetchMessages, currentUser } = this.props;
+    const fetchChannelName = Util.DmUrlToName(channelName, currentUser);
+    // this.props.fetchMessages(fetchChannelName);
+
     //Pusher subscribe
     const pusher = new Pusher('a4ceeff403545c1bfce2', {
       encrypted: true
     });
 
-    const channel = pusher.subscribe(currentChannel.name);
-    channel.bind('message_sent', function(data) {
-      alert(data.message);
-      this.props.fetchMessages(currentChannel.name);
-    });
+    // const channel = pusher.subscribe(currentChannel.name);
+    const that = this;
+    const channel = pusher.subscribe('channel');
+    channel.bind('message_sent', (data) =>{
+
+      return fetchMessages(that.props.currentChannel.name);
+    }
+    );
     //
   }
 
@@ -46,7 +53,10 @@ class CurrentChannel extends Component {
               </i>
               <textarea
                 className="msg-box"
-                placeholder={ `Message ${this.props.currentChannel.name.replace(/,/g, ', ')}` }>
+                placeholder={ `Message ${this.props.currentChannel.name.replace(/,/g, ', ')}` }
+                onKeyDown={ this._sendMessage }
+                onChange={ this._updateField }
+                value={ this.state.body }>
               </textarea>
             </div>
           </section>
@@ -54,7 +64,7 @@ class CurrentChannel extends Component {
       } else {
         return (
           <section className="bottom">
-            <span>{"You are viewing a preview of #music"}</span>
+            <span>{ `You are viewing a preview of ${this.props.currentChannel.name}` }</span>
             <button className="join-channel"
               onClick={ this._joinChannel }>
               Join Channel
@@ -81,6 +91,19 @@ class CurrentChannel extends Component {
   _joinChannel(e) {
     e.preventDefault();
     this.props.joinChannel(this.props.currentChannel);
+  }
+
+  _sendMessage(e) {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      this.props.sendMessage(this.state, this.props.currentChannel);
+      this.setState({ body: ''});
+    }
+  }
+
+  _updateField(e) {
+    e.preventDefault();
+    this.setState({ body: e.target.value});
   }
 }
 
