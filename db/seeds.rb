@@ -86,11 +86,20 @@ users.each do |user|
   ChannelMembership.create!(user: user, channel: random)
 end
 
+Message.destroy_all
+
 users.drop(1).each do |user|
   snackbear = user.joined_channels.create!(
     name: [user.username, 'snackbear'].sort.join(','),
     creator: user,
     private: true
+  )
+
+  snackbear.messages.create!(
+    body: "Hello, I'm Snackbear. I try to be helpful. (But I'm just a bear. Sorry!) Type something to get started. If you have any questions about how to use Snack, please ask me! I'll do my best to help.",
+    author: users.first,
+    channel: snackbear,
+    edited: false
   )
 
   user.joined_channels.create!(

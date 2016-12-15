@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import Modal from 'react-modal';
 import ChannelsAside from './channels_aside';
 import { withRouter } from 'react-router';
+import * as Util from '../../util/util';
 
 class Channel extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {logoutOpen: false};
+    this.state = {
+      logoutOpen: false
+    };
 
     this.toggleLogout = this._toggleLogout.bind(this);
     this.closeLogout = this._closeLogout.bind(this);
@@ -15,16 +18,12 @@ class Channel extends Component {
   }
 
   componentDidMount() {
-    const { channelName } = this.props.router.params;
-
+    let { channelName } = this.props.router.params;
     this.props.fetchChannels();
     this.props.fetchUsers();
-
-    if (channelName[0] === '@') {
-      this.props.fetchCurrentChannel(channelName.slice(1));
-    } else {
-      this.props.fetchCurrentChannel(channelName);
-    }
+    const fetchChannelName = Util.DmUrlToName(channelName, this.props.currentUser);
+    this.props.fetchCurrentChannel(fetchChannelName);
+    this.props.fetchMessages(fetchChannelName);
   }
 
   render() {

@@ -3,17 +3,17 @@ import { createChannel, fetchChannels, joinChannel } from '../../actions/channel
 import { fetchUsers } from '../../actions/user_actions';
 import { logout } from '../../actions/session_actions';
 import Channel from './channel';
-import { allChannels, allUsers } from '../../reducers/selector';
-import { fetchCurrentChannel } from '../../actions/messages_actions';
+import { allChannels, allUsers, allMessages } from '../../reducers/selector';
+import { fetchCurrentChannel, fetchMessages } from '../../actions/messages_actions';
 
 const mapStateToProps = ((state) => {
   return {
     currentUser: state.session.currentUser,
     fetching: state.fetching,
     channels: allChannels(state),
-    errors: state.channels.errors,
     users: allUsers(state),
-    currentChannel: state.currentChannel.currentChannel
+    currentChannel: state.currentChannel.currentChannel,
+    messages: allMessages(state)
   };
 });
 
@@ -23,7 +23,8 @@ const mapDispatchToProps = (dispatch) => {
     logout: () => dispatch(logout()),
     createChannel: (channel) => dispatch(createChannel(channel)),
     fetchUsers: () => dispatch(fetchUsers()),
-    fetchCurrentChannel: (channelName) => dispatch(fetchCurrentChannel(channelName))
+    fetchCurrentChannel: (channelName) => dispatch(fetchCurrentChannel(channelName)),
+    fetchMessages: (channelName) => dispatch(fetchCurrentChannel(channelName))
   });
 };
 

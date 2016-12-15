@@ -8,10 +8,10 @@ class CurrentChannelHeader extends Component {
   }
 
   render() {
+
     // if the channel needs to be rendered like a dm, name will have commas,
     // remove currentUser and add spaces
     // if there are no commas, render channel name
-
     const headerName = () => {
       const { currentUser, currentChannel } = this.props;
       const DMName = currentChannel.name.split(',');
@@ -25,17 +25,34 @@ class CurrentChannelHeader extends Component {
       }
     };
 
-    if (this.props.fetching) return null;
+    const thirdItem = () => {
+      if (this.props.router.params.channelName[0] === '@' &&
+        this.props.currentChannel.members.length > 2){
+        return '';
+      } else if (this.props.router.params.channelName[0] === '@' &&
+        this.props.currentChannel.members.length < 3) {
+        const otherPerson = this.props.currentChannel.members.filter((member) =>
+        member.username !== this.props.currentUser.username);
+        return otherPerson.name;
+      } else {
+        return (
+          <i className="fa fa-thumb-tack"
+            id="channel-header-pin"
+            aria-hidden="true"></i>
+        );
+      }
+    };
+
     return (
       <section className="current-channel-header">
         <h4>{ headerName() }</h4>
-        <ul className="group">
+        <ul className="info group">
           <li><i className="material-icons">star_border</i></li>
           <li>
             <i className="material-icons">person_outline</i>
             <span>{ this.props.currentChannel.members.length }</span>
           </li>
-          <li><i className="fa fa-thumb-tack" aria-hidden="true"></i></li>
+          <li>{ thirdItem() }</li>
         </ul>
       </section>
     );
@@ -43,4 +60,4 @@ class CurrentChannelHeader extends Component {
 }
 
 
-export default (CurrentChannelHeader);
+export default withRouter(CurrentChannelHeader);

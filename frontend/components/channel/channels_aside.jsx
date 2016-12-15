@@ -5,6 +5,7 @@ import Modal from 'react-modal';
 import ChannelIndex from './modals/channel_index';
 import ChannelForm from './modals/channel_form';
 import DMForm from './modals/dm_form';
+import * as Util from '../../util/util';
 
 class ChannelsAside extends React.Component {
   constructor(props) {
@@ -12,8 +13,7 @@ class ChannelsAside extends React.Component {
 
     this.state = ({
       modalOpen: false,
-      whichModal: '',
-      currentChannelName: 'general'
+      whichModal: ''
     });
 
     this._handleClickIndex = this._handleClickIndex.bind(this);
@@ -39,8 +39,7 @@ class ChannelsAside extends React.Component {
       } else {
         const otherMembers = dm.members.filter((member) => member.username !== this.props.currentUser.username);
         const otherNames = otherMembers.map((member) => member.username);
-
-        let nameString = otherNames.join(', ');
+        let nameString = otherNames.reverse().join(', ');
         return nameString;
       }
     });
@@ -94,9 +93,12 @@ class ChannelsAside extends React.Component {
     };
 
 
-    const active = (channelName) => {
-      if (this.state.currentChannelName === channelName) {
-        return "active";
+    const active = (name) => {
+      const { currentUser } = this.props;
+      const { channelName } = this.props.router.params;
+
+      if (Util.DmUrlToDisplay(channelName, currentUser.username) === name) {
+        return 'active';
       } else {
         return '';
       }
@@ -205,7 +207,6 @@ class ChannelsAside extends React.Component {
     e.preventDefault();
     const visitChannelName = e.currentTarget.innerHTML;
     this.props.fetchCurrentChannel(visitChannelName).then(() => {
-      this.setState({ currentChannelName: visitChannelName });
       this.props.router.replace(`/messages/${visitChannelName}`);
     });
   }
@@ -213,11 +214,11 @@ class ChannelsAside extends React.Component {
   _visitThisDM(e) {
     e.preventDefault();
     const dmTarget = e.currentTarget.innerHTML;
-    const allDMMembers = _.union(dmTarget.split(', '), [this.props.currentUser.username]);
-    const visitDMName = allDMMembers.sort().join(',');
-    this.props.fetchCurrentChannel(visitDMName).then(() => {
-      this.setState({ currentChannelName: dmTarget });
-      this.props.router.replace(`/messages/@${visitDMName}`);
+    const urlPath = `@${dmTarget.replace(' ', '')}`;
+    const fetchChannelName = Util.DmUrlToName(urlPath, this.props.currentUser);
+
+    this.props.fetchCurrentChannel(fetchChannelName).then(() => {
+      this.props.router.replace(`/messages/${urlPath}`);
     });
   }
 }

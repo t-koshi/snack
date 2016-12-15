@@ -13,7 +13,9 @@ import {
 
 import {
   FETCH_CURRENT_CHANNEL,
-  GOTO_CHANNEL
+  GOTO_CHANNEL,
+  FETCH_MESSAGES,
+  RECEIVE_MESSAGES
 } from '../actions/messages_actions';
 
 const fetchingReducer = (state = false, action) => {
@@ -24,12 +26,14 @@ const fetchingReducer = (state = false, action) => {
     case FETCH_USERS:
     case CREATE_CHANNEL:
     case FETCH_CURRENT_CHANNEL:
+    case FETCH_MESSAGES:
       return true;
     case RECEIVE_CHANNEL:
     case RECEIVE_CHANNELS:
     case RECEIVE_ERRORS:
     case RESET_ERRORS:
     case GOTO_CHANNEL:
+    case RECEIVE_MESSAGES:
       return false;
     default:
       return state;
