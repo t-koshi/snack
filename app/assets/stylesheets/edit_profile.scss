@@ -1,0 +1,79 @@
+.edit-profile header{
+  border-color: 1px solid #2780f8;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,.15);
+  height: 3.75rem;
+}
+
+.edit-profile header i{
+  padding: 15px 15px 0 0;
+  float: right;
+  display: inline-block;
+}
+
+.edit-profile header h3{
+  padding-top: 15px;
+  display: inline-block;
+  font-size: 1.4rem;
+  font-weight: 900;
+}
+
+.profile-edit-page {
+  display: block;
+  width: 640px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.left {
+  float: left;
+  line-height: 1.5;
+}
+
+.left label{
+  font: 16px;
+  font-weight: 700px;
+  margin-top: 5px;
+}
+
+.left input {
+  color: #555459;
+  display: block;
+  box-sizing: border-box;
+  height: 50px;
+  border: 1px solid #C5C5C5;
+  width: 423.219px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.right {
+  float: right;
+  width: 192px;
+  line-height: 1.5;
+}
+
+.upload-wrapper{
+  position: relative;
+}
+
+.upload-wrapper input {
+  display: none;
+  position: absolute;
+}
+
+.upload-wrapper {
+  width: 192px;
+  height: 192px;
+}
+
+.upload-wrapper img {
+  border: 3px solid transparent;
+}
+
+.upload-wrapper img:hover {
+  border: 3px solid #2780f8;
+  border-radius: 5px;
+  color: #555459;
+  opacity: 0.6px;
+}

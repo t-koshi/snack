@@ -4,7 +4,8 @@
   position: fixed;
   bottom: 0;
   margin: 0 auto;
-  width: 80%;
+  width: calc(100vw - 225px);
+  background-color: #fff;
 }
 
 .join-channel:hover {
@@ -26,7 +27,8 @@
 .bottom div {
   float: bottom;
   border-radius: 5px;
-  border: 2px solid #E0E0E0;;
+  border: 2px solid #E0E0E0;
+  width: 95%;
 }
 
 .file-sending{
@@ -59,10 +61,22 @@
   font-weight: 300;
 }
 
+.messages {
+  height: calc(100vh - 160px);
+}
+
 .messages-index {
-  margin-top: 80px;
+  margin-top: 70px;
   box-sizing: border-box;
   padding: 15px;
+  height: 100%;
   overflow-y: auto;
-  height: 500px;
+}
+
+.personalPage,
+.snackbearPage,
+.channelPage,
+.dmPage {
+  height: 100%;
+  width: 100%;
 }
