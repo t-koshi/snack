@@ -140,7 +140,7 @@ users.drop(1).each do |user|
   )
 
   snackbear.messages.create!(
-    body: "Hello, I'm Snackbear. I try to be helpful. (But I'm just a bear. Sorry!) Type something to get started. If you have any questions about how to use Snack, please ask me! I'll do my best to help.",
+    body: "Hello, I'm Snackbear. I try to be helpful. (But I'm just a bear. Sorry!) Type something to get started. If you have any questions about how to eat snacks, please ask me! I'll do my best to help.",
     author: users.first,
     channel: snackbear,
     edited: false

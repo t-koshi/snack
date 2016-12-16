@@ -7,7 +7,6 @@ import { allMessages } from '../../../reducers/selector';
 class MessagesIndex extends Component {
   constructor(props) {
     super(props);
-
   }
 
   componentDidUpdate() {
@@ -108,9 +107,8 @@ class MessagesIndex extends Component {
         { snackbearPage() }
 
         <section className="messages-index group">
-          { manyMessages() }
-
-          <div id="message-bottom"></div>
+        { manyMessages() }
+        <div id="message-bottom"></div>
         </section>
       </section>
     );

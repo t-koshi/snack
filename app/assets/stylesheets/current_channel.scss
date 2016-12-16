@@ -145,7 +145,7 @@
 
 .message div{
   float: left;
-  width: auto;
+  width: calc(100% - 47px);
   line-height: 1.4;
 }
 
