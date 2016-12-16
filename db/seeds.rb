@@ -130,6 +130,143 @@ users.each do |user|
   ChannelMembership.create!(user: user, channel: random)
 end
 
+channels = Channel.create! ([
+  {name: 'cookies',
+    purpose: 'Soft baked or crispy??',
+    creator: users[1],
+    private: false},
+
+  {name: 'hot pockets',
+    creator: users[2],
+    private: false},
+
+  {name: 'pretzels',
+    purpose: 'we out here',
+    creator: users[3],
+    private: false},
+
+  {name: 'popcorn chiken',
+    purpose: 'yum',
+    creator: users[4],
+    private: false},
+
+  {name: 'pickles',
+    purpose: 'a savory snack',
+    creator: users[5],
+    private: false},
+
+  {name: 'potato chips',
+    purpose: 'is this basically a vegetable?',
+    creator: users[6],
+    private: false},
+
+  {name: 'beefsticks',
+    purpose: 'good for you',
+    creator: users[7],
+    private: false},
+
+  {name: 'elote',
+    creator: users[8],
+    private: false},
+
+  {name: 'ice cream sandwiches',
+    purpose: 'this is the best',
+    creator: users[9],
+    private: false},
+
+  {name: 'bars',
+    purpose: '(bars are snacks in minnesota that are cookies shaped like a bar that has the texture of a firm cake or softer than usual cookie. They are prepared in a pan and then baked in the over. They are cut into squares or rectangles. They are staples of bake sales and are often made for birthdays.)',
+    creator: users[10],
+    private: false},
+
+  {name: 'fruit salad',
+    purpose: 'tastes good',
+    creator: users[11],
+    private: false},
+
+  {name: 'gum',
+    purpose: 'is this even a snack',
+    creator: users[12],
+    private: false},
+
+  {name: 'a 3 musketeers bar',
+    purpose: 'jonathans favorite snack',
+    creator: users[13],
+    private: false},
+
+  {name: 'fishballs',
+    purpose: 'in soup or on a stick?',
+    creator: users[1],
+    private: true},
+
+  {name: 'granola bars',
+    creator: users[2],
+    private: true},
+
+  {name: 'granola clusters',
+    purpose: 'we out here',
+    creator: users[3],
+    private: true},
+
+  {name: 'pound cake',
+    purpose: 'yum',
+    creator: users[4],
+    private: true},
+
+  {name: 'plums',
+    purpose: 'a savory snack',
+    creator: users[5],
+    private: true},
+
+  {name: 'chex mix',
+    creator: users[6],
+    private: true},
+
+  {name: 'tres leches',
+    creator: users[7],
+    private: true},
+
+  {name: 'hot wings',
+    creator: users[8],
+    private: true},
+
+  {name: 'gummy bears',
+    creator: users[9],
+    private: true},
+
+  {name: 'cheesecake',
+    creator: users[10],
+    private: true},
+
+  {name: 'mozz sticks',
+    creator: users[11],
+    private: true},
+
+  {name: 'saltines',
+    creator: users[12],
+    private: true},
+
+  {name: 'carrot sticks',
+    creator: users[13],
+    private: true},
+
+])
+
+channels.sample(6).each do |channel|
+  unless channel.creator.username == "guest"
+    ChannelMembership.create!(channel: channel, user: users[1])
+  end
+end
+
+channels.each do |channel|
+  random_users = users.drop(2).sample(Random.rand(0..11))
+  all_members = (random_users + [channel.creator]).uniq
+
+  all_members.each do |member|
+    ChannelMembership.create!(channel: channel, user: member)
+  end
+end
+
 Message.destroy_all
 
 users.drop(1).each do |user|
