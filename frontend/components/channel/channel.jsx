@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
-import ChannelsAside from './channels_aside';
+import ChannelsAsideContainer from './channels_aside_container';
 import { withRouter } from 'react-router';
 import * as Util from '../../util/util';
+import EditProfileContainer from './edit_profile';
 
 class Channel extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      logoutOpen: false
+      logoutOpen: false,
+      editProfOpen: false
     };
 
-    this.toggleLogout = this._toggleLogout.bind(this);
-    this.closeLogout = this._closeLogout.bind(this);
-    this.logOutUser = this.logOutUser.bind(this);
+    this._toggleLogout = this._toggleLogout.bind(this);
+    this._closeLogout = this._closeLogout.bind(this);
+    this._logOutUser = this._logOutUser.bind(this);
+    this._editProfile = this._editProfile.bind(this);
+    this._onModalClose = this._onModalClose.bind(this);
   }
 
   componentDidMount() {
@@ -28,40 +32,62 @@ class Channel extends Component {
 
   render() {
     const { currentUser } = this.props;
-    const logout = () => {
-      const usersName = ( this.props.currentUser.name) ?
-        this.props.currentUser.name : this.props.currentUser.username;
 
+    const logout = () => {
       return (
         <section className="expand-acct group" >
-          <h3>{ this.props.currentUser.username }</h3>
-          <h4>{ `@${this.props.currentUser.username}` }</h4>
-          <li onClick={ this.logOutUser }>{"Sign out of snack"}</li>
+
+          <div className="aside-profile group">
+            <div className="iconholder">
+              <img className="icon2" src={ this.props.currentUser.img_url }></img>
+            </div>
+            <div className="infoholder">
+              <h3>{ this.props.currentUser.username }</h3>
+              <h4>{ `@${this.props.currentUser.username}` }</h4>
+            </div>
+          </div>
+
+          <ul>
+            <li onClick={ this._editProfile }> {"Edit Profile"}</li>
+            <li onClick={ this._logOutUser }>{"Sign out of snack"}</li>
+          </ul>
         </section>
       );
     };
 
     return (
-      <section className="channel-page" onClick={ this.closeLogout }>
+      <section className="channel-page" onClick={ this._closeLogout }>
         <aside className="user-profile group">
 
-          <section className="acct-settings" onClick={ this.toggleLogout }>
+          <section className="acct-settings" onClick={ this._toggleLogout }>
             <h3>My Snackpack<i>{ 'v' }</i></h3>
-            <h4>{ currentUser.username }</h4>
+            <h4>{ this.props.currentUser.username }</h4>
             { this.state.logoutOpen ? logout() : '' }
           </section>
 
-          <ChannelsAside
-            currentUser={ this.props.currentUser }
-            channels = { this.props.channels }
-            users = {this.props.users}
-            createChannel = { this.props.createChannel }
-            currentChannel = { this.props.currentChannel }
-            fetchCurrentChannel = { this.props.fetchCurrentChannel }
-            fetchMessages = { this.props.fetchMessages }
-            />
+          <section className="users-channels">
+          <ChannelsAsideContainer />
+          </section>
         </aside>
         { this.props.children }
+
+        <Modal
+          isOpen={ this.state.editProfOpen }
+          onRequestClose={ this._onModalClose }
+          contentLabel="Modal"
+          className="edit-profile"
+          overlayClassName="modal-overlay"
+          onKeyPress={ this._handleEsc }>
+
+          <header >
+            <h3>Edit your profile</h3>
+            <i onClick={ this._onModalClose }
+                className="material-icons">clear</i>
+          </header>
+
+          <EditProfileContainer
+            closeModal={ this._onModalClose }/>
+        </Modal>
       </section>
     );
   }
@@ -78,10 +104,26 @@ class Channel extends Component {
     this.setState({ logoutOpen: false });
   }
 
-  logOutUser(e) {
+  _logOutUser(e) {
     e.preventDefault();
     this.props.logout();
     this.props.router.replace('/');
+  }
+
+  _editProfile(e) {
+    e.preventDefault();
+    this.setState({ editProfOpen: true });
+  }
+
+  _onModalClose() {
+    this.setState({ editProfOpen: false});
+  }
+
+  _handleEsc(e) {
+    if (e.keyCode === 27) {
+      e.preventDefault();
+      this.setState({ modalOpen: false });
+    }
   }
 }
 

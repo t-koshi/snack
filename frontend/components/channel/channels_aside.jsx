@@ -22,6 +22,7 @@ class ChannelsAside extends React.Component {
     this._onModalClose = this._onModalClose.bind(this);
     this._visitThisChannel = this._visitThisChannel.bind(this);
     this._visitThisDM = this._visitThisDM.bind(this);
+    this._handleEsc = this._handleEsc.bind(this);
   }
 
   _DMs() {
@@ -91,13 +92,6 @@ class ChannelsAside extends React.Component {
       }
     };
 
-    const cancelButton = () => {
-      if (this.state.whichModal === 'new' && this.state.modalOpen === true) {
-        return <button  className="cancel" onClick={ this._onModalClose }>Cancel</button>;
-      }
-    };
-
-
     const active = (name) => {
       const { currentUser } = this.props;
       const { channelName } = this.props.router.params;
@@ -157,8 +151,8 @@ class ChannelsAside extends React.Component {
               })
             }
           </ul>
-
         </section>
+        <div className="quick-switch"></div>
 
         <Modal
           isOpen={ this.state.modalOpen }
@@ -176,12 +170,8 @@ class ChannelsAside extends React.Component {
           </header>
 
           { renderModal() }
-          <div className="cancel-wrapper">
-            { cancelButton() }
-          </div>
 
         </Modal>
-        <div className="aside-bottom"></div>
       </section>
     );
   }
@@ -224,7 +214,7 @@ class ChannelsAside extends React.Component {
     const dmTarget = e.currentTarget.innerHTML;
     const urlPath = `@${dmTarget.replace(/ /g,'')}`;
     const fetchChannelName = Util.DmUrlToName(urlPath, this.props.currentUser);
-    
+
     this.props.fetchMessages(fetchChannelName).then(() =>
       this.props.fetchCurrentChannel(fetchChannelName)).then(() =>
         this.props.router.replace(`/messages/${urlPath}`)

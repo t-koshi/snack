@@ -76,7 +76,7 @@ class CurrentChannel extends Component {
 
 
     return (
-      <section className="current-channel">
+      <section className="current-channel group">
         <CurrentChannelHeader
           currentChannel={ this.props.currentChannel }
           currentChannelName={ this.props.currentChannelName }

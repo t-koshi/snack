@@ -151,6 +151,7 @@ class ChannelForm extends Component {
             { this.state.usersList ? usersIndex() : '' }
           </div>
           <section className="buttons group">
+            <button  className="cancel" onClick={ this.props.closeModal }>Cancel</button>
             <input type="submit" disabled={ disabled } value="Create channel"/>
           </section>
         </form>
