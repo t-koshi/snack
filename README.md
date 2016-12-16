@@ -8,11 +8,11 @@ snack is a web application inspired by Slack. It utilizes Ruby on Rails on the b
 
 ### Live chat
 
-Messages are stored at the database level with associated an `user_id` and `channel_id`. Realtime updating is accomplished using Pusher. A single instance of Pusher is constructed on each visit to the message feed component. Based on the data returned by the Pusher event, a client can update their feed and notifications.
+Messages are stored at the database level with associated to an `author_id` and `channel_id`. Realtime updating is accomplished using Pusher. A single instance of Pusher is constructed on each visit to the message feed component. Based on the data returned by the Pusher event, the channel's page is updated.
 
 ### Channels
 
-Messages are organized by their parent Channels. All users can freely create channels. Channels can be private or public. All users can browse, search for, and join any public channel. Memberships to private channels are by invite only and do not appear when browsing.
+Messages are organized by their parent Channels. All users can freely create channels. Channels can be private or public. All users can browse, search for, and join any public channel. Private channels do not appear when browsing or searching, and memberships to private channels are by invite only.
 
 ### Direct messages
 
