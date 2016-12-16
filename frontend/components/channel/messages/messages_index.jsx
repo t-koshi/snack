@@ -134,7 +134,7 @@ class MessagesIndex extends Component {
               <img className="icon2"
                 src={ message.author.img_url }></img>
               <div>
-                <h4>{ message.author.username }</h4>
+                <h4>{ message.author.username }<span>{ message.time_str }</span></h4>
                 <li>{ message.body }</li>
               </div>
             </ul>
