@@ -1,4 +1,6 @@
-json.extract! user, :username, :name
+json.extract! user, :id, :username, :name
+
+json.img_url asset_path(user.avatar.url)
 # json.partial! 'api/channels/channel', collection: user.joined_channels, as: :channel
 
 

@@ -2,24 +2,30 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
-#  username        :string           not null
-#  email           :string           not null
-#  password_digest :string           not null
-#  session_token   :string           not null
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  firstname       :string
-#  lastname        :string
-#  img_url         :string
+#  id                  :integer          not null, primary key
+#  username            :string           not null
+#  email               :string           not null
+#  password_digest     :string           not null
+#  session_token       :string           not null
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  firstname           :string
+#  lastname            :string
+#  avatar_file_name    :string
+#  avatar_content_type :string
+#  avatar_file_size    :integer
+#  avatar_updated_at   :datetime
 #
 
 class User < ApplicationRecord
-  validates :username, :password_digest, :session_token, :email, :img_url, presence: true
+  validates :username, :password_digest, :session_token, :email, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
   validates :username, uniqueness: true
 
-  after_initialize :ensure_session_token, :give_avatar
+  has_attached_file :avatar, default_url: "default.png"
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
+
+  after_initialize :ensure_session_token
 
   has_many :channel_memberships
 
@@ -68,11 +74,6 @@ class User < ApplicationRecord
 
     @name
   end
-
-  def give_avatar
-    self.img_url ||= 'assets/icons/a14.png'
-  end
-
 
   def available_channels
     self.joined_channels + Channel.public_channels
