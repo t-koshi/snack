@@ -37,3 +37,7 @@ Slack allows users to leave reactions to individual messages. Channel creators c
 ### Mailer
 
 Slack sends confirmation emails to users that sign up for its site. I would also set up a mailer for password retrieval.
+
+### Multiple teams
+
+Only members of a team can be added to direct messages and can see a team's channels.
