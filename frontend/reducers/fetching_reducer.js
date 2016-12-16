@@ -39,7 +39,6 @@ const fetchingReducer = (state = false, action) => {
     case FETCH_CURRENT_CHANNEL:
     case FETCH_MESSAGES:
     case JOIN_CHANNEL:
-    case CREATE_MESSAGES:
     case SIGNUP_USER:
     case SIGNIN_USER:
     case FETCH_USERS:

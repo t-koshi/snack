@@ -24,6 +24,7 @@ class MessagesIndex extends Component {
     if (this.props.fetching) return null;
 
     const { currentChannel, currentUser, messages } = this.props;
+    const msgs = this.props.messages.filter((msg) => msg.channel.id === currentChannel.id);
 
     const personalPage = () => {
       if (currentChannel.name === currentUser.username ) {
@@ -73,7 +74,7 @@ class MessagesIndex extends Component {
     };
 
     const dmPage = () => {
-      if (this.props.currentChannel.private === true &&
+      if (this.props.router.params.channelName.indexOf('@') > -1  &&
         this.props.router.params.channelName !== '@snackbear') {
         const otherMembers = this.props.currentChannel.members.filter((member) => {
           return member.username !== this.props.currentUser.username;
@@ -115,32 +116,33 @@ class MessagesIndex extends Component {
     };
 
     const manyMessages = () => {
-      let author_name = '';
-      return messages.map((message, idx) => {
-        if (message.author.username === author_name) {
-          return (
-            <ul className="message group"
-              key={ idx }>
-              <div className="single-line">
-                <li>{ message.body }</li>
-              </div>
-            </ul>
-          );
-        } else {
-          author_name = message.author.username;
-          return (
-            <ul className="message group"
-              key={ idx }>
-              <img className="icon2"
-                src={ message.author.img_url }></img>
-              <div>
-                <h4>{ message.author.username }<span>{ message.time_str }</span></h4>
-                <li>{ message.body }</li>
-              </div>
-            </ul>
-          );
-        }
-     });
+        let author_name = '';
+        return msgs.map((message, idx) => {
+          if (message.author.username === author_name) {
+            return (
+              <ul className="message group"
+                key={ idx }>
+                <div className="single-line">
+                  <li>{ message.body }</li>
+                </div>
+              </ul>
+            );
+          } else {
+            author_name = message.author.username;
+            return (
+              <ul className="message group"
+                key={ idx }>
+                <img className="icon2"
+                  src={ message.author.img_url }></img>
+                <div>
+                  <h4>{ message.author.username }<span>{ message.time_str }</span></h4>
+                  <li>{ message.body }</li>
+                </div>
+              </ul>
+            );
+          }
+       });
+
    };
 
     return (
