@@ -111,10 +111,19 @@
   line-height: 1.875rem;
   color: #4d394b;
   font-weight: 900;
+  margin-bottom: 25px;
 }
 
 .snackbear-page img {
   float: left;
+  margin-left: 5px;
+  margin-right: 20px;
+}
+
+.snackbear-page p {
+  float: left;
+  margin-bottom: 25px;
+  width: 85%;
 }
 
 .messages-index {

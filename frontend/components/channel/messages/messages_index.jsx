@@ -7,6 +7,7 @@ import { allMessages } from '../../../reducers/selector';
 class MessagesIndex extends Component {
   constructor(props) {
     super(props);
+
   }
 
   componentDidUpdate() {
@@ -56,11 +57,17 @@ class MessagesIndex extends Component {
         return (
           <section className="snackbear-page">
             <h1>{ "Hi, Snackbear here!"}</h1>
-            <img className="icon2"
-              src={ snackbear[0].img_url }/>
+
+          <div className="group">
+            {snackbear.map((snackbear) => {
+              return <img className="icon4"
+                src={ snackbear.img_url }/>;
+            })}
+
             <p>
               { "You can ask me simple questions about what snacks I like. For example: 'do you like gummy bears?' Or simply: 'gummy bears'. I'm only a bear, but I'll do my best to answer! If I don't understand, I'll search the help center" }
             </p>
+            </div>
           </section>
         );
       }
