@@ -4,3 +4,14 @@ export const fetchUsers = () => {
     url: "api/users"
   });
 };
+
+export const editProfile = (formData) => {
+  return $.ajax({
+    url: `api/users/${currentUser.id}`,
+    method: "PATCH",
+    dataType: "json",
+    contentType: false,
+    processData: false,
+    data: formData
+  });
+};
