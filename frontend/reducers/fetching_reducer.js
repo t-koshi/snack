@@ -19,6 +19,7 @@ import {
   GOTO_CHANNEL,
   FETCH_MESSAGES,
   RECEIVE_MESSAGES,
+  RECEIVE_MESSAGE,
   CREATE_MESSAGES
 } from '../actions/messages_actions';
 
@@ -50,6 +51,7 @@ const fetchingReducer = (state = false, action) => {
     case RESET_ERRORS:
     case GOTO_CHANNEL:
     case RECEIVE_MESSAGES:
+    case RECEIVE_MESSAGE:
     case RECEIVE_CURRENT_USER:
     case RECEIVE_USERS:
       return false;

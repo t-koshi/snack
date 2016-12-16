@@ -5,6 +5,7 @@ export const GOTO_CHANNEL = "GOTO_CHANNEL";
 export const FETCH_CURRENT_CHANNEL = "FETCH_CURRENT_CHANNEL";
 export const FETCH_MESSAGES = "FETCH_MESSAGES";
 export const RECEIVE_MESSAGES = "RECEIVE_MESSAGES";
+export const RECEIVE_MESSAGE = "RECEIVE_MESSAGE";
 export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
 export const RESET_ERRORS = "RESET_ERRORS";
 export const CREATE_MESSAGES = "CREATE_MESSAGES";
@@ -16,6 +17,10 @@ export function gotoChannel(channel){
 
 export function receiveMessages(messages){
   return { type: RECEIVE_MESSAGES, messages };
+}
+
+export function receiveMessage(message){
+  return { type: RECEIVE_MESSAGE, message };
 }
 
 export function receiveErrors(errors){
@@ -51,9 +56,6 @@ export const fetchMessages = (channelName) => {
 export const sendMessage = (message, channel) => {
   return (dispatch) => {
     dispatch({ type: CREATE_MESSAGES });
-    return MessageAPIUtil.sendMessage(message, channel).then(
-      messages => dispatch(receiveMessages(messages)),
-      error => console.log(error.responseText)
-    );
+    return MessageAPIUtil.sendMessage(message, channel);
   };
 };

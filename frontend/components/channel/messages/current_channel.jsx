@@ -10,8 +10,7 @@ class CurrentChannel extends Component {
     super(props);
 
     this.state = ({
-      body: '',
-      edited: false
+      body: ''
     });
 
     this._joinChannel = this._joinChannel.bind(this);
@@ -33,10 +32,9 @@ class CurrentChannel extends Component {
     // const channel = pusher.subscribe(currentChannel.name);
     const that = this;
     const channel = pusher.subscribe('channel');
-    channel.bind('message_sent', (data) =>{
-
-      return fetchMessages(that.props.currentChannel.name);
-    }
+    channel.bind('message_sent', (data) => {
+      return that.props.receiveMessage(data);
+      }
     );
     //
   }

@@ -11,9 +11,9 @@ class Api::MessagesController < ApplicationController
 
     if @message.save
       # Pusher.trigger(@channel.name, 'message_sent', {})
-      Pusher.trigger('channel', 'message_sent', {})
-      @messages = Message.where(channel_id: @channel.id)
-      render :index
+      # Pusher.trigger('channel', 'message_sent', @message.to_json)
+      Pusher.trigger('channel', 'message_sent', (render :show))
+      # render :show
     else
       render json:
         @message.errors.full_messages,

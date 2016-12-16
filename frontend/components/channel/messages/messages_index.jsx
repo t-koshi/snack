@@ -143,8 +143,6 @@ class MessagesIndex extends Component {
      });
    };
 
-
-
     return (
       <section className="messages group">
         { personalPage() }
