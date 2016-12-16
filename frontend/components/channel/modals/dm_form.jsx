@@ -25,7 +25,6 @@ class DMForm extends Component {
   }
 
   render() {
-    let disabled = (this.state.name === '') ? true : false;
     let privacy = (this.state.private) ? "Private" : "Public";
     const { members, usersToRender } = this.state;
 
@@ -53,8 +52,9 @@ class DMForm extends Component {
             { members.map((member, idx) =>
                 <span className="invited-user"
                   key={ idx }
-                  onClick={ this._clickDeleteInvite }>
-                  { member }
+                  onClick={ this._clickDeleteInvite }
+                  color="#fff">
+                { member }
                 </span>
             )}
           </ul>
@@ -68,36 +68,49 @@ class DMForm extends Component {
       }
     };
 
+    const placeHolder = () => {
+      return (this.state.members.length ) ? "" : "Find or start a convo";
+    };
+
+    let disabled = (this.state.members.length) ? false : true;
+
     return (
       <section className="new-dm-modal group">
         <h3>Direct Messages</h3>
+
         <section className="dm-invites group">
-          <section
-            className="dm-filters group"
-            onClick={ this._goToInput }>
-            { invitedUsers() }
-            <input
-              type="text"
-              className="dm-invite-filter group"
-              onChange={ this._updateFilter }
-              ref="filterInput"
-              placeholder="Find or start a conversation"
-              onKeyDown={ this._deleteInvite }
-              value={ this.state.filter}
-            />
+
+          <section className="box-and-button group">
+            <section
+              className="dm-filters group"
+              onClick={ this._goToInput }>
+              { invitedUsers() }
+              <input
+                type="text"
+                className="dm-invite-filter group"
+                onChange={ this._updateFilter }
+                ref="filterInput"
+                placeholder={ placeHolder() }
+                onKeyDown={ this._deleteInvite }
+                value={ this.state.filter}
+              />
+            </section>
+
+            <button className="dm-go"
+              onClick={ this._handleSubmit }
+              disabled={ disabled }>
+              Go
+            </button>
+
           </section>
 
-          <button className="dm-go"
-            onClick={ this._handleSubmit }>Go
-          </button>
+          <p className="member-limit">{ memberLimit() }</p>
 
-          <span className="member-limit">{ memberLimit() }</span>
+          <div className="list-top">
+            { usersIndex() }
+          </div>
+
         </section>
-
-        <div className="list-top">
-          { usersIndex() }
-        </div>
-
       </section>
     );
   }

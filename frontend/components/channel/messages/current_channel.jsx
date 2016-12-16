@@ -42,6 +42,7 @@ class CurrentChannel extends Component {
   render() {
     const { currentUser, currentChannel } = this.props;
     const bottom = () => {
+      if (this.state.fetching) return null;
       if (Util.isInChannel(currentUser, currentChannel)) {
         return (
           <section className="bottom">

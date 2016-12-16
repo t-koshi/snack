@@ -72,7 +72,9 @@
 
 .new-channel-modal{
   height: 1000px;
-  overflow-y: auto;
+}
+
+.new-channel-form {
 }
 
 //------------
@@ -383,8 +385,7 @@
 }
 
 .buttons input:enabled,
-.modal-new,
-.dm-go {
+.modal-new {
   background-color: #2ab27b;
   color: white;
 }
@@ -440,7 +441,16 @@
 
 .user-index.dm {
   border: 0;
-  margin-top: 100px;
+  margin-top: 30px;
+}
+
+.box-and-button {
+  margin-bottom: 5px;
+}
+
+.dm-invites p{
+  font-size: 13px;
+  color: #717274;
 }
 
 .users-index.dm h5,
@@ -481,12 +491,6 @@
   height: 100%;
 }
 
-.dm-go {
-  float: left;
-  margin-left: 16px;
-  padding: 12px 18px;
-  height: 50px;
-}
 
 .dm-invites {
   width: 640px;
@@ -516,4 +520,29 @@
 
 .member-limit {
   display: block;
+}
+
+.box-and-button input{
+  font-size: 18px;
+}
+
+.dm-go {
+  background-color: #2ab27b;
+  float: left;
+  margin-left: 16px;
+  padding: 12px 18px;
+  height: 50px;
+  color: white;
+}
+
+.dm-go:enabled {
+  background-color: #CDCECE;
+}
+
+.dm-go:enabled:hover {
+  box-shadow: inset 0 -2px rgba(0,0,0,.25);
+}
+
+.channels-index li:hover {
+  cursor: pointer;
 }
