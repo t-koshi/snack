@@ -1,4 +1,4 @@
-json.extract! message, :id, :body, :edited
+json.extract! message, :id, :body, :edited, :time_str
 
 json.set! :author do
   json.partial! 'api/users/user.json.jbuilder', user: message.author

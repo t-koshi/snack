@@ -80,6 +80,8 @@
   margin-top: 70px;
   border-bottom: 1px solid rgb(232, 232, 232);
   margin-bottom: 25px;
+  color: #2c2d30;
+  letter-spacing: 0.1px;
 }
 
 .personal-page div{
@@ -133,14 +135,15 @@
 }
 
 .message {
-  border: 1px solid black;
+  color: #2c2d30;
   box-sizing: border-box;
-  padding: 5px;
+  padding: 0 5px;
 }
 
 .message img{
   float: left;
   margin-right: 10px;
+  margin-top: 3px;
 }
 
 .message div{
@@ -154,6 +157,15 @@
 }
 
 .message li {
-  font-weight: 300;
+  font-weight: 400;
   font-size: 15px;
+}
+
+.icon3.dm-page {
+  margin-right: 10px;
+}
+
+.dm-page p {
+  width: 100%;
+  margin-bottom: 25px;
 }

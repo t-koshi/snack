@@ -72,6 +72,48 @@ class MessagesIndex extends Component {
       }
     };
 
+    const dmPage = () => {
+      if (this.props.currentChannel.private === true &&
+        this.props.router.params.channelName !== '@snackbear') {
+        const otherMembers = this.props.currentChannel.members.filter((member) => {
+          return member.username !== this.props.currentUser.username;
+        });
+
+        const otherMembersNames = this.props.router.params.channelName.replace('@', '').split(',');
+        const lastMember = otherMembersNames.pop();
+
+        if (!otherMembersNames.length) {
+          return (
+            <section className="dm-page">
+              { otherMembers.map((member) =>
+                <img className="icon3 dm-page" src={ member.img_url } />
+              )}
+              <p>
+                <span>{ "This is the very beginning of your direct message history with "}</span>
+                <strong>{ lastMember }</strong>
+              </p>
+            </section>
+          );
+        } else {
+          return (
+            <section className="dm-page">
+              { otherMembers.map((member) =>
+                <img className="icon3 dm-page" src={ member.img_url } />
+              )}
+              <p>
+                <span>{ "This is the very beginning of your direct message history with " }</span>
+                { otherMembersNames.map((name) =>
+                  <strong>{ `${name}, ` }</strong>
+                )}
+                <span>{"and "}</span>
+                <strong>{ lastMember }</strong>
+              </p>
+            </section>
+          );
+        }
+      }
+    };
+
     const manyMessages = () => {
       let author_name = '';
       return messages.map((message, idx) => {
@@ -101,10 +143,13 @@ class MessagesIndex extends Component {
      });
    };
 
+
+
     return (
       <section className="messages group">
         { personalPage() }
         { snackbearPage() }
+        { dmPage() }
 
         <section className="messages-index group">
         { manyMessages() }

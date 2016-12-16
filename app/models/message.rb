@@ -25,4 +25,13 @@ class Message < ApplicationRecord
   )
 
   belongs_to :channel
+
+  def time_str
+    hour = self.created_at.strftime('%I')
+    minutes = self.created_at.strftime('%M')
+
+    am_pm = (((self.created_at.strftime('%k')).to_i) > 12 ) ? "PM" : "AM"
+
+    @time_str = "#{hour}:#{minutes} #{am_pm}"
+  end
 end

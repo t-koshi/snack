@@ -24,6 +24,6 @@ class Api::MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:body, :edited)
+    params.require(:message).permit(:body)
   end
 end
