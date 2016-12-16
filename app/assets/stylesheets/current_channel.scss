@@ -1,3 +1,8 @@
+.current-channel {
+  position: relative;
+  height: 100vh;
+}
+
 .bottom {
   box-sizing: border-box;
   padding: 0 20px 30px 20px;
@@ -62,21 +67,56 @@
 }
 
 .messages {
-  height: calc(100vh - 160px);
+  overflow-y: auto;
+  height: calc(100vh - 142px);
+  margin-top: 65px;
+  box-sizing: border-box;
+  padding: 15px 20px;
+}
+
+.personal-page,
+.snackbear-page,
+.dm-page {
+  margin-top: 70px;
+  border-bottom: 1px solid rgb(232, 232, 232);
+  margin-bottom: 25px;
+}
+
+.personal-page div{
+  display: block;
+  width: 100%;
+  line-height: 4;
+}
+
+.personal-page img,
+.personal-page div ul,
+.personal-page div {
+  float: left;
+  margin-right: 10px;
+}
+
+.personal-page ul {
+  margin-bottom: 25px;
+}
+
+.personal-page p {
+  color: #555459;
+  font-size: 17.6px;
+  line-height: 1.5;
+  margin-bottom: 25px;
+}
+
+.snackbear-page h1 {
+  font-size: 1.875rem;
+  line-height: 1.875rem;
+  color: #4d394b;
+  font-weight: 900;
+}
+
+.snackbear-page img {
+  float: left;
 }
 
 .messages-index {
-  margin-top: 70px;
-  box-sizing: border-box;
-  padding: 15px;
-  height: 100%;
-  overflow-y: auto;
-}
 
-.personalPage,
-.snackbearPage,
-.channelPage,
-.dmPage {
-  height: 100%;
-  width: 100%;
 }
