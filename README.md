@@ -1,67 +1,39 @@
 # snack
 
-[Heroku link][heroku] **Note:** This should be a link to your production site
+[snack live](http://snackss.herokuapp.com/)
 
-[Trello link][trello]
+## Features & Implementation
 
-[heroku]: http://snackss.herokuapp.com/
-[trello]: https://trello.com/b/Ykrbn7t9/snack
+snack is a web application inspired by Slack. It utilizes Ruby on Rails on the backend, a PostgreSQL database, and React.js with a Redux architectural framework on the frontend.
 
-## Minimum Viable Product
+### Live chat
 
-snack is a web application inspired by Evernote built using Ruby on Rails and React/Redux.  By the end of Week 9, this app will, at a minimum, satisfy the following criteria with smooth, bug-free navigation, adequate seed data and sufficient CSS styling:
+Messages are stored at the database level with associated an `user_id` and `channel_id`. Realtime updating is accomplished using Pusher. A single instance of Pusher is constructed on each visit to the message feed component. Based on the data returned by the Pusher event, a client can update their feed and notifications.
 
-- [ ] Hosting on Heroku
-- [ ] New account creation, login, and guest/demo login
-- [ ] Live chat
-- [ ] Channels
-- [ ] Direct message
-- [ ] Teams or multi-person DM
-- [ ] Production README [sample](docs/production_readme.md)
+### Channels
 
-## Design Docs
-* [View Wireframes][wireframes]
-* [React Components][components]
-* [API endpoints][api-endpoints]
-* [DB schema][schema]
-* [Sample State][sample-state]
+Messages are organized by their parent Channels. All users can freely create channels. Channels can be private or public. All users can browse, search for, and join any public channel. Memberships to private channels are by invite only and do not appear when browsing.
 
-[wireframes]: docs/wireframes
-[components]: docs/component-hierarchy.md
-[sample-state]: docs/sample-state.md
-[api-endpoints]: docs/api-endpoints.md
-[schema]: docs/schema.md
+### Direct messages
 
-## Implementation Timeline
+Direct messages can only be seen by a specified group of members. The number of members per channel is limited to 7 users. All users can be searched for and added to a direct message.
 
-### Phase 1: Backend setup and Front End User Authentication (1 day)
+### Single page
 
-**Objective:** Functioning rails project with front-end Authentication
+Sloth is a single page app that allows for quick navigation between its various components. As data is fetched from Rails, components are only updated when necessary.
 
-### Phase 2: Channel Model, API, and components (1 days)
+## Future Directions for the Project
 
-**Objective:** Channel model/controller (create, show, update, destroy) through the API
+The future of snack will include:
 
-### Phase 3: Message Model, API, and components (2 days)
+### Search
 
-**Objective:** Messages can be created, destroyed, and have channel messages shown through the API. Implement live-chat using websockets.
+Searching for specific messages by content, channel, or author.
 
+### Emoji Reactions
 
-### Phase 4:  Direct Message (2 day)
+Slack allows users to leave reactions to individual messages. Channel creators can create custom emojis.
 
-**Objective:** Direct message channels can be created, destroyed, and have channel messages shown through the API.
+### Mailer
 
-### Phase 5: Teams or multi-person DM(1 day)
-
-**objective:** Teams or multi-person DM channels can be created, destroyed, and have channel messages shown through the API.
-
-### Phase 6: - Notifications (2 days)
-
-**objective:** Implement notifications
-
-### Bonus Features (TBD)
-- [ ] custom emojis
-- [ ] Users can sign into multiple teams
-- [ ] blank form error rendering
-- [ ] Welcome emails, password retrieval
-- [ ] Search messages by content or author
+Slack sends confirmation emails to users that sign up for its site. I would also set up a mailer for password retrieval.
