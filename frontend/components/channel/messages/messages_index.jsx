@@ -73,6 +73,34 @@ class MessagesIndex extends Component {
       }
     };
 
+    const manyMessages = () => {
+      let author_name = '';
+      return messages.map((message, idx) => {
+        if (message.author.username === author_name) {
+          return (
+            <ul className="message group"
+              key={ idx }>
+              <div className="single-line">
+                <li>{ message.body }</li>
+              </div>
+            </ul>
+          );
+        } else {
+          author_name = message.author.username;
+          return (
+            <ul className="message group"
+              key={ idx }>
+              <img className="icon2"
+                src={ message.author.img_url }></img>
+              <div>
+                <h4>{ message.author.username }</h4>
+                <li>{ message.body }</li>
+              </div>
+            </ul>
+          );
+        }
+     });
+   };
 
     return (
       <section className="messages group">
@@ -80,18 +108,7 @@ class MessagesIndex extends Component {
         { snackbearPage() }
 
         <section className="messages-index group">
-          { messages.map((message, idx) => {
-            return (
-              <ul className="message group"
-                key={ idx }>
-                <img className="icon2"
-                  src={ message.author.username.img_url }></img>
-                <h4>{ message.author.username }</h4>
-                <li>{ message.body }</li>
-              </ul>
-            );
-            })
-          }
+          { manyMessages() }
 
           <div id="message-bottom"></div>
         </section>

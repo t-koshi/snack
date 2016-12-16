@@ -154,9 +154,9 @@
 }
 
 .new-channel {
-  width: 25%;
-  float: left;
-  transform: scale(0.8) translateY(-4px);
+  width: 20%;
+  float: right;
+  transform: scale(0.8) translate(18px, -3px);
 }
 
 .channel-type:hover{
@@ -245,6 +245,11 @@
 .channels-list li:hover {
   background-color: #3e313c;
   cursor: pointer;
+}
+
+.dms ul li,
+.joined-channels ul li{
+  overflow: hidden;
 }
 
 .quick-switch {

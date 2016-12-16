@@ -127,5 +127,33 @@
 }
 
 .messages-index {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
 
+.message {
+  border: 1px solid black;
+  box-sizing: border-box;
+  padding: 5px;
+}
+
+.message img{
+  float: left;
+  margin-right: 10px;
+}
+
+.message div{
+  float: left;
+  width: auto;
+  line-height: 1.4;
+}
+
+.single-line {
+  margin-left: 47px;
+}
+
+.message li {
+  font-weight: 300;
+  font-size: 15px;
 }
