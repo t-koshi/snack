@@ -6,6 +6,10 @@ import {
   RESET_ERRORS
 } from '../actions/messages_actions';
 
+import {
+  RECEIVE_CHANNEL
+} from '../actions/channel_actions';
+
 const _default = {
   currentChannel: {
     name: '',
@@ -20,6 +24,10 @@ const currentChannelReducer = (state = _default, action) => {
   let newState = merge({}, state);
   switch(action.type){
     case GOTO_CHANNEL:
+      newState.currentChannel = action.channel;
+      newState.errors = null;
+      return newState;
+    case RECEIVE_CHANNEL:
       newState.currentChannel = action.channel;
       newState.errors = null;
       return newState;

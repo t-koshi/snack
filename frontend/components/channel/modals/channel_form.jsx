@@ -18,7 +18,6 @@ class ChannelForm extends Component {
 
     this.handleSubmit = this._handleSubmit.bind(this);
     this.enterField = this._enterField.bind(this);
-    this.redirect = this._redirect.bind(this);
     this.togglePrivacy = this._togglePrivacy.bind(this);
     this.hideUsers = this._hideUsers.bind(this);
     this.showUsers = this._showUsers.bind(this);
@@ -229,7 +228,7 @@ class ChannelForm extends Component {
   _handleSubmit(e) {
     e.preventDefault();
     const newChannel = _.merge({}, this.state);
-    this.props.createChannel(newChannel).then(() => this.props.closeModal());
+    this.props.createChannel(newChannel).then(() => this._afterSubmit(this.state.name));
   }
 
   _enterField(field){
@@ -243,8 +242,9 @@ class ChannelForm extends Component {
     this.setState({private: !this.state.private});
   }
 
-  _redirect() {
-    this.props.router.replace('/messages');
+  _afterSubmit(channelName) {
+    this.props.closeModal();
+    this.props.router.replace(`/messages/${channelName}`);
   }
 }
 

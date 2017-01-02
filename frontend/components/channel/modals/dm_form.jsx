@@ -16,7 +16,6 @@ class DMForm extends Component {
 
     this._handleSubmit = this._handleSubmit.bind(this);
     this._enterField = this._enterField.bind(this);
-    this._redirect = this._redirect.bind(this);
     this._addMembers = this._addMembers.bind(this);
     this._updateFilter = this._updateFilter.bind(this);
     this._deleteInvite = this._deleteInvite.bind(this);
@@ -180,9 +179,9 @@ class DMForm extends Component {
     newChannel.name = newChannel.members.sort().join(',');
 
     if (this._allDMNames().indexOf(newChannel.name) > -1){
-      this.props.closeModal();
+      this._afterSubmit(newChannel.name);
     } else {
-      this.props.createChannel(newChannel).then(() => this.props.closeModal());
+      this.props.createChannel(newChannel).then(() => this._afterSubmit(newChannel.name));
     }
   }
 
@@ -196,8 +195,10 @@ class DMForm extends Component {
     });
   }
 
-  _redirect() {
-    this.props.router.replace('/messages');
+  _afterSubmit(dmName) {
+    this.props.closeModal();
+    const otherMembers = this.state.members.sort().join(',');
+    this.props.router.replace(`messages/@${otherMembers}`);
   }
 }
 
