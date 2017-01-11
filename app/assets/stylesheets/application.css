@@ -161,3 +161,11 @@ time, mark, audio, video, input, button {
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.12);
   border-radius: 5px;
 }
+
+.icon5 {
+  width: 24px;
+  height: 24px;
+  background-color: #AB9BA9;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.12);
+  border-radius: 2px;
+}

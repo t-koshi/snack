@@ -546,3 +546,26 @@
 .channels-index li:hover {
   cursor: pointer;
 }
+
+.user-details img, .user-details h5, .user-details h6
+{
+  display: inline-block;
+  margin-right: 10px;
+  vertical-align: top;
+  font-size: 16px;
+}
+
+.invited-users li {
+  padding: 0px;
+}
+
+.invited-users img,
+.invited-users span {
+  float: left;
+  margin-right: 10px;
+}
+
+.invited-users span {
+  position: relative;
+  top: 3px;
+}

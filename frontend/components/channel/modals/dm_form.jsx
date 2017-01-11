@@ -35,8 +35,10 @@ class DMForm extends Component {
           { filteredUsers.map((user, idx) =>
               <li className="detail-box dm group" key={ idx }>
                 <ul className="user-details dm group" onMouseDown={ this._addMembers }>
-                  <h5>{ user.username }</h5>
-                  <h6>{ user.name }</h6>
+                  <img className="icon2"
+                    src={ user.img_url }/>
+                    <h5>{ user.username }</h5>
+                    <h6>{ user.name }</h6>
                 </ul>
               </li>
           )}
@@ -49,12 +51,15 @@ class DMForm extends Component {
         return (
           <ul className="invited-users group">
             { members.map((member, idx) =>
-                <span className="invited-user"
+                <li className="invited-user"
                   key={ idx }
                   onClick={ this._clickDeleteInvite }
                   color="#fff">
-                { member }
-                </span>
+                  <img className="icon5"
+                    src={ member.img_url }/>
+                  <span>{ member.username }</span>
+                  <span>x</span>
+                </li>
             )}
           </ul>
         );
@@ -135,7 +140,9 @@ class DMForm extends Component {
   _addMembers(e) {
     if (this.state.members.length < 7) {
       e.preventDefault();
-      const newMembers = _.union(this.state.members, [e.currentTarget.firstChild.innerText]);
+      const member = this.props.users.filter((member) =>
+        member.username === e.currentTarget.childNodes[1].innerHTML);
+      const newMembers = _.union(this.state.members, member);
       this.setState({ members: newMembers, filter: ''});
     }
     $(this.refs.filterInput).focus();
