@@ -42,7 +42,6 @@ class CurrentChannel extends Component {
   render() {
     const { currentUser, currentChannel } = this.props;
     const bottom = () => {
-      if (this.state.fetching) return null;
       if (Util.isInChannel(currentUser, currentChannel)) {
         return (
           <section className="bottom">
@@ -52,7 +51,7 @@ class CurrentChannel extends Component {
               </i>
               <textarea
                 className="msg-box"
-                placeholder={ `Message ${this.props.currentChannel.name.replace(/,/g, ', ')}` }
+                placeholder={ `Message ${this.props.router.params.channelName.replace(/,/g, ', ').replace('@', '')}` }
                 onKeyDown={ this._sendMessage }
                 onChange={ this._updateField }
                 value={ this.state.body }>

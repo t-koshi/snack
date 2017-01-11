@@ -25,6 +25,22 @@ class MessagesIndex extends Component {
 
     const { currentChannel, currentUser, messages } = this.props;
     const msgs = this.props.messages.filter((msg) => msg.channel.id === currentChannel.id);
+    const name = () => {
+      if (currentUser.name) return currentUser.name;
+    };
+
+    const aChannel = () => {
+      if (currentChannel.name.indexOf(',') === -1 &&
+      currentChannel.name !== currentUser.username) {
+        return (
+          <section className="a-channel group">
+            <div className="group">
+              <h1>{` :: ${currentChannel.name}`}</h1>
+            </div>
+          </section>
+        );
+      }
+    };
 
     const personalPage = () => {
       if (currentChannel.name === currentUser.username ) {
@@ -35,7 +51,7 @@ class MessagesIndex extends Component {
                 className="icon3"
                 src={ currentUser.img_url }/>
               <ul className="group">
-                <li>{ currentUser.name }</li>
+                <li>{ name }</li>
                 <li>{ `@${currentUser.username}` }</li>
               </ul>
             </div>
@@ -59,8 +75,8 @@ class MessagesIndex extends Component {
             <h1>{ "Hi, Snackbear here!"}</h1>
 
           <div className="group">
-            {snackbear.map((snackbear) => {
-              return <img className="icon4"
+            {snackbear.map((snackbear, idx) => {
+              return <img className="icon4" key={ idx }
                 src={ snackbear.img_url }/>;
             })}
 
@@ -75,7 +91,8 @@ class MessagesIndex extends Component {
 
     const dmPage = () => {
       if (this.props.router.params.channelName.indexOf('@') > -1  &&
-        this.props.router.params.channelName !== '@snackbear') {
+        this.props.router.params.channelName !== '@snackbear' &&
+      this.props.router.params.channelName !== `@${this.props.currentUser.username}`) {
         const otherMembers = this.props.currentChannel.members.filter((member) => {
           return member.username !== this.props.currentUser.username;
         });
@@ -86,8 +103,8 @@ class MessagesIndex extends Component {
         if (!otherMembersNames.length) {
           return (
             <section className="dm-page">
-              { otherMembers.map((member) =>
-                <img className="icon3 dm-page" src={ member.img_url } />
+              { otherMembers.map((member, idx) =>
+                <img className="icon3 dm-page" src={ member.img_url } key={ idx }/>
               )}
               <p>
                 <span>{ "This is the very beginning of your direct message history with "}</span>
@@ -98,13 +115,13 @@ class MessagesIndex extends Component {
         } else {
           return (
             <section className="dm-page">
-              { otherMembers.map((member) =>
-                <img className="icon3 dm-page" src={ member.img_url } />
+              { otherMembers.map((member, idx) =>
+                <img className="icon3 dm-page" src={ member.img_url } key={ idx }/>
               )}
               <p>
                 <span>{ "This is the very beginning of your direct message history with " }</span>
-                { otherMembersNames.map((name) =>
-                  <strong>{ `${name}, ` }</strong>
+                { otherMembersNames.map((name, idx) =>
+                  <strong key={ idx }>{ `${name}, ` }</strong>
                 )}
                 <span>{"and "}</span>
                 <strong>{ lastMember }</strong>
@@ -147,6 +164,7 @@ class MessagesIndex extends Component {
 
     return (
       <section className="messages group">
+        { aChannel() }
         { personalPage() }
         { snackbearPage() }
         { dmPage() }

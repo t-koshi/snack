@@ -219,7 +219,7 @@
   position: relative;
 }
 
-.channels-list li:before{
+.joined-channels li:before{
   content: ': :';
   transform: rotate(320deg);
   float: left;
@@ -256,4 +256,22 @@
   float: bottom;
   height: 61px;
   width: 220px;
+}
+
+.dmlist i {
+  float: left;
+  margin-right: 10px;
+  margin-left: 15px;
+  opacity: 0.3;
+  background-color: white;
+  color: #4D394B;
+  font-size: 11px;
+  width: 13px;
+  height: 13px;
+  border-radius: 2px;
+  text-align: center;
+  font-weight: 700;
+  position: relative;
+  top: 6px;
+  vertical-align: top;
 }

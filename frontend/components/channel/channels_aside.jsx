@@ -14,6 +14,7 @@ class ChannelsAside extends React.Component {
     this.state = ({
       modalOpen: false,
       whichModal: '',
+      activeChannel: ''
     });
 
     this._handleClickIndex = this._handleClickIndex.bind(this);
@@ -28,21 +29,17 @@ class ChannelsAside extends React.Component {
   _DMs() {
     return this.props.currentUser.joined_channels.filter((channel) => {
       return (channel.private === true &&
-        channel.name.indexOf(',') > -1) ||
-        channel.name.indexOf(this.props.currentUser.username) > -1;
+        channel.name.indexOf(',') > -1 &&
+        channel.name.indexOf('snackbear') === -1);
     });
   }
 
   _DMRenderNames() {
     return this._DMs().map((dm) => {
-      if (dm.name === this.props.currentUser.username) {
-        return this.props.currentUser.username;
-      } else {
-        const otherMembers = dm.members.filter((member) => member.username !== this.props.currentUser.username);
-        const otherNames = otherMembers.map((member) => member.username);
-        let nameString = otherNames.sort().join(', ');
-        return nameString;
-      }
+      const otherMembers = dm.members.filter((member) => member.username !== this.props.currentUser.username);
+      const otherNames = otherMembers.map((member) => member.username);
+      let nameString = otherNames.sort().join(', ');
+      return nameString;
     });
   }
 
@@ -140,12 +137,24 @@ class ChannelsAside extends React.Component {
             </i>
           </ul>
 
-          <ul>
+          <ul className="dmlist">
+            <li onClick={ this._visitThisDM }
+              className={ `${active('snackbear')}` }>
+              <i>♥</i>
+              snackbear
+            </li>
+            <li onClick={ this._visitThisDM }
+              className={ active(this.props.currentUser.username) }>
+              <i> {'::'} </i>
+              { this.props.currentUser.username }
+            </li>
+
             {
               DMRenderNames.map((name, idx) => {
                 return (<li key={ idx }
-                  className={ active(name) }
+                  className={ `${active(name)}` }
                   onClick={ this._visitThisDM }>
+                  <i>{ name.split(',').length }</i>
                   { name }
                 </li>);
               })
@@ -211,7 +220,7 @@ class ChannelsAside extends React.Component {
 
   _visitThisDM(e) {
     e.preventDefault();
-    const dmTarget = e.currentTarget.innerHTML;
+    const dmTarget = e.currentTarget.childNodes[2].data;
     const urlPath = `@${dmTarget.replace(/ /g,'')}`;
     const fetchChannelName = Util.DmUrlToName(urlPath, this.props.currentUser);
 
