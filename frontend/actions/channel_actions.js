@@ -30,8 +30,7 @@ export const fetchChannels = () => {
   return (dispatch) => {
     dispatch({ type: FETCH_CHANNELS });
     return APIUtil.fetchChannels().then(
-      (channels) => dispatch(receiveChannels(channels)),
-      error => dispatch(receiveErrors(error))
+      (channels) => dispatch(receiveChannels(channels))
     );
   };
 };
@@ -40,8 +39,7 @@ export const fetchUsers = () => {
   return (dispatch) => {
     dispatch({ type: FETCH_USERS });
     return APIUtil.fetchUsers().then(
-      channels => dispatch(receiveUsers(users)),
-      error => dispatch(receiveErrors(error))
+      channels => dispatch(receiveUsers(users))
     );
   };
 };

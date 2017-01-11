@@ -37,8 +37,7 @@ export const fetchCurrentChannel = (channelName) => {
   return (dispatch) => {
     dispatch({ type: FETCH_CURRENT_CHANNEL });
     return ChannelAPIUtil.fetchCurrentChannel(channelName).then(
-      currentChannel => dispatch(gotoChannel(currentChannel)),
-      error => console.log(error.responseText)
+      currentChannel => dispatch(gotoChannel(currentChannel))
     );
   };
 };
@@ -47,8 +46,7 @@ export const fetchMessages = (channelName) => {
   return (dispatch) => {
     dispatch({ type: FETCH_MESSAGES });
     return MessageAPIUtil.fetchMessages(channelName).then(
-      messages => dispatch(receiveMessages(messages)),
-      error => console.log(error.responseText)
+      messages => dispatch(receiveMessages(messages))
     );
   };
 };
