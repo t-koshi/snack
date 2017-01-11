@@ -31,7 +31,9 @@ class MessagesIndex extends Component {
 
     const aChannel = () => {
       if (currentChannel.name.indexOf(',') === -1 &&
-      currentChannel.name !== currentUser.username) {
+      currentChannel.name !== currentUser.username &&
+      currentChannel.name !== 'general' &&
+      currentChannel.name !== 'random') {
         return (
           <section className="a-channel group">
             <div className="group">

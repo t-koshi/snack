@@ -70,8 +70,6 @@ class EditProfile extends Component {
       formData.append("user[avatar]", this.state.avatarFile);
     }
 
-    debugger
-
     this.props.editProfile(formData).then(() =>
       this.props.closeModal());
   }

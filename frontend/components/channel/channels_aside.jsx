@@ -45,7 +45,7 @@ class ChannelsAside extends React.Component {
 
   _channels() {
     const publicChannels = this.props.currentUser.joined_channels.filter((channel) =>
-    channel.private === false);
+    channel.private === false && channel.name !== 'general' && channel.name !== 'random');
     const privateChannels = this.props.currentUser.joined_channels.filter((channel) => {
       return (channel.private === true &&
         channel.name.indexOf(',') === -1 &&
@@ -115,6 +115,16 @@ class ChannelsAside extends React.Component {
           </ul>
 
           <ul>
+            <li
+              className={ active('general') }
+              onClick={ this._visitThisChannel }>
+              general
+            </li>
+            <li
+              className={ active('random') }
+              onClick={ this._visitThisChannel }>
+              random
+            </li>
             { joined_channels.map((channel, idx) =>
               <li
                 key={ idx }
@@ -129,7 +139,7 @@ class ChannelsAside extends React.Component {
 
           <ul className="channel-header group" onClick={ this._handleClickDM }>
             <h4 className="channel-type group">
-              { "DIRECT MESSAGES " }<span>{ `(${DMs.length})` }</span>
+              { "DIRECT MESSAGES " }
             </h4>
             <i className="material-icons new-channel"
               onClick={ this._handleClickNew }>
