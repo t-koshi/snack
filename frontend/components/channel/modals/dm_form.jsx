@@ -76,7 +76,7 @@ class DMForm extends Component {
       return (this.state.members.length ) ? "" : "Find or start a convo";
     };
 
-    let disabled = (this.state.members.length) ? false : true;
+    let disabled = (this.state.members.length) ? true : false;
 
     return (
       <section className="new-dm-modal group">
@@ -160,7 +160,7 @@ class DMForm extends Component {
   _filteredUsers () {
     if (!this.state.filter) {
       return this.props.users.filter((user) => {
-        return (this.state.members.indexOf(user.username) === -1 &&
+        return (this.state.members.indexOf(user) === -1 &&
         user.username !== this.props.currentUser.username);
       });
     } else {
@@ -168,11 +168,11 @@ class DMForm extends Component {
         if (user.name) {
           return (user.username.toLowerCase().indexOf(this.state.filter) > -1 ||
           user.name.toLowerCase().indexOf(this.state.filter) > -1) &&
-          this.state.members.indexOf(user.username) === -1 &&
+          this.state.members.indexOf(user) === -1 &&
           user.username !== currentUser.username;
         } else {
           return (user.username.toLowerCase().indexOf(this.state.filter) > -1 &&
-          this.state.members.indexOf(user.username) === -1 &&
+          this.state.members.indexOf(user) === -1 &&
           user.username !== currentUser.username);
         }
       });
