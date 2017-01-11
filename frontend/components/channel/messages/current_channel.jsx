@@ -36,6 +36,11 @@ class CurrentChannel extends Component {
       return that.props.receiveMessage(data);
       }
     );
+
+    channel.bind('profile_edit', (data) => {
+      return that.props.updateAuthor(data);
+      }
+    );
     //
   }
 

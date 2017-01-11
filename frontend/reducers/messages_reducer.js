@@ -5,6 +5,10 @@ import {
   RECEIVE_MESSAGE
 } from '../actions/messages_actions';
 
+import {
+  RECEIVE_CURRENT_USER
+} from '../actions/session_actions';
+
 const _default = {
 };
 

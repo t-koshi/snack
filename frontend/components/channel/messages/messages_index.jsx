@@ -53,8 +53,7 @@ class MessagesIndex extends Component {
                 className="icon3"
                 src={ currentUser.img_url }/>
               <ul className="group">
-                <li>{ name }</li>
-                <li>{ `@${currentUser.username}` }</li>
+                <li>{`${name()}  @${currentUser.username}` }</li>
               </ul>
             </div>
             <p className="group">
@@ -161,7 +160,6 @@ class MessagesIndex extends Component {
             );
           }
        });
-
    };
 
     return (

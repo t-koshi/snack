@@ -66,6 +66,7 @@ class EditProfile extends Component {
     const formData = new FormData();
     formData.append("user[firstname]", this.state.firstname);
     formData.append("user[lastname]", this.state.lastname);
+
     if (this.state.avatarFile) {
       formData.append("user[avatar]", this.state.avatarFile);
     }
