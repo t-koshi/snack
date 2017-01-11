@@ -23,8 +23,8 @@ class EditProfile extends Component {
 
   render() {
     return (
-      <section className="group">
-        <form className="profile-edit-page group"
+      <section className="edit-profile group">
+        <form className="group"
           onSubmit={ this._handleSubmit }>
           <div className="left">
             <label> First name
@@ -53,10 +53,11 @@ class EditProfile extends Component {
               </div>
             </label>
           </div>
-          <input type="submit" value="Save Changes"/>
+          <section className="buttons group">
+            <input type="submit" value="Save Changes"/>
+            <button onClick={ this.props.closeModal }>Cancel</button>
+          </section>
         </form>
-
-        <button className="cancel" onClick={ this.props.closeModal }>Cancel</button>
       </section>
     );
   }
