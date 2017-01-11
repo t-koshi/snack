@@ -73,7 +73,6 @@ class CurrentChannel extends Component {
       }
     };
 
-
     return (
       <section className="current-channel group">
         <CurrentChannelHeader

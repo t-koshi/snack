@@ -8,6 +8,7 @@ export const SIGNIN_USER = "SIGNIN_USER";
 
 
 export function receiveCurrentUser(currentUser){
+  // debugger
   return { type: RECEIVE_CURRENT_USER, currentUser };
 }
 

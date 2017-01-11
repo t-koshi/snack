@@ -10,8 +10,8 @@ class EditProfile extends Component {
     super(props);
 
     this.state = {
-      firstname: '',
-      lastname: '',
+      firstname: this.props.currentUser.firstname,
+      lastname: this.props.currentUser.lastname,
       avatarFile: null,
       avatarUrl: this.props.currentUser.img_url
     };
@@ -29,15 +29,15 @@ class EditProfile extends Component {
           <div className="left">
             <label> First name
               <input type="text"
-                onChange={ this._enterField }
-                value={ this.props.currentUser.firstname }>
+                onChange={ this._enterField("firstname") }
+                value={ this.state.firstname }>
               </input>
             </label>
 
             <label>Last name
               <input type="text"
-                onChange={ this._enterField }
-                value={ this.props.currentUser.lastname }>
+                onChange={ this._enterField("lastname") }
+                value={ this.state.lastname }>
               </input>
             </label>
           </div>
@@ -66,9 +66,11 @@ class EditProfile extends Component {
     const formData = new FormData();
     formData.append("user[firstname]", this.state.firstname);
     formData.append("user[lastname]", this.state.lastname);
-    if (this.state.avatarFile) {      
+    if (this.state.avatarFile) {
       formData.append("user[avatar]", this.state.avatarFile);
     }
+
+    debugger
 
     this.props.editProfile(formData).then(() =>
       this.props.closeModal());

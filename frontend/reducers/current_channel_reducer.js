@@ -7,6 +7,10 @@ import {
 } from '../actions/messages_actions';
 
 import {
+  RECEIVE_CURRENT_USER
+} from '../actions/session_actions';
+
+import {
   RECEIVE_CHANNEL
 } from '../actions/channel_actions';
 
