@@ -1,5 +1,6 @@
 import * as APIUtil from '../util/user_api_util';
 import { RECEIVE_CURRENT_USER } from './session_actions';
+import { RECEIVE_MESSAGES } from './session_actions';
 
 export const FETCH_USERS = "FETCH_USERS";
 export const RECEIVE_USERS = "RECEIVE_USERS";
