@@ -22,9 +22,11 @@ const messagesReducer = (state = _default, action) => {
       newState = _.merge(newState, {[action.message.id]: action.message});
       return newState;
     case RECEIVE_CURRENT_USER:
-      action.currentUser.messages.forEach((message) => {
-        newState[message.id] = message;
-      });
+      if (action.currentUser) {
+        action.currentUser.messages.forEach((message) => {
+          newState[message.id] = message;
+        });
+      }
       return newState;
     default:
       return state;
