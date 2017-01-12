@@ -182,7 +182,9 @@ class DMForm extends Component {
   _handleSubmit(e) {
     e.preventDefault();
     let newChannel = _.merge({}, this.state);
-    newChannel.members = ([this.props.currentUser.username].concat(this.state.members)).sort();
+
+    const memberNames = this.state.members.map((mem) => mem.username);
+    newChannel.members = ([this.props.currentUser.username].concat(memberNames));
     newChannel.name = newChannel.members.sort().join(',');
 
     if (this._allDMNames().indexOf(newChannel.name) > -1){
