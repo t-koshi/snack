@@ -76,7 +76,7 @@ class DMForm extends Component {
       return (this.state.members.length ) ? "" : "Find or start a convo";
     };
 
-    let disabled = (this.state.members.length) ? true : false;
+    let disabled = (this.state.members.length) ? false : true;
 
     return (
       <section className="new-dm-modal group">
