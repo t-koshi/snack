@@ -184,7 +184,7 @@ class DMForm extends Component {
     let newChannel = _.merge({}, this.state);
 
     const memberNames = this.state.members.map((mem) => mem.username);
-    newChannel.members = ([this.props.currentUser.username].concat(memberNames));
+    newChannel.members = ([this.props.currentUser.username].concat(memberNames)).sort();
     newChannel.name = newChannel.members.sort().join(',');
 
     if (this._allDMNames().indexOf(newChannel.name) > -1){
@@ -206,8 +206,9 @@ class DMForm extends Component {
 
   _afterSubmit(dmName) {
     this.props.closeModal();
-    const otherMembers = this.state.members.sort().join(',');
-    this.props.router.replace(`messages/@${otherMembers}`);
+    const memberNames = this.state.members.map((mem) => mem.username);
+    const channelName = memberNames.sort().join(',');
+    this.props.router.replace(`messages/@${channelName}`);
   }
 }
 
