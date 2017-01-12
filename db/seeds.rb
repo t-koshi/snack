@@ -136,7 +136,7 @@ channels = Channel.create! ([
     creator: users[1],
     private: false},
 
-  {name: 'hot pockets',
+  {name: 'hot-pockets',
     creator: users[2],
     private: false},
 
@@ -145,7 +145,7 @@ channels = Channel.create! ([
     creator: users[3],
     private: false},
 
-  {name: 'popcorn chiken',
+  {name: 'popcorn-chiken',
     purpose: 'yum',
     creator: users[4],
     private: false},
@@ -155,7 +155,7 @@ channels = Channel.create! ([
     creator: users[5],
     private: false},
 
-  {name: 'potato chips',
+  {name: 'potato-chips',
     purpose: 'is this basically a vegetable?',
     creator: users[6],
     private: false},
@@ -169,7 +169,7 @@ channels = Channel.create! ([
     creator: users[8],
     private: false},
 
-  {name: 'ice cream sandwiches',
+  {name: 'ice-cream-sandwiches',
     purpose: 'this is the best',
     creator: users[9],
     private: false},
@@ -179,7 +179,7 @@ channels = Channel.create! ([
     creator: users[10],
     private: false},
 
-  {name: 'fruit salad',
+  {name: 'fruit-salad',
     purpose: 'tastes good',
     creator: users[11],
     private: false},
@@ -189,7 +189,7 @@ channels = Channel.create! ([
     creator: users[12],
     private: false},
 
-  {name: 'a 3 musketeers bar',
+  {name: 'a-3-musketeers bar',
     purpose: 'jonathans favorite snack',
     creator: users[13],
     private: false},
@@ -199,16 +199,16 @@ channels = Channel.create! ([
     creator: users[1],
     private: true},
 
-  {name: 'granola bars',
+  {name: 'granola-bars',
     creator: users[2],
     private: true},
 
-  {name: 'granola clusters',
+  {name: 'granola-clusters',
     purpose: 'we out here',
     creator: users[3],
     private: true},
 
-  {name: 'pound cake',
+  {name: 'pound-cake',
     purpose: 'yum',
     creator: users[4],
     private: true},
@@ -218,19 +218,19 @@ channels = Channel.create! ([
     creator: users[5],
     private: true},
 
-  {name: 'chex mix',
+  {name: 'chex-mix',
     creator: users[6],
     private: true},
 
-  {name: 'tres leches',
+  {name: 'tres-leches',
     creator: users[7],
     private: true},
 
-  {name: 'hot wings',
+  {name: 'hot-wings',
     creator: users[8],
     private: true},
 
-  {name: 'gummy bears',
+  {name: 'gummy-bears',
     creator: users[9],
     private: true},
 
@@ -238,7 +238,7 @@ channels = Channel.create! ([
     creator: users[10],
     private: true},
 
-  {name: 'mozz sticks',
+  {name: 'mozz-sticks',
     creator: users[11],
     private: true},
 
@@ -246,7 +246,7 @@ channels = Channel.create! ([
     creator: users[12],
     private: true},
 
-  {name: 'carrot sticks',
+  {name: 'carrot-sticks',
     creator: users[13],
     private: true},
 
